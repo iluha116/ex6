@@ -24,7 +24,6 @@ public class Sjavac{
     private static final int LEGAL = 0;
     private static final int ILLEGAL = 1;
     private static final int IO_ERRORS = 2;
-    private static final String NO_LINE = null;
 
     /**
      * Manages the process of filtering and ordering the files, and then printing their names.
@@ -39,7 +38,7 @@ public class Sjavac{
             BufferedReader bufReader = new BufferedReader(reader);
             ArrayList<Line> lines = new ArrayList<>();
             String curLine = bufReader.readLine();
-            while(curLine != NO_LINE){ // goes over the lines in the file,
+            while(curLine != null){ // goes over the lines in the file,
                 // creates Lines objects representing line, and saves in ArrayList them.
                 Line line = LineFactory.lineFactory (curLine);
                 lines.add(line);

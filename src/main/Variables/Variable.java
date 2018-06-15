@@ -1,5 +1,8 @@
 package main.Variables;
 
+import main.Variables.VariablesExceptions.VariableException;
+import main.Variables.VariablesExceptions.WrongCastingException;
+
 /**
  * interface Variable
  * @author Ilia Bogov

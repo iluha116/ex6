@@ -39,7 +39,6 @@ abstract public class Scope {
      */
     protected ArrayList<Line> findScope (Line start, ArrayList<Line> all) throws InnerScopeHasNoEnd{
         ArrayList<Line> scopeLines = new ArrayList<>();
-
         int curLineNum = all.indexOf(start);
         Line cur = start;
         scopeLines.add(cur);

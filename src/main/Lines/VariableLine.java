@@ -6,12 +6,14 @@ import main.Variables.Variable;
 
 import java.util.ArrayList;
 
-public abstract class VariableLine implements Line{
+public abstract class VariableLine extends Line{
+
     private ArrayList<Variable> variables;
-    public VariableLine(String[] varab){
+
+    public VariableLine(String[] variable){
 
     }
 
     @Override
-    public abstract boolean isCorrect(Scope scope) ;
+    public abstract void LineCorrectness(Scope scope) ;
 }

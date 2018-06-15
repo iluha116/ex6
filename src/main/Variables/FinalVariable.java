@@ -1,5 +1,7 @@
 package main.Variables;
 
+import main.Variables.VariablesExceptions.ChangeFinalVariableException;
+
 public class FinalVariable implements Variable {
     private Variable variable;
     FinalVariable(Variable variable){
@@ -7,7 +9,7 @@ public class FinalVariable implements Variable {
     }
 
     @Override
-    public void setValue(String value) throws ChangeFinalVariableException{
+    public void setValue(String value) throws ChangeFinalVariableException {
         throw new ChangeFinalVariableException();
     }
 

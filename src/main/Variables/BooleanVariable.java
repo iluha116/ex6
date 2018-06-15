@@ -1,5 +1,7 @@
 package main.Variables;
 
+import main.Variables.VariablesExceptions.WrongCastingException;
+
 /**
  * BooleanVariable class - Variable type boolean
  * @author Shani Cheskis
@@ -10,6 +12,8 @@ public class BooleanVariable implements Variable{
 
     private String name;
     private String value;
+    private static final String DEFAULT = "true";
+
 
     /**
      * Constructor
@@ -17,6 +21,7 @@ public class BooleanVariable implements Variable{
      */
     public BooleanVariable (String name){
         this.name = name;
+        this.value = DEFAULT;
     }
 
     /**
@@ -52,5 +57,10 @@ public class BooleanVariable implements Variable{
     @Override
     public String getType(){
         return "boolean";
+    }
+
+    @Override
+    public String getValue() {
+        return value;
     }
 }

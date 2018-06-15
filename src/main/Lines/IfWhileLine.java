@@ -2,15 +2,15 @@ package main.Lines;
 
 import main.Scopes.Scope;
 
-public class IfWhileLine implements Line {
+public class IfWhileLine extends Line {
 
     public IfWhileLine (){
 
     }
 
     @Override
-    public boolean isCorrect(Scope scope) {
-        return false;
+    public void LineCorrectness(Scope scope) {
+
     }
 
     @Override

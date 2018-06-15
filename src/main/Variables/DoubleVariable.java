@@ -1,5 +1,7 @@
 package main.Variables;
 
+import main.Variables.VariablesExceptions.WrongCastingException;
+
 /**
  * DoubleVariable class - Variable type Double
  * @author Shani Cheskis
@@ -10,6 +12,7 @@ public class DoubleVariable implements Variable {
 
     private String name;
     private double value;
+    private static final int DEFAULT = 0;
 
     /**
      * Constructor
@@ -17,6 +20,7 @@ public class DoubleVariable implements Variable {
      */
     public DoubleVariable (String name){
         this.name = name;
+        this.value = DEFAULT;
     }
 
     /**
@@ -48,6 +52,11 @@ public class DoubleVariable implements Variable {
     @Override
     public String getType(){
         return "double";
+    }
+
+    @Override
+    public String getValue() {
+        return Double.toString(value);
     }
 
 }

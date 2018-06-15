@@ -1,4 +1,4 @@
-package main.Variables;
+package main.Variables.VariablesExceptions;
 
 import main.CodeException;
 

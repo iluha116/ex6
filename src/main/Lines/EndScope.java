@@ -1,21 +1,28 @@
 package main.Lines;
-
-import main.Scopes.Global;
-import main.Scopes.Scope;
-
+import main.Lines.LineExceptions.IllegalLineException;
+import main.Scopes.*;
 import java.util.ArrayList;
 
-public class EndScope implements Line {
+/**
+ * This class represent } line (end of an InnerScope).
+ * @author Ilia Bogov
+ * @author Shani Cheskis
+ */
 
-    public EndScope (String line){
+public class EndScope extends Line {
+
+    /**
+     * Constructor
+     */
+    public EndScope (){
     }
 
-    public boolean isCorrect (Scope scope) throws IllegalLineException{
+    public void LineCorrectness (Scope scope) throws IllegalLineException {
         ArrayList<Line> lines = scope.getLines();
-        if ((!(scope instanceof Global))&&(lines.get(lines.size()-1)== this)){
-            return true;
+        if ((scope instanceof Global)||(lines.get(lines.size()-1)== this)){
+            // if not the last line in not InnerScope
+            throw new IllegalLineException();
         }
-        throw new IllegalLineException();
     }
 
     @Override

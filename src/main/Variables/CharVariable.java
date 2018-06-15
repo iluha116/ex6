@@ -1,5 +1,7 @@
 package main.Variables;
 
+import main.Variables.VariablesExceptions.WrongCastingException;
+
 /**
  * CharVariable class - Variable type Char
  * @author Shani Cheskis
@@ -11,6 +13,7 @@ public class CharVariable implements Variable {
 
     private String name;
     private String value;
+    private static final String DEFAULT = "";
 
     /**
      * Constructor
@@ -18,6 +21,7 @@ public class CharVariable implements Variable {
      */
     public CharVariable (String name){
         this.name = name;
+        this.value = DEFAULT;
     }
 
     /**
@@ -56,6 +60,11 @@ public class CharVariable implements Variable {
     @Override
     public String getType(){
         return "Char";
+    }
+
+    @Override
+    public String getValue() {
+        return value;
     }
 
 }

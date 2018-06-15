@@ -1,71 +1,75 @@
 package main.Lines;
+import main.Lines.LineExceptions.*;
+import main.Method;
 import main.Scopes.Global;
 import main.Scopes.Scope;
 import main.Variables.Variable;
 import java.util.*;
 
-public class CallMethodLine implements Line{
+/**
+ * This class represent call for method line.
+ * @author Ilia Bogov
+ * @author Shani Cheskis
+ */
+
+public class CallMethodLine extends Line{
     private String[] parameters;
     private String name;
 
     /**
-     *
-     * @param name
-     * @param parameters
+     * Constructor
+     * @param name name of the method that called.
+     * @param parameters parameter name that are given for calling the method
      */
-    public CallMethodLine(String name,String[] parameters){
+    public CallMethodLine(String name, String[] parameters){
         this.parameters=parameters;
         this.name=name;
     }
 
     @Override
-    public boolean isCorrect(Scope scope) throws IllegalLineException {
-        if (!(scope instanceof Global)){
-            for (Method method:scope.getMethods()){
-                String[] methodTypes = method.getParametersTypes();
-                if ((method.getName().equals(name)) && (methodTypes.length == parameters.length)){
-                    String[] parametersTypes = checkParametersTypes(scope.getLocalVariables(),
-                            scope.getGlobalVariables());
-                    for (int i=0; i<methodTypes.length; i++){ // compare that all the types are similar.
-                    }
+    public void LineCorrectness (Scope scope) throws IllegalLineException {
+        if (scope instanceof Global){ // can't be called from the global scope
+            throw new IllegalLineException();
+        }
+        if (!findSuitableMethod(scope)){ // of there isn't suitable method that can be called
+            throw new IllegalLineException();
+        }
+    }
+
+    private boolean findSuitableMethod (Scope scope) throws IllegalLineException {
+        for (Method method:scope.getMethods()){
+            String[] methodTypes = method.getParametersTypes();
+            if (method.getName().equals(name)){ // if the name found
+                if (methodTypes.length != parameters.length){
+                    // return false if the number of parameters is different
+                    return false;
                 }
+                String[] parametersTypes = checkParametersTypes(scope.getLocalVariables(),
+                        scope.getGlobalVariables());
+                for (int i=0; i<methodTypes.length; i++){ // compare that all the types are similar.
+                    if (parametersTypes[i].equals(methodTypes[i])){ // if the types different return false
+                        return false;
+                    }
+                } // if the name and all the parameters types are similar:
+                return true;
             }
         }
-        throw new IllegalLineException();
+        // if gone over all methods and didn't find the suitable one
+        return false;
     }
 
     /* Builds a String array of the types of the parameters that appear in the line,
     throws exception if there isn't such variable. */
-    private String[] checkParametersTypes (ArrayList <Variable> valuesLocal, ArrayList <Variable> valuesGlobal)
+    private String[] checkParametersTypes (ArrayList <Variable> valuesLocal,
+                                           ArrayList <Variable> valuesGlobal)
             throws IllegalLineException{
         String [] types = new String[parameters.length];
         for (int i=0; i<parameters.length; i++){ // for each parameter in the line
-            Variable var = findVariable(parameters[i], valuesLocal, valuesGlobal); // find the variable if exists
+            // find the variable if exists
+            Variable var = findVariable(parameters[i], valuesLocal, valuesGlobal);
             types [i] = var.getType();  // save the type
         }
         return types;
     }
-
-    /* Find the variable that is called in cur place in the line, throws exception if there isn't such variable */
-    private Variable findVariable (String val, ArrayList <Variable> valuesLocal, ArrayList <Variable> valuesGlobal)
-            throws IllegalLineException{
-        // first, search in the local parameters
-        for (int i=0; i<valuesLocal.size(); i++){
-            Variable var = valuesLocal.get(i);
-            if (var.getName().equals(val)){
-                return var;
-            }
-        }
-        // if doesn't found in the local parameters search in the global
-        for (int i=0; i<valuesGlobal.size(); i++){
-            Variable var = valuesGlobal.get(i);
-            if (var.getName().equals(val)){
-                return var;
-            }
-        }
-        // if doesn't found in the local and global parameters
-        throw new CallToUnExistsParameter();
-    }
-
 
 }

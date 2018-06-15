@@ -1,5 +1,7 @@
 package main.Variables;
 
+import main.Variables.VariablesExceptions.WrongCastingException;
+
 /**
  * IntVariable class - Variable type Int
  * @author Shani Cheskis
@@ -10,6 +12,7 @@ public class IntVariable implements Variable{
 
     private String name;
     private int value;
+    private static final int DEFAULT = 0;
 
     /**
      * Constructor
@@ -17,6 +20,7 @@ public class IntVariable implements Variable{
      */
     public IntVariable (String name){
         this.name = name;
+        this.value = DEFAULT;
     }
 
     /**
@@ -48,6 +52,11 @@ public class IntVariable implements Variable{
     @Override
     public String getType(){
         return "int";
+    }
+
+    @Override
+    public String getValue() {
+        return Integer.toString(value);
     }
 
 }

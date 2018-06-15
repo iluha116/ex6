@@ -1,5 +1,7 @@
 package main.Variables;
 
+import main.Variables.VariablesExceptions.WrongCastingException;
+
 /**
  * StringVariable class - Variable type String
  * @author Shani Cheskis
@@ -11,6 +13,7 @@ public class StringVariable implements Variable{
 
     private String name;
     private String value;
+    private static final String DEFAULT = "";
 
     /**
      * Constructor
@@ -18,6 +21,7 @@ public class StringVariable implements Variable{
      */
     public StringVariable (String name){
         this.name = name;
+        this.value = DEFAULT;
     }
 
     /**
@@ -55,5 +59,10 @@ public class StringVariable implements Variable{
     @Override
     public String getType(){
         return "String";
+    }
+
+    @Override
+    public String getValue() {
+        return value;
     }
 }
