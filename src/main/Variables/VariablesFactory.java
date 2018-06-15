@@ -18,7 +18,7 @@ public class VariablesFactory {
     private static final String CHAR = "char";
 
     /**
-     * Constructor
+     * Factory
      * @param type type of the variable
      * @param name name of the variable
      * @param IfFinal boolean if the variable final
@@ -54,7 +54,7 @@ public class VariablesFactory {
     }
 
     /**
-     * Default constructor - assume that the given type exists and give default values
+     * Default Factory - assume that the given type exists and give default values
      * @param type type of the variable
      * @param name name of the variable
      * @param IfFinal boolean if the variable final
