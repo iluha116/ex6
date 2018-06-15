@@ -9,7 +9,8 @@ package main.Variables;
 
 public class VariablesFactory {
 
-    public Variable factory (String type, String name, String value) throws WrongCastingException{
+    public Variable factory (String type, String name, String value, boolean IfFinal)
+            throws WrongCastingException{
         Variable val;
         switch (type){
             case ("String"):
@@ -29,6 +30,9 @@ public class VariablesFactory {
                 break;
             default:
                 throw new WrongCastingException();
+        }
+        if (IfFinal){
+            val = new FinalVariable(val);
         }
         return val;
     }
