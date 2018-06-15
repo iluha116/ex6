@@ -14,11 +14,14 @@ public interface Variable {
      * @param value for the variable
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
-    public void setValue (String value) throws WrongCastingException;
+    public void setValue (String value) throws VariableException;
 
     public String getName();
 
     public String getType();
+
+    public String getValue();
+
 
 
 }

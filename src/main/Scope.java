@@ -26,4 +26,6 @@ abstract public class Scope {
         return localVariables;
     }
 
+    public abstract boolean isScopeCorrect ();
+
 }

@@ -30,13 +30,14 @@ public class Main {
                 String.format("(void\\s+\\w+)(\\()(((final\\s+)?%1$s\\s+\\w+,)*((final\\s+)?%1$s\\s+\\w+)?)(\\)\\s*\\{)", TYPES);
         final String SCOPES_LINE =  String.format("\\s* (%1$s)(\\()", SCOPES_TYPES);
         Pattern method = Pattern.compile(METHOD_LINE);
-        Matcher matcher = method.matcher("void soo  (final     char   b) {");
+        Matcher matcher = method.matcher("void soo(final char b,boolean g) {");
         final String tr=String.format("void\\s+\\w+\\ %1$s",TYPES);
         Pattern p=Pattern.compile(tr);
-        Matcher mm=p.matcher("void soo boolean");
+        Matcher mm=p.matcher("void soo boolean,");
         System.out.println(mm.matches());
 
         System.out.println(matcher.matches());
+        System.out.println(matcher.group(3));
     }
 
 

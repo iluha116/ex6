@@ -4,14 +4,13 @@ import java.util.regex.Matcher;
 
 public class LineFactory {
 
-    private static final String TYPES = "int|double|String|boolean|char";
+    private static final String TYPES = "(int|double|String|boolean|char)";
     private static final String AND_OR = "&&|\\|{2}";
-    private static final String SCOPES_TYPES = "if|while";
+    private static final String SCOPES_TYPES = "(if|while)";
     private static final String METHOD_LINE =
-            String.format("(void \\s+\\w+)(\\()(((final\\s+)? %1$s \\s+\\w+,)*" +
-                    "((final\\s+)? %1$s \\s+\\w+)?)(\\))({)", TYPES);
-    private static final String SCOPES_LINE =  String.format("\\s* (%1$s)(\\()", SCOPES_TYPES);
-
+            String.format("(void\\s+\\w+)(\\()(((final\\s+)?%1$s\\s+\\w+,)*" +
+                    "((final\\s+)?%1$s\\s+\\w+)?)(\\))({)", TYPES);
+    private static final String SCOPES_LINE =  String.format("\\s*(%1$s)(\\()", SCOPES_TYPES);
 
 
 
