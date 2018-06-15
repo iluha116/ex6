@@ -19,7 +19,7 @@ public class Main {
         s(a);
         Iterator<String> t= a.iterator();
 
-        String m = "wertyu     wtre retwretw     erwe";
+        String m = "wertyu     wtre redrew     erwe";
         String [] f = m.split("\\s+");
 
 
@@ -38,6 +38,7 @@ public class Main {
 
         System.out.println(matcher.matches());
         System.out.println(matcher.group(3));
+
     }
 
 
