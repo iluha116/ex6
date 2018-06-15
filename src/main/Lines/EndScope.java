@@ -17,6 +17,7 @@ public class EndScope extends Line {
     public EndScope (){
     }
 
+    @Override
     public void LineCorrectness (Scope scope) throws IllegalLineException {
         ArrayList<Line> lines = scope.getLines();
         if ((scope instanceof Global)||(lines.get(lines.size()-1)== this)){

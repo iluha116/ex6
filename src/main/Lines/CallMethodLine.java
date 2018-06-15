@@ -36,6 +36,8 @@ public class CallMethodLine extends Line{
         }
     }
 
+
+   /* Finds if there is a suitable method for such call to method*/
     private boolean findSuitableMethod (Scope scope) throws IllegalLineException {
         for (Method method:scope.getMethods()){
             String[] methodTypes = method.getParametersTypes();
