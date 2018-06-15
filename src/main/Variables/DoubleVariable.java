@@ -45,4 +45,9 @@ public class DoubleVariable implements Variable {
         return name;
     }
 
+    @Override
+    public String getType(){
+        return "double";
+    }
+
 }

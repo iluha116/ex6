@@ -45,4 +45,9 @@ public class IntVariable implements Variable{
         return name;
     }
 
+    @Override
+    public String getType(){
+        return "int";
+    }
+
 }
