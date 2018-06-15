@@ -51,4 +51,9 @@ public class StringVariable implements Variable{
     public String getName (){
         return name;
     }
+
+    @Override
+    public String getType(){
+        return "String";
+    }
 }

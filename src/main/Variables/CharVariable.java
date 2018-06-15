@@ -53,4 +53,9 @@ public class CharVariable implements Variable {
         return name;
     }
 
+    @Override
+    public String getType(){
+        return "Char";
+    }
+
 }
