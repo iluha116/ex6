@@ -19,7 +19,7 @@ public class StringVariable implements Variable{
      * Constructor
      * @param name name of the variable
      */
-    public StringVariable (String name){
+     StringVariable (String name){
         this.name = name;
         this.value = DEFAULT;
     }
@@ -30,7 +30,7 @@ public class StringVariable implements Variable{
      * @param value value for the variable
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
-    public StringVariable (String name, String value) throws WrongCastingException{
+     StringVariable (String name, String value) throws WrongCastingException{
         this.name = name;
         setValue(value);
     }

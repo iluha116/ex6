@@ -19,7 +19,7 @@ public class BooleanVariable implements Variable{
      * Constructor
      * @param name name of the variable
      */
-    public BooleanVariable (String name){
+     BooleanVariable (String name){
         this.name = name;
         this.value = DEFAULT;
     }
@@ -30,14 +30,14 @@ public class BooleanVariable implements Variable{
      * @param value value for the variable
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
-    public BooleanVariable (String name, String value) throws WrongCastingException{
+     BooleanVariable (String name, String value) throws WrongCastingException{
         this.name = name;
         setValue(value);
     }
 
     @Override
     public void setValue (String value) throws WrongCastingException{
-        if ((value=="true")||(value=="false")){ // if true or false
+        if ((value.equals("true"))||(value.equals("false"))){ // if true or false
             this.value = value;
         }
         try { // if a number

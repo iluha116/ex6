@@ -18,7 +18,7 @@ public class DoubleVariable implements Variable {
      * Constructor
      * @param name name of the variable
      */
-    public DoubleVariable (String name){
+     DoubleVariable (String name){
         this.name = name;
         this.value = DEFAULT;
     }
@@ -29,7 +29,7 @@ public class DoubleVariable implements Variable {
      * @param value value for the variable
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
-    public DoubleVariable (String name, String value) throws WrongCastingException{
+     DoubleVariable (String name, String value) throws WrongCastingException{
         this.name = name;
         setValue(value);
     }

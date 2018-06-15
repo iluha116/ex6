@@ -18,7 +18,7 @@ public class IntVariable implements Variable{
      * Constructor
      * @param name name of the variable
      */
-    public IntVariable (String name){
+     IntVariable (String name){
         this.name = name;
         this.value = DEFAULT;
     }
@@ -29,7 +29,7 @@ public class IntVariable implements Variable{
      * @param value value for the variable
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
-    public IntVariable (String name, String value) throws WrongCastingException{
+     IntVariable (String name, String value) throws WrongCastingException{
         this.name = name;
         setValue(value);
     }

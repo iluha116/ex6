@@ -10,12 +10,12 @@ import main.Variables.VariablesExceptions.*;
 
 public class VariablesFactory {
 
-
-    public static final String STRING = "String";
-    public static final String INT = "int";
-    public static final String DOUBLE = "double";
-    public static final String BOOLEAN = "boolean";
-    public static final String CHAR = "char";
+    // types
+    private static final String STRING = "String";
+    private static final String INT = "int";
+    private static final String DOUBLE = "double";
+    private static final String BOOLEAN = "boolean";
+    private static final String CHAR = "char";
 
     /**
      * Constructor
@@ -23,7 +23,7 @@ public class VariablesFactory {
      * @param name name of the variable
      * @param IfFinal boolean if the variable final
      * @return Variable object
-     * @throws NoTypeOfVariable
+     * @throws VariableException if cant create such variable
      */
     public static Variable factory (String type, String name, String value, boolean IfFinal)
             throws VariableException{

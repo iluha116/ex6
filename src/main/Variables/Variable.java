@@ -17,13 +17,13 @@ public interface Variable {
      * @param value for the variable
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
-    public void setValue (String value) throws VariableException;
+     void setValue (String value) throws VariableException;
 
-    public String getName();
+     String getName();
 
-    public String getType();
+     String getType();
 
-    public String getValue();
+     String getValue();
 
 
 
