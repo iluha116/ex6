@@ -1,10 +1,7 @@
 package main;
-
-import main.Lines.Line;
-import main.Lines.Method;
-import main.Variables.Variable;
-
-import java.util.ArrayList;
+import main.Lines.*;
+import main.Variables.*;
+import java.util.*;
 
 abstract public class Scope {
 

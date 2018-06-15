@@ -40,4 +40,9 @@ public class DoubleVariable implements Variable {
         }
     }
 
+    @Override
+    public String getName (){
+        return name;
+    }
+
 }
