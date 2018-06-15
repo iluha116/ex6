@@ -11,6 +11,10 @@ import java.util.ArrayList;
 
 public class Global extends Scope {
 
+    /**
+     * Constructor
+     * @param lines ArrayList of lines in the current scope
+     */
     public Global (ArrayList<Line> lines){
         this.lines = lines;
         this.globalVariables = new ArrayList<>();

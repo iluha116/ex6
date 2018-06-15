@@ -1,6 +1,7 @@
 package main.Scopes;
 import main.CodeException;
 import main.Lines.*;
+import main.Method;
 import main.Variables.Variable;
 import java.util.ArrayList;
 
