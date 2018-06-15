@@ -1,5 +1,6 @@
 package main.Lines;
-import main.*;
+import main.Scopes.Global;
+import main.Scopes.Scope;
 import main.Variables.Variable;
 import java.util.*;
 

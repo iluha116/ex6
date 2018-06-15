@@ -1,4 +1,6 @@
 package main.Lines;
 
-public class IllegalLineException  extends Exception{
+import main.CodeException;
+
+public class IllegalLineException extends CodeException {
 }

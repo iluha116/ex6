@@ -1,6 +1,8 @@
 package main.Lines;
-import main.Global;
-import main.Scope;
+import main.Scopes.Global;
+import main.Scopes.Scope;
+
+import java.util.ArrayList;
 
 public class MethodLine implements Line {
 
@@ -26,15 +28,17 @@ public class MethodLine implements Line {
         this.method = new Method(name,names,types,ifFinal);
     }
 
-    public Method getFunction (){
-        return method;
-    }
-
     public boolean isCorrect (Scope scope) throws IllegalLineException{
         if (scope instanceof Global){
             return true;
         }
         throw new IllegalLineException();
+    }
+
+    /**/
+    private void updateScopeParameters (Scope scope){
+        ArrayList<Method> methods = scope.getMethods();
+        methods.add(method);
     }
 
     @Override

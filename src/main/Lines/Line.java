@@ -1,9 +1,6 @@
 package main.Lines;
 
-import main.Scope;
-import main.Variables.Variable;
-
-import java.util.ArrayList;
+import main.Scopes.Scope;
 
 public interface Line {
 

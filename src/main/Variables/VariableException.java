@@ -1,4 +1,7 @@
 package main.Variables;
 
-public class VariableException extends Exception{
+import main.CodeException;
+
+public class VariableException extends CodeException {
+
 }

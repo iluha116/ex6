@@ -1,7 +1,6 @@
 package main.Lines;
 
-import main.Scope;
-import main.Scopes.IfWhile;
+import main.Scopes.Scope;
 
 public class IfWhileLine implements Line {
 

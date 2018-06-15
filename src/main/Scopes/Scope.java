@@ -1,12 +1,32 @@
 package main.Scopes;
-
+import main.CodeException;
 import main.Lines.*;
-import main.Variables.Variable;
+import main.Variables.*;
+import java.util.*;
 
-import java.util.ArrayList;
+abstract public class Scope {
 
-public interface Scope {
+    protected ArrayList<Method> methods;
+    protected ArrayList<Line> lines;
+    protected ArrayList<Variable> globalVariables;
+    protected ArrayList<Variable> localVariables;
 
-    public boolean checkScope (ArrayList<Variable> globals, ArrayList<Method> methods);
+    public ArrayList<Line> getLines (){
+        return lines;
+    }
+
+    public ArrayList<Method> getMethods (){
+        return methods;
+    }
+
+    public ArrayList<Variable> getGlobalVariables (){
+        return globalVariables;
+    }
+
+    public ArrayList<Variable> getLocalVariables (){
+        return localVariables;
+    }
+
+    public abstract void scopeCorrectness() throws CodeException;
 
 }

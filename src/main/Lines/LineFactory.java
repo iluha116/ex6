@@ -28,7 +28,7 @@ public class LineFactory {
     }
 
 
-    public Line lineFactory(String args){
+    public static Line lineFactory(String args){
         Pattern method = Pattern.compile(METHOD_LINE);
         //Matcher line;
 

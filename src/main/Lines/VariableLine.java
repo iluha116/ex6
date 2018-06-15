@@ -1,7 +1,7 @@
 package main.Lines;
 
 
-import main.Scope;
+import main.Scopes.Scope;
 import main.Variables.Variable;
 
 import java.util.ArrayList;
