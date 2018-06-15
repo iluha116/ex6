@@ -25,6 +25,7 @@ abstract public class Scope {
     public ArrayList<Variable> getLocalVariables (){
         return localVariables;
     }
+    public abstract boolean IsScopeCorrect();
 
     public abstract boolean isScopeCorrect ();
 

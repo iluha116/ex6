@@ -19,4 +19,9 @@ public class Global extends Scope {
 
         return false;
     }
+
+    @Override
+    public boolean IsScopeCorrect() {
+        return false;
+    }
 }
