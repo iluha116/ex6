@@ -7,5 +7,5 @@ package main.Variables;
  * @author Ilia Bogov
  */
 
-public class WrongCastingException extends Exception {
+public class WrongCastingException extends VariableException {
 }

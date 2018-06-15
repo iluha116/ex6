@@ -15,8 +15,14 @@ public class MethodLine implements Line {
         String[] methodParametersName=new String[pairs.length];
         for (int i=0;i<pairs.length;i++){
             String[] pair=pairs[i].split(" ");
-            methodParametersType[i]=pair[0];
-            methodParametersName[i]=pair[1];
+            if (pair.length==2){
+                methodParametersType[i]=pair[0];
+                methodParametersName[i]=pair[1];
+            }else{
+                methodParametersType[i]=pair[1];
+                methodParametersName[i]=pair[2];
+            }
+
         }
         method=new Method(name,methodParametersName,methodParametersType);
 

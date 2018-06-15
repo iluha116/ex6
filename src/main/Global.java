@@ -8,5 +8,15 @@ public class Global extends Scope {
 
     public Global (ArrayList<Line> lines){
         this.lines = lines;
+        this.globalVariables = new ArrayList<>();
+        this.localVariables = new ArrayList<>();
+        this.methods = new ArrayList<>();
+    }
+
+    public boolean isScopeCorrect (){
+
+
+
+        return false;
     }
 }
