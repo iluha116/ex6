@@ -8,9 +8,17 @@ import java.util.ArrayList;
 
 public class MethodLine implements Line {
 
-    Method method;
+    private Method method;
 
-    public MethodLine (String line){
+    public MethodLine (String name,String[] pairs){
+        String[] methodParametersType=new String[pairs.length];
+        String[] methodParametersName=new String[pairs.length];
+        for (int i=0;i<pairs.length;i++){
+            String[] pair=pairs[i].split(" ");
+            methodParametersType[i]=pair[0];
+            methodParametersName[i]=pair[1];
+        }
+        method=new Method(name,methodParametersName,methodParametersType);
 
     }
 

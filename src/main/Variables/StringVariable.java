@@ -46,4 +46,9 @@ public class StringVariable implements Variable{
             throw new WrongCastingException();
         }
     }
+
+    @Override
+    public String getName (){
+        return name;
+    }
 }

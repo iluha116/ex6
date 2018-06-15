@@ -16,5 +16,7 @@ public interface Variable {
      */
     public void setValue (String value) throws WrongCastingException;
 
+    public String getName ();
+
 
 }

@@ -18,4 +18,11 @@ public class Method {
         return name;
     }
 
+    public String[] getParametersNames() {
+        return parametersNames;
+    }
+
+    public String[] getParametersTypes() {
+        return parametersTypes;
+    }
 }
