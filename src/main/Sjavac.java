@@ -28,9 +28,8 @@ public class Sjavac{
     /**
      * Manages the process of filtering and ordering the files, and then printing their names.
      * @param file file that consists the code we want to check
-     * @throws IOExceptions in case any critical error occurred during the reading of the file.
      */
-    private Sjavac (String file) throws IOExceptions {
+    private Sjavac (String file) {
         File code = new File(file);
         //Creates an ArrayList of lines of the code in the file.
         try{
