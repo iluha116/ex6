@@ -40,7 +40,7 @@ public class MethodCalling implements Line{
         String [] types = new String[parameters.length];
         for (int i=0; i<parameters.length; i++){ // for each parameter in the line
             Variable var = findVariable(parameters[i], valuesLocal, valuesGlobal); // find the variable if exists
-            //types [i]  // save the type
+            types [i] = var.getType(); // save the type
         }
         return types;
     }
