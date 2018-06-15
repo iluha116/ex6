@@ -4,8 +4,15 @@ import java.util.regex.Matcher;
 
 public class LineFactory {
 
-    private static final String types = "int";
-    private static final String methodRegex = "void//s+[a-zA-Z0-9_]//s*[a-zA-Z, 0-9]*";
+    private static final String TYPES = "int|double|String|boolean|char";
+    private static final String AND_OR = "&&|\\|{2}";
+    private static final String SCOPES_TYPES = "if|while";
+    private static final String METHOD_LINE =
+            String.format("(void \\s+\\w+)(\\()(((final\\s+)? %1$s \\s+\\w+,)*" +
+                    "((final\\s+)? %1$s \\s+\\w+)?)(\\))({)", TYPES);
+    private static final String SCOPES_LINE =  String.format("\\s* (%1$s)(\\()", SCOPES_TYPES);
+
+
 
 
     public enum LogNameMatcher{
@@ -23,7 +30,7 @@ public class LineFactory {
 
 
     public Line lineFactory(String args){
-        Pattern method = Pattern.compile(methodRegex);
+        Pattern method = Pattern.compile(METHOD_LINE);
         //Matcher line;
 
         switch (args){
