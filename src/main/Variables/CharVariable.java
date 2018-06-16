@@ -59,7 +59,7 @@ public class CharVariable implements Variable {
 
     @Override
     public String getType(){
-        return "Char";
+        return "char";
     }
 
     @Override
