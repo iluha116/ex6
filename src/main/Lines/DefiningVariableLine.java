@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class DefiningVariableLine {
     ArrayList<Variable> variables;
-
     DefiningVariableLine(String string){
 
     }
