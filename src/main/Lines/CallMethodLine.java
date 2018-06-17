@@ -4,7 +4,6 @@ import main.Method;
 import main.Scopes.Global;
 import main.Scopes.Scope;
 import main.Variables.Variable;
-import java.util.*;
 
 /**
  * This class represent call for method line.
@@ -66,7 +65,7 @@ public class CallMethodLine extends Line{
         String [] types = new String[parameters.length];
         for (int i=0; i<parameters.length; i++){ // for each parameter in the line
             // find the variable if exists
-            Variable var = findVariable(parameters[i],scope);
+            Variable var = findVariable(parameters[i], scope);
             types [i] = var.getType();  // save the type
         }
         return types;

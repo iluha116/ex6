@@ -19,11 +19,15 @@ public interface Variable {
      */
      void setValue (String value) throws VariableException;
 
+    /**
+     *
+     * @return
+     */
      String getName();
 
      String getType();
 
-     String getValue();
+     boolean hasValue();
 
 
 

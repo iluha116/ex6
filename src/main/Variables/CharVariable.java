@@ -12,17 +12,16 @@ import main.Variables.VariablesExceptions.WrongCastingException;
 public class CharVariable implements Variable {
 
     private String name;
-    private String value;
-    private static final String DEFAULT = "";
+    private boolean hasValue;
 
     /**
      * Constructor
      * @param name name of the variable
      */
-     CharVariable (String name){
-        this.name = name;
-        this.value = DEFAULT;
-    }
+     CharVariable (String name,boolean hasValue){
+         this.name = name;
+         this.hasValue = hasValue;
+     }
 
     /**
      * Constructor with value
@@ -41,7 +40,7 @@ public class CharVariable implements Variable {
             if ((value.charAt(0)=='"')&&(value.charAt(value.length()-1)=='"')&&(value.length()==3)){
                 // if starts and ends with " so it is a string value,
                 // and the length with " is 3  so it is a char
-                this.value = value;
+                this.hasValue = true;
             }
             else {
                 throw new WrongCastingException();
@@ -63,8 +62,8 @@ public class CharVariable implements Variable {
     }
 
     @Override
-    public String getValue() {
-        return value;
+    public boolean hasValue() {
+        return hasValue;
     }
 
 }
