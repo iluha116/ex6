@@ -12,6 +12,14 @@ public class LineFactory {
                     "((final\\s+)?%1$s\\s+\\w+)?)(\\)\\s*\\{)", TYPES);
     private static final String SCOPES_LINE = String.format("\\s*%1$s\\s*(\\()((\\w+\\s*%2$s\\s*)" +
             "*(\\s*\\w+\\s*)?)(\\)\\s*\\{)", SCOPES_TYPES, AND_OR);
+    private static final String VARIABLE_LINE=String.format
+            ("\\s*(final\\s+)?%1$s\\s+" +
+                    "((\\w+(\\s+=\\s+((('|\\|\")\\s*)\\S*(\\s*('|\\|\"))||([\\d\\w]+)))?\\s+,\\s+)*" +
+                    "(\\w+(\\s+=\\s+((('|\\|\")\\s*)\\S*(\\s*('|\\|\"))||([\\d\\w]+)))?\\s*))(;)",TYPES);
+
+    private static final String ASSIGNMENT_VARIABLE_LINE=String.format
+            ("\\s*((\\w+(\\s+=\\s+((('|\\|\")\\s*)\\S*(\\s*('|\\|\"))||([\\d\\w]+)))\\s+,\\s+)*" +
+                    "(\\w+(\\s+=\\s+((('|\\|\")\\s*)\\S*(\\s*('|\\|\"))||([\\d\\w]+)))\\s*))(;)",TYPES);
 
     public enum LogNameMatcher{
         FOO_LOG(".*Foo\\.log$"),
