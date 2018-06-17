@@ -24,7 +24,7 @@ public class FinalVariable implements Variable {
     }
 
     @Override
-    public String getValue() {
-        return variable.getValue();
+    public boolean hasValue() {
+        return variable.hasValue();
     }
 }

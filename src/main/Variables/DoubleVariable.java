@@ -11,16 +11,15 @@ import main.Variables.VariablesExceptions.WrongCastingException;
 public class DoubleVariable implements Variable {
 
     private String name;
-    private double value;
-    private static final int DEFAULT = 0;
+    private boolean hasValue;
 
     /**
      * Constructor
      * @param name name of the variable
      */
-     DoubleVariable (String name){
+     DoubleVariable (String name, boolean hasValue){
         this.name = name;
-        this.value = DEFAULT;
+        this.hasValue = hasValue;
     }
 
     /**
@@ -37,7 +36,8 @@ public class DoubleVariable implements Variable {
     @Override
     public void setValue (String value) throws WrongCastingException{
         try {
-            this.value = Double.parseDouble(value);
+            double val = Double.parseDouble(value);
+            this.hasValue = true;
         }
         catch (Exception e){
             throw new WrongCastingException();
@@ -55,8 +55,8 @@ public class DoubleVariable implements Variable {
     }
 
     @Override
-    public String getValue() {
-        return Double.toString(value);
+    public boolean hasValue() {
+        return hasValue;
     }
 
 }

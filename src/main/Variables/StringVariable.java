@@ -12,16 +12,15 @@ import main.Variables.VariablesExceptions.WrongCastingException;
 public class StringVariable implements Variable{
 
     private String name;
-    private String value;
-    private static final String DEFAULT = "";
+    private boolean hasValue;
 
     /**
      * Constructor
      * @param name name of the variable
      */
-     StringVariable (String name){
+     StringVariable (String name, boolean hasValue){
         this.name = name;
-        this.value = DEFAULT;
+        this.hasValue = hasValue;
     }
 
     /**
@@ -40,7 +39,7 @@ public class StringVariable implements Variable{
         try {
             if ((value.charAt(0)=='"')&&(value.charAt(value.length()-1)=='"')){
                 // if starts and ends with " so it is a string value
-                this.value = value;
+                this.hasValue = true;
             }
             else {
                 throw new WrongCastingException();
@@ -62,7 +61,7 @@ public class StringVariable implements Variable{
     }
 
     @Override
-    public String getValue() {
-        return value;
+    public boolean hasValue() {
+        return hasValue;
     }
 }

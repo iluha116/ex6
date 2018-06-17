@@ -11,17 +11,16 @@ import main.Variables.VariablesExceptions.WrongCastingException;
 public class BooleanVariable implements Variable{
 
     private String name;
-    private String value;
-    private static final String DEFAULT = "true";
+    private boolean hasValue;
 
 
     /**
      * Constructor
      * @param name name of the variable
      */
-     BooleanVariable (String name){
+     BooleanVariable (String name, boolean hasValue){
         this.name = name;
-        this.value = DEFAULT;
+        this.hasValue = hasValue;
     }
 
     /**
@@ -38,11 +37,11 @@ public class BooleanVariable implements Variable{
     @Override
     public void setValue (String value) throws WrongCastingException{
         if ((value.equals("true"))||(value.equals("false"))){ // if true or false
-            this.value = value;
+            this.hasValue = true;
         }
         try { // if a number
             Double val = Double.parseDouble(value);
-            this.value = value;
+            this.hasValue = true;
         } //else
         catch (Exception e){ // if was empty and had no 0 and length-1 indexes
             throw new WrongCastingException();
@@ -60,7 +59,7 @@ public class BooleanVariable implements Variable{
     }
 
     @Override
-    public String getValue() {
-        return value;
+    public boolean hasValue() {
+        return hasValue;
     }
 }

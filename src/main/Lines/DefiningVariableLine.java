@@ -18,7 +18,7 @@ public class DefiningVariableLine extends VariableLine{
             String[] variableComponents=getVariableComponents(variable);
             if (variableComponents.length==DEFAULT_VARIABLE_COMPONENTS_NUMBER){
                 this.variables.add(VariablesFactory.
-                        factoryDefault(type,extractVariableName(variableComponents),ifFinal));
+                        factoryDefault(type,extractVariableName(variableComponents),ifFinal,false));
             }else if(variableComponents.length==NONDEFAULT_VARIABLE_COMPONENTS_NUMBER){
                 String name=extractVariableName(variableComponents);
                 String value=extractVariableValue(variableComponents);

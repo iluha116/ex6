@@ -60,23 +60,23 @@ public class VariablesFactory {
      * @param IfFinal boolean if the variable final
      * @return Variable object
      */
-    public static Variable factoryDefault (String type, String name, boolean IfFinal) {
+    public static Variable factoryDefault (String type, String name, boolean IfFinal, boolean hasValue) {
         Variable val;
         switch (type){
             case (STRING):
-                val = new StringVariable (name);
+                val = new StringVariable (name, hasValue);
                 break;
             case (INT):
-                val = new IntVariable (name);
+                val = new IntVariable (name, hasValue);
                 break;
             case (DOUBLE):
-                val = new DoubleVariable (name);
+                val = new DoubleVariable (name, hasValue);
                 break;
             case (BOOLEAN):
-                val = new BooleanVariable (name);
+                val = new BooleanVariable (name, hasValue);
                 break;
             default: // assume (CHAR)
-                val = new CharVariable (name);
+                val = new CharVariable (name, hasValue);
                 break;
         }
         if (IfFinal){
@@ -84,6 +84,5 @@ public class VariablesFactory {
         }
         return val;
     }
-
 
 }
