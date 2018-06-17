@@ -9,39 +9,42 @@ import main.Variables.Variable;
 import java.util.ArrayList;
 
 public class AssignmentVariableLine extends VariableLine{
-    ArrayList<AssignmentValueForVariable> assignmentsForVariables;
     static final int VARIABLE_NAME_PLACE=1;
     static final int VARIABLE_VALUE_PLACE=3;
+    private String name;
+    private String value;
 
-    AssignmentVariableLine(String[] variables){
-        this.assignmentsForVariables=new ArrayList<AssignmentValueForVariable>();
-        for (String variable:variables){
+    AssignmentVariableLine(String variable){
             String[] variableComponents=getVariableComponents(variable);
-            String name=extractVariableName(variableComponents);
-            String value=extractVariableValue(variableComponents);
-            assignmentsForVariables.add(new AssignmentValueForVariable(name,value));
-        }
+            this.name=extractVariableName(variableComponents);
+            this.value=extractVariableValue(variableComponents);
 
     }
 
     @Override
     public void LineCorrectness(Scope scope) throws IllegalLineException{
-        for (AssignmentValueForVariable assignment:assignmentsForVariables){
-            boolean variableIsFounded=false;
-            for (int i=0;i<scope.getTimeVariables().size();i++){
-                Variable var = scope.getTimeVariables().get(i);
-                if (var.getName().equals(assignment.getName())){
-                    variableIsFounded=true;
-                    break;
-                }
-            }if (!variableIsFounded){
-                try{
-                    findVariable(assignment.getName(),scope);
-                    throw new DefiningExistedVariableException();
-                }catch (CallToUnExistsParameter e){
-                    continue;
-                }
+        boolean variableIsFounded=false;
+        for (int i=0;i<scope.getTimeVariables().size();i++){
+            Variable var = scope.getTimeVariables().get(i);
+            if (var.getName().equals(name)){
+                variableIsFounded=true;
+                break;
+            }
+        }if (!variableIsFounded){
+            try{
+                findVariable(name,scope);
+                throw new DefiningExistedVariableException();
+            }catch (CallToUnExistsParameter e){
+                return;
             }
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getValue() {
+        return value;
     }
 }
