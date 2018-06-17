@@ -12,6 +12,8 @@ abstract public class Scope {
     protected ArrayList<Line> lines;
     protected ArrayList<Variable> globalVariables;
     protected ArrayList<Variable> localVariables;
+    protected ArrayList<Variable> timeVariables;
+    protected ArrayList<Variable> garbageVariables;
 
     public ArrayList<Line> getLines (){
         return lines;
@@ -63,4 +65,11 @@ abstract public class Scope {
         return scopeLines;
     }
 
+    public ArrayList<Variable> getGarbageVariables() {
+        return garbageVariables;
+    }
+
+    public ArrayList<Variable> getTimeVariables() {
+        return timeVariables;
+    }
 }

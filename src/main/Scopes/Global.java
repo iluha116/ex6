@@ -20,6 +20,8 @@ public class Global extends Scope {
         this.globalVariables = new ArrayList<>();
         this.localVariables = new ArrayList<>();
         this.methods = new ArrayList<>();
+        this.timeVariables=null;
+        this.garbageVariables=null;
     }
 
     @Override

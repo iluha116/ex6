@@ -32,7 +32,10 @@ public class IfWhileLine extends Line {
     /* checks if the string is variable in the scope. */
     private boolean isVariable (String expression, Scope scope){
         try{
-            Variable var = findVariable(expression, scope.getLocalVariables(), scope.getGlobalVariables());
+            if (expression.equals("true|false")){
+                return true;
+            }
+            Variable var = findVariable(expression, scope);
         }
         catch (IllegalLineException e){ // if isn't an exist variable
             return false;

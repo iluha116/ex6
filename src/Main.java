@@ -38,6 +38,18 @@ public class Main {
 
         System.out.println(matcher.matches());
         System.out.println(matcher.group(3));
+        final String DEFINING_VARIABLE_LINE=String.format
+                ("\\s*(final\\s+)?%1$s\\s+" +
+                        "((\\w+(\\s+=\\s+((('|\\|\")\\s*)\\S*(\\s*('|\\|\"))||([\\d\\w]+)))?\\s+,\\s+)*" +
+                        "(\\w+(\\s+=\\s+((('|\\|\")\\s*)\\S*(\\s*('|\\|\"))||([\\d\\w]+)))?\\s*))(;)",TYPES);
+
+        final String ASSIGNMENT_VARIABLE_LINE=String.format
+                ("\\s*(\\w+(\\s+=\\s+((('|\\|\")\\s*)\\S*(\\s*('|\\|\"))||([\\d\\w]+)))\\s*)(;)",TYPES);
+        Pattern pat=Pattern.compile(ASSIGNMENT_VARIABLE_LINE);
+        Matcher mat=pat.matcher("s = 1a;");
+        System.out.println(mat.matches());
+        System.out.println(mat.group(1));
+
 
     }
 

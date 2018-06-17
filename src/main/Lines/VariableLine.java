@@ -1,6 +1,7 @@
 package main.Lines;
 
 
+import main.Lines.LineExceptions.IllegalLineException;
 import main.Scopes.Scope;
 import main.Variables.Variable;
 
@@ -11,7 +12,7 @@ public abstract class VariableLine extends Line{
     static final int VARIABLE_VALUE_PLACE=3;
 
     @Override
-    public abstract void LineCorrectness(Scope scope) ;
+    public abstract void LineCorrectness(Scope scope) throws IllegalLineException;
 
     protected String[] getVariableComponents(String variable){
         return variable.split("\\s+");

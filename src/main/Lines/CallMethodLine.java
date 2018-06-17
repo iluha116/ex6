@@ -46,8 +46,7 @@ public class CallMethodLine extends Line{
                     // return false if the number of parameters is different
                     return false;
                 }
-                String[] parametersTypes = checkParametersTypes(scope.getLocalVariables(),
-                        scope.getGlobalVariables());
+                String[] parametersTypes = checkParametersTypes(scope);
                 for (int i=0; i<methodTypes.length; i++){ // compare that all the types are similar.
                     if (parametersTypes[i].equals(methodTypes[i])){ // if the types different return false
                         return false;
@@ -62,13 +61,12 @@ public class CallMethodLine extends Line{
 
     /* Builds a String array of the types of the parameters that appear in the line,
     throws exception if there isn't such variable. */
-    private String[] checkParametersTypes (ArrayList <Variable> valuesLocal,
-                                           ArrayList <Variable> valuesGlobal)
+    private String[] checkParametersTypes (Scope scope)
             throws IllegalLineException{
         String [] types = new String[parameters.length];
         for (int i=0; i<parameters.length; i++){ // for each parameter in the line
             // find the variable if exists
-            Variable var = findVariable(parameters[i], valuesLocal, valuesGlobal);
+            Variable var = findVariable(parameters[i],scope);
             types [i] = var.getType();  // save the type
         }
         return types;
