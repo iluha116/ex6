@@ -1,10 +1,12 @@
 package main.Lines;
 
+import main.CodeException;
 import main.Lines.LineExceptions.DefiningExistedVariableException;
 import main.Lines.LineExceptions.IllegalLineException;
 import main.Scopes.Global;
 import main.Scopes.InnerScope;
 import main.Scopes.Scope;
+import main.Scopes.ScopeExceptions.ScopeException;
 import main.Variables.Variable;
 import main.Variables.VariablesExceptions.VariableException;
 import main.Variables.VariablesFactory;
@@ -45,7 +47,7 @@ public class DefiningVariableLine extends VariableLine{
     }
 
     @Override
-    public void LineCorrectness(Scope scope) throws IllegalLineException{
+    public void LineCorrectness(Scope scope) throws CodeException{
         for (Variable localVariable:scope.getLocalVariables()){
             for (Variable defaultVariable:defaultVariables){
                 if (localVariable.getName().equals(defaultVariable.getName())){

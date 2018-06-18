@@ -1,10 +1,12 @@
 package main.Lines;
 
+import main.CodeException;
 import main.Lines.LineExceptions.CallToUnExistsParameter;
 import main.Lines.LineExceptions.DefiningExistedVariableException;
 import main.Lines.LineExceptions.IllegalLineException;
 import main.Scopes.Scope;
 import main.Variables.Variable;
+import main.Variables.VariablesExceptions.VariableException;
 
 import java.util.ArrayList;
 
@@ -22,22 +24,17 @@ public class AssignmentVariableLine extends VariableLine{
     }
 
     @Override
-    public void LineCorrectness(Scope scope) throws IllegalLineException{
-        boolean variableIsFounded=false;
+    public void LineCorrectness(Scope scope) throws CodeException{
+        Variable variableForAssignment=null;
         for (int i=0;i<scope.getTimeVariables().size();i++){
-            Variable var = scope.getTimeVariables().get(i);
-            if (var.getName().equals(name)){
-                variableIsFounded=true;
+            variableForAssignment = scope.getTimeVariables().get(i);
+            if (variableForAssignment.getName().equals(name)){
                 break;
             }
-        }if (!variableIsFounded){
-            try{
-                findVariable(name,scope);
-                throw new DefiningExistedVariableException();
-            }catch (CallToUnExistsParameter e){
-                return;
+        }if (variableForAssignment==null){
+            variableForAssignment=findVariable(name,scope);
             }
-        }
+        assignmentValueForVariable(variableForAssignment);
     }
 
     public String getName() {
@@ -46,5 +43,9 @@ public class AssignmentVariableLine extends VariableLine{
 
     public String getValue() {
         return value;
+    }
+
+    public void assignmentValueForVariable(Variable variable)throws VariableException{
+        variable.setValue(value);
     }
 }

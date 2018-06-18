@@ -1,4 +1,5 @@
 package main.Lines;
+import main.CodeException;
 import main.Lines.LineExceptions.*;
 import main.Scopes.Global;
 import main.Scopes.Scope;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 
 public abstract class Line {
 
-    public abstract void LineCorrectness (Scope scope) throws IllegalLineException;
+    public abstract void LineCorrectness (Scope scope) throws CodeException;
 
     public boolean startScope (){
         return false;
