@@ -2,10 +2,9 @@ package main;
 
 import java.text.MessageFormat;
 
-public class CodeException extends Exception {
+public abstract class CodeException extends Exception {
 
-    private String baseMsg = "ERROR: {0} \n";
-    String message;
+    protected String message;
 
     @Override
     public String getMessage() {
