@@ -1,5 +1,6 @@
 package main;
 import main.IOExceptions.*;
+import main.Lines.CommentsLine;
 import main.Lines.Line;
 import main.Lines.LineFactory;
 import main.Scopes.Global;
@@ -40,7 +41,10 @@ public class Sjavac{
             while(curLine != null){ // goes over the lines in the file,
                 // creates Lines objects representing line, and saves in ArrayList them.
                 Line line = LineFactory.lineFactory (curLine);
-                lines.add(line);
+                if (!(line instanceof CommentsLine)){
+                    // adds all expect comments and empty line, no need to check them
+                    lines.add(line);
+                }
             }
             Global globalCode = new Global(lines);
             globalCode.scopeCorrectness();

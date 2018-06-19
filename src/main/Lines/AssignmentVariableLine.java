@@ -29,9 +29,10 @@ public class AssignmentVariableLine extends VariableLine{
         for (int i=0;i<scope.getTimeVariables().size();i++){
             variableForAssignment = scope.getTimeVariables().get(i);
             if (variableForAssignment.getName().equals(name)){
-                break;
+                break; // return maybe, break should get out of the if only??
             }
-        }if (variableForAssignment==null){
+        }
+        if (variableForAssignment==null){
             variableForAssignment=findVariable(name,scope);
             }
         assignmentValueForVariable(variableForAssignment);

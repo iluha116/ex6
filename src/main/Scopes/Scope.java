@@ -39,7 +39,8 @@ abstract public class Scope {
      * @param all all lines of the scope we work on
      * @return ArrayList<Line> for the new Inner scope
      */
-    protected ArrayList<Line> findScope (Line start, ArrayList<Line> all) throws InnerScopeHasNoEnd{
+    protected int findScope (Line start, ArrayList<Line> all, ArrayList<ArrayList<Line>> saveScope)
+            throws InnerScopeHasNoEnd{
         ArrayList<Line> scopeLines = new ArrayList<>();
         int curLineNum = all.indexOf(start);
         Line cur = start;
@@ -62,7 +63,8 @@ abstract public class Scope {
                 throw new InnerScopeHasNoEnd();
             }
         }
-        return scopeLines;
+        saveScope.add(scopeLines); // adds the added scope to Aerialist for save
+        return curLineNum;
     }
 
     public ArrayList<Variable> getGarbageVariables() {

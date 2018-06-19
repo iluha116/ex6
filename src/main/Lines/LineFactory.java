@@ -24,6 +24,7 @@ public class LineFactory {
 
     private static final String ASSIGNMENT_VARIABLE_LINE=
             "\\s*(\\w+(\\s+=\\s+((('|\\|\")\\s*)\\S*(\\s*('|\\|\"))||([\\d\\w]+)))\\s*)(;)";
+    private static final String COMMENTS_LINE= "(\\s*(\\\\)(\\w*))|\\s*";
 
     public enum LogNameMatcher{
         FOO_LOG(".*Foo\\.log$"),
