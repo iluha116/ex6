@@ -29,25 +29,30 @@ public abstract class Line {
     protected Variable findVariable (String val, Scope scope)
             throws IllegalLineException{
         // first, search in the local parameters
+        Variable variable=null;
         if (!(scope instanceof Global)){
-            ArrayList<Variable> valuesLocal=scope.getLocalVariables();
-            for (int i=0; i<valuesLocal.size(); i++){
-                Variable var = valuesLocal.get(i);
-                if (var.getName().equals(val)){
-                    return var;
-                }
+            variable=findVariableInInsertedArray(val,scope.getLocalVariables());
+                if (variable!=null){
+                    return variable;
             }
+
         }
-        ArrayList<Variable> valuesGlobal=scope.getGlobalVariables();
         // if doesn't found in the local parameters search in the global
-        for (int i=0; i<valuesGlobal.size(); i++){
-            Variable var = valuesGlobal.get(i);
-            if (var.getName().equals(val)){
-                return var;
-            }
+        variable=findVariableInInsertedArray(val,scope.getGlobalVariables());
+        if (variable!=null){
+            return variable;
         }
         // if doesn't found in the local and global parameters
         throw new CallToUnExistsParameter();
+    }
+    protected Variable findVariableInInsertedArray(String val,ArrayList<Variable> listForSearch){
+        Variable var=null;
+        for (int i=0; i<listForSearch.size(); i++){
+            var = listForSearch.get(i);
+            if (var.getName().equals(val)){
+                return var;
+            }
+        }return var;
     }
 
 

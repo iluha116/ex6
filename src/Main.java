@@ -50,6 +50,8 @@ public class Main {
         System.out.println(mat.matches());
         System.out.println(mat.group(1));
 
+        System.out.println(p.pattern());
+
 
     }
 

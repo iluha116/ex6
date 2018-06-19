@@ -48,36 +48,26 @@ public class DefiningVariableLine extends VariableLine{
 
     @Override
     public void LineCorrectness(Scope scope) throws CodeException{
-        for (Variable localVariable:scope.getLocalVariables()){
+        for (Variable defaultVariable:defaultVariables){
+            if (findVariableInInsertedArray(defaultVariable.getName(),scope.getLocalVariables())!=null){
+                throw new DefiningExistedVariableException();
+            }
+        }
+        for (Variable nonDefaultVariable:nonDefaultVariables){
+            if (findVariableInInsertedArray(nonDefaultVariable.getName(),scope.getLocalVariables())!=null){
+                throw new DefiningExistedVariableException();
+            }
+        }
+        if (!(scope instanceof Global)) {
             for (Variable defaultVariable:defaultVariables){
-                if (localVariable.getName().equals(defaultVariable.getName())){
+                if (findVariableInInsertedArray(defaultVariable.getName(),scope.getGarbageVariables())!=null||
+                        findVariableInInsertedArray(defaultVariable.getName(),scope.getTimeVariables())!=null){
                     throw new DefiningExistedVariableException();
                 }
             }
             for (Variable nonDefaultVariable:nonDefaultVariables){
-                if (localVariable.getName().equals(nonDefaultVariable.getName())){
+                if (findVariableInInsertedArray(nonDefaultVariable.getName(),scope.getGarbageVariables())!=null){
                     throw new DefiningExistedVariableException();
-                }
-            }
-        }
-        if (!(scope instanceof Global)) {
-            for (Variable defaultVariable : defaultVariables) {
-                for (Variable garbageVariable : scope.getGarbageVariables()) {
-                    if (garbageVariable.getName().equals(defaultVariable.getName())) {
-                        throw new DefiningExistedVariableException();
-                    }
-                }
-                for (Variable timeVariable : scope.getTimeVariables()) {
-                    if (timeVariable.getName().equals(defaultVariable.getName())) {
-                        throw new DefiningExistedVariableException();
-                    }
-                }
-            }
-            for (Variable nonDefaultVariable : nonDefaultVariables) {
-                for (Variable garbageVariable : scope.getGarbageVariables()) {
-                    if (garbageVariable.getName().equals(nonDefaultVariable.getName())) {
-                        throw new DefiningExistedVariableException();
-                    }
                 }
             }
         }
