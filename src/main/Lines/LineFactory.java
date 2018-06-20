@@ -14,13 +14,13 @@ public class LineFactory {
                     "((final\\s+)?(int|double|String|boolean|char)\\s+\\w+)?)(\\)\\s*\\{)");
     private static final String SCOPES_LINE = ("\\s(if|while)s\\s*(\\()((\\w+\\s*(&&|\\|{2})\\s*)" +
             "*(\\s*\\w+\\s*)?)(\\)\\s*\\{)");
-    private static final String DEFINITION_VARIABLE_LINE=("\\s*(final\\s+)?(int|double|String|boolean|char)\\s+" +
-                    "((\\w+(\\s+=\\s+((('|\\|\")\\s*)[\\.^\"]*(\\s*('|\\|\"))|\\|([\\d\\w]+)|\\|[\\.]))?\\s+,\\s+)*" +
-                    "(\\w+(\\s+=\\s+((('|\\|\")\\s*)\\S*(\\s*('|\\|\"))||([\\d\\w]+)))?\\s*))(;)");
+    private static final String DEFINITION_VARIABLE_LINE=("\\s*(final\\s+)?(\\w+)\\s+" +
+            "((\\w+(\\s*=\\s*(('[^']*')|(\"[^\"]*\")|([\\w\\d]+))\\s*)?\\s*,\\s*)*" +
+            "(\\w+(\\s*=\\s*(('[^']*')|(\"[^\"]*\")|([\\w\\d]+))\\s*)?)\\s*)(;)");
 
     private static final String ASSIGNMENT_VARIABLE_LINE=
-            "\\s*(\\w+(\\s+=\\s+((('|\\|\")\\s*)\\S*(\\s*('|\\|\"))||([\\d\\w]+)))\\s*)(;)";
-    private static final String COMMENTS_LINE= "(\\s*(\\\\)(\\w*))|\\s*";
+            "\\s*(\\w+(\\s*=\\s*(('[^']*)|(\"[^\"]*\")|([\\w\\d]+))\\s*)?)\\s*)(;)";
+    private static final String COMMENTS_LINE= "(\\s*(\\\\{2})(\\w*))|\\s*";
 
 
 

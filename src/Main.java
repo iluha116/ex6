@@ -38,23 +38,15 @@ public class Main {
 
         System.out.println(matcher.matches());
         System.out.println(matcher.group(3));
-        final String DEFINING_VARIABLE_LINE=String.format
-                ("\\s*(final\\s+)?%1$s\\s+" +
-                        "((\\w+(\\s+=\\s+((('|\\|\")\\s*)\\S*(\\s*('|\\|\"))||([\\d\\w]+)))?\\s+,\\s+)*" +
-                        "(\\w+(\\s+=\\s+((('|\\|\")\\s*)\\S*(\\s*('|\\|\"))||([\\d\\w]+)))?\\s*))(;)",TYPES);
+        final String DEFINING_VARIABLE_LINE=("\\s*(final\\s+)?(\\w+)\\s+" +
+                "((\\w+(\\s*=\\s*(('[^']*')|(\"[^\"]*\")|([\\w\\d]+))\\s*)?\\s*,\\s*)*" +
+                "(\\w+(\\s*=\\s*(('[^']*')|(\"[^\"]*\")|([\\w\\d]+))\\s*)?)\\s*)(;)");
 
-        final String ASSIGNMENT_VARIABLE_LINE=String.format
-                ("\\s*(\\w+(\\s+=\\s+((('|\\|\")\\s*)\\S*(\\s*('|\\|\"))||([\\d\\w]+)))\\s*)(;)",TYPES);
-        Pattern pat=Pattern.compile(ASSIGNMENT_VARIABLE_LINE);
-        Matcher mat=pat.matcher("s = 1a;");
+        final String ASSIGNMENT_VARIABLE_LINE=".";
+        Pattern pat=Pattern.compile(DEFINING_VARIABLE_LINE);
+        Matcher mat=pat.matcher("final int a=\"@\";");
         System.out.println(mat.matches());
-        System.out.println(mat.group(1));
-
-        String string="a = 5";
-        String[] splited=string.split("\\s*=\\s*");
-        for (String spl:splited){
-            System.out.println(spl);
-        }
+//        System.out.println(mat.group(1));
 
 
     }

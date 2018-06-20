@@ -3,6 +3,7 @@ package main.Lines;
 import main.CodeException;
 import main.Lines.LineExceptions.DefiningExistedVariableException;
 import main.Lines.LineExceptions.IllegalLineException;
+import main.Lines.LineExceptions.ParameterHasNoValueException;
 import main.Scopes.Global;
 import main.Scopes.InnerScope;
 import main.Scopes.Scope;
@@ -60,6 +61,16 @@ public class DefiningVariableLine extends VariableLine{
                 if (findVariableInInsertedArray(defaultVariable.getName(),scope.getGarbageVariables())!=null||
                         findVariableInInsertedArray(defaultVariable.getName(),scope.getTimeVariables())!=null){
                     throw new DefiningExistedVariableException();
+                }
+            }
+        }
+        for (Variable nonDefaultVariable:nonDefaultVariables){
+            if (nonDefaultVariable.hasValue()){
+                Variable variableForAssignment=findVariable(nonDefaultVariable.getValue(),scope);
+                if (variableForAssignment.hasValue()){
+                    nonDefaultVariable.checkValue(variableForAssignment.getValue());
+                }else{
+                    throw new ParameterHasNoValueException();
                 }
             }
         }
