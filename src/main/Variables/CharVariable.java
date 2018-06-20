@@ -1,5 +1,6 @@
 package main.Variables;
 
+import main.Variables.VariablesExceptions.VariableException;
 import main.Variables.VariablesExceptions.WrongCastingException;
 
 /**
@@ -30,20 +31,19 @@ public class CharVariable extends Variable implements Cloneable{
      * @param value value for the variable
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
-     public CharVariable (String name, String value, boolean isFinal) throws WrongCastingException{
+     public CharVariable (String name, String value, boolean isFinal) throws VariableException {
          this.name = name;
          this.isFinal = isFinal;
-         setValue(value);
+         checkValue(value);
      }
 
     @Override
     public void checkValueAd (String value) throws WrongCastingException{
         try {
-            if ((value.charAt(0)=='"')&&(value.charAt(value.length()-1)=='"')&&(value.length()==3)){
+            if ((value.charAt(0)=='\'')&&(value.charAt(value.length()-1)=='\'')&&(value.length()==3)){
                 // if starts and ends with " so it is a string value,
                 // and the length with " is 3  so it is a char
-                this.hasValue = true;
-                this.value = value;
+                setValue(value);
             }
             else {
                 throw new WrongCastingException();

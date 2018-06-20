@@ -1,5 +1,6 @@
 package main.Variables;
 
+import main.Variables.VariablesExceptions.VariableException;
 import main.Variables.VariablesExceptions.WrongCastingException;
 
 /**
@@ -29,10 +30,10 @@ public class BooleanVariable extends Variable implements Cloneable{
      * @param value value for the variable
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
-    public BooleanVariable (String name, String value, boolean isFinal) throws WrongCastingException{
+    public BooleanVariable (String name, String value, boolean isFinal) throws VariableException {
         this.name = name;
         this.isFinal = isFinal;
-        setValue(value);
+        checkValue(value);
     }
 
     @Override

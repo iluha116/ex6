@@ -1,5 +1,6 @@
 package main.Variables;
 
+import main.Variables.VariablesExceptions.VariableException;
 import main.Variables.VariablesExceptions.WrongCastingException;
 
 /**
@@ -28,17 +29,16 @@ public class DoubleVariable extends Variable implements Cloneable {
      * @param value value for the variable
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
-     DoubleVariable (String name, String value, boolean isFinal) throws WrongCastingException{
+     DoubleVariable (String name, String value, boolean isFinal) throws VariableException {
         this.name = name;
-        setValue(value);
+        checkValue(value);
     }
 
     @Override
     public void checkValueAd (String value) throws WrongCastingException{
         try {
             double val = Double.parseDouble(value);
-            this.hasValue = true;
-            this.value = value;
+            setValue(value);
         }
         catch (Exception e){
             throw new WrongCastingException();
