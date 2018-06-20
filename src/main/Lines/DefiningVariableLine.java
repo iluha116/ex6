@@ -28,7 +28,8 @@ public class DefiningVariableLine extends VariableLine{
             if (variableComponents.length==DEFAULT_VARIABLE_COMPONENTS_NUMBER){
                 this.defaultVariables.add(VariablesFactory.
                         factoryDefault(type,extractVariableName(variableComponents),ifFinal,false));
-            }else if(variableComponents.length==NONDEFAULT_VARIABLE_COMPONENTS_NUMBER){
+            }
+            else if(variableComponents.length==NONDEFAULT_VARIABLE_COMPONENTS_NUMBER){
                 String name=extractVariableName(variableComponents);
                 String value=extractVariableValue(variableComponents);
                 this.nonDefaultVariables.add(VariablesFactory.factory(type,name,value,ifFinal));
@@ -48,11 +49,13 @@ public class DefiningVariableLine extends VariableLine{
 
     @Override
     public void LineCorrectness(Scope scope) throws CodeException{
+        ArrayList<Variable> allVariables=unionVariables();
         for (Variable defaultVariable:defaultVariables){
             if (findVariableInInsertedArray(defaultVariable.getName(),scope.getLocalVariables())!=null){
                 throw new DefiningExistedVariableException();
             }
         }
+
         for (Variable nonDefaultVariable:nonDefaultVariables){
             if (findVariableInInsertedArray(nonDefaultVariable.getName(),scope.getLocalVariables())!=null){
                 throw new DefiningExistedVariableException();
@@ -71,5 +74,10 @@ public class DefiningVariableLine extends VariableLine{
                 }
             }
         }
+    }
+    private ArrayList<Variable> unionVariables(){
+        ArrayList<Variable> allVariables= defaultVariables;
+        allVariables.addAll(nonDefaultVariables);
+        return allVariables;
     }
 }

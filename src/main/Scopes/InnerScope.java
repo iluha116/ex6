@@ -4,6 +4,7 @@ import main.CodeException;
 import main.Lines.IfWhileLine;
 import main.Lines.Line;
 import main.Lines.MethodLine;
+import main.Variables.Variable;
 
 import java.util.ArrayList;
 
@@ -17,25 +18,51 @@ import java.util.ArrayList;
 
 public abstract class InnerScope extends Scope{
 
+
+    protected ArrayList<Variable> globalVariables;
+    protected boolean timeVariablesDelete = true;
+
+    @Override
+    public ArrayList<Variable> getGlobalVariables (){
+        return globalVariables;
+    }
+
+
+    public void updateVariables (ArrayList<Variable> defaultVariables, ArrayList<Variable> nonDefaultVariables){
+        timeVariablesDelete = false;
+        localVariables.addAll(nonDefaultVariables); // new variables with value add to local
+        timeVariablesDeletion();
+        timeVariables = defaultVariables;
+    }
+
+    protected void timeVariablesDeletion (){
+        garbageVariables.addAll(timeVariables); //
+        timeVariables.clear();
+    }
+
     @Override
     public void scopeCorrectness() throws CodeException {
-        ArrayList<ArrayList<Line>> curScope = new ArrayList<>();
-        int cur = 0;
+        int cur = 1;
         while ( cur < lines.size()){
+            timeVariablesDelete = true;
             Line curLine = lines.get(cur);
             curLine.LineCorrectness(this);
             if (curLine instanceof IfWhileLine){ // if the line defines if while scope
-                cur = super.findScope(curLine, lines, curScope);
-                ArrayList<Line> scopeForCheckLines = curScope.get(0);
+                ArrayList<Line> scopeForCheckLines = super.findScope(curLine, lines);
+                cur += scopeForCheckLines.size();
+                ArrayList<Variable> deepcopy = globalVariables;
                 IfWhileScope scopeForCheck = new IfWhileScope (globalVariables, methods, scopeForCheckLines);
                 scopeForCheck.scopeCorrectness();
-                curScope.remove(0);
             }
             else{
                 cur += 1; // if had no scope move forward one line
             }
-            // updates for variables?
+            if (timeVariablesDelete){ // wasn't delete already
+                timeVariablesDeletion();
+            }
         }
     }
+
+
 
 }

@@ -46,15 +46,9 @@ public class MethodLine extends Line {
     @Override
     public void LineCorrectness (Scope scope) throws IllegalLineException {
         if (scope instanceof Global){ // can be only in the global Scope
-            updateMethods (scope); // updates the ArrayList of the Global scope
+            scope.updateMethods (method); // updates the ArrayList of the Global scope
         }
         throw new IllegalLineException();
-    }
-
-    /* updates the method ArrayList of the scope - add the new method */
-    private void updateMethods (Scope scope){
-        ArrayList<Method> methods = scope.getMethods();
-        methods.add(method);
     }
 
     /**

@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 
 
-public class MethodScope extends Scope {
+public class MethodScope extends InnerScope {
 
     /**
      * Constructor
@@ -29,5 +29,6 @@ public class MethodScope extends Scope {
 
     @Override
     public void scopeCorrectness() throws CodeException {
+
     }
 }

@@ -28,6 +28,7 @@ public class IfWhileScope extends InnerScope {
 
     @Override
     public void scopeCorrectness() throws CodeException {
+        super.scopeCorrectness();
     }
 
 }

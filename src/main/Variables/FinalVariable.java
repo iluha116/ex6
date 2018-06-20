@@ -3,8 +3,10 @@ package main.Variables;
 import main.Variables.VariablesExceptions.ChangeFinalVariableException;
 
 public class FinalVariable implements Variable {
+
     private Variable variable;
-    FinalVariable(Variable variable){
+
+    public FinalVariable(Variable variable){
         this.variable=variable;
     }
 

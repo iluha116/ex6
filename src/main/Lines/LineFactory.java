@@ -1,9 +1,6 @@
 package main.Lines;
-import jdk.nashorn.internal.ir.Assignment;
 import main.CodeException;
-import main.Lines.LineExceptions.IllegalLineException;
-
-import java.util.ArrayList;
+import main.Lines.LineExceptions.*;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
@@ -26,18 +23,9 @@ public class LineFactory {
             "\\s*(\\w+(\\s+=\\s+((('|\\|\")\\s*)\\S*(\\s*('|\\|\"))||([\\d\\w]+)))\\s*)(;)";
     private static final String COMMENTS_LINE= "(\\s*(\\\\)(\\w*))|\\s*";
 
-    public enum LogNameMatcher{
-        FOO_LOG(".*Foo\\.log$"),
-        BAR_LOG(".*bar\\.log$");
 
-        private final Pattern pattern;
 
-        private LogNameMatcher(final String regex) {
-            this.pattern = Pattern.compile(regex);
-        }
-
-        public Pattern getPattern() { return this.pattern; }
-    }
+    private static final String[] REGEX = {SCOPES_LINE,METHOD_LINE,SCOPES_LINE,DEFINITION_VARIABLE_LINE,COMMENTS_LINE};
 
     /**
      * Factory
@@ -45,26 +33,25 @@ public class LineFactory {
      * @return Line object
      */
     public static Line lineFactory(String line) throws CodeException{
-        Line lineForReturning=null;
-        Pattern[] patterns= new Pattern[]{
-                Pattern.compile(METHOD_LINE),
-                Pattern.compile(DEFINITION_VARIABLE_LINE),
-                Pattern.compile(ASSIGNMENT_VARIABLE_LINE)};
-
-        Pattern appropriatePattern=null;
-        Matcher matcher=null;
-        for (Pattern pattern:patterns){
-            matcher=pattern.matcher(line);
+        Line lineForReturning = null;
+        Pattern appropriatePattern = null;
+        String appropriateRegex = null;
+        Matcher matcher = null;
+        for (String regex:REGEX){ // searching for appropriate pattern
+            Pattern pattern = Pattern.compile(regex);
+            matcher = pattern.matcher(line);
             if (matcher.matches()){
                 appropriatePattern=pattern;
+                appropriateRegex = regex;
                 break;
             }
         }
         //Matcher line;
         if (appropriatePattern!=null){
-            switch (appropriatePattern.toString()){
+            switch (appropriateRegex){
                 case "\\s*(final\\s+)?(int|double|String|boolean|char)\\s+" +
-                        "((\\w+(\\s+=\\s+((('|\\|\")\\s*)[\\.^\"]*(\\s*('|\\|\"))|\\|([\\d\\w]+)|\\|[\\.]))?\\s+,\\s+)*" +
+                        "((\\w+(\\s+=\\s+((('|\\|\")\\s*)[\\.^\"]*(\\s*('|\\|\"))|\\|([\\d\\w]+)|\\|[\\.]))" +
+                        "?\\s+,\\s+)*" +
                         "(\\w+(\\s+=\\s+((('|\\|\")\\s*)\\S*(\\s*('|\\|\"))||([\\d\\w]+)))?\\s*))(;)":
                     boolean ifFinal=!(matcher.group(1)==null);
                     String[] variables=matcher.group(3).split("\\s*,\\s*");
@@ -76,7 +63,8 @@ public class LineFactory {
                 default:
                     break;
             }
-        }else {
+        }
+        else {
             throw new IllegalLineException();
         }
         return lineForReturning;

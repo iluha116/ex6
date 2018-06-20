@@ -9,7 +9,6 @@ import main.Variables.VariablesExceptions.WrongCastingException;
  * @author Shani Cheskis
  */
 
-
 public interface Variable {
 
     /**
@@ -19,16 +18,15 @@ public interface Variable {
      */
      void setValue (String value) throws VariableException;
 
-    /**
-     *
-     * @return
-     */
      String getName();
 
      String getType();
 
      boolean hasValue();
 
-
+     default Variable clone (){
+         return VariablesFactory.factoryDefault(this.getType(),this.getName(),
+                 this.hasValue(),this.hasValue());
+     }
 
 }

@@ -10,7 +10,6 @@ abstract public class Scope {
 
     protected ArrayList<Method> methods;
     protected ArrayList<Line> lines;
-    protected ArrayList<Variable> globalVariables;
     protected ArrayList<Variable> localVariables;
     protected ArrayList<Variable> timeVariables;
     protected ArrayList<Variable> garbageVariables;
@@ -24,7 +23,7 @@ abstract public class Scope {
     }
 
     public ArrayList<Variable> getGlobalVariables (){
-        return globalVariables;
+        return localVariables;
     }
 
     public ArrayList<Variable> getLocalVariables (){
@@ -39,8 +38,7 @@ abstract public class Scope {
      * @param all all lines of the scope we work on
      * @return ArrayList<Line> for the new Inner scope
      */
-    protected int findScope (Line start, ArrayList<Line> all, ArrayList<ArrayList<Line>> saveScope)
-            throws InnerScopeHasNoEnd{
+    protected ArrayList<Line> findScope (Line start, ArrayList<Line> all) throws InnerScopeHasNoEnd{
         ArrayList<Line> scopeLines = new ArrayList<>();
         int curLineNum = all.indexOf(start);
         Line cur = start;
@@ -63,8 +61,7 @@ abstract public class Scope {
                 throw new InnerScopeHasNoEnd();
             }
         }
-        saveScope.add(scopeLines); // adds the added scope to Aerialist for save
-        return curLineNum;
+        return scopeLines;
     }
 
     public ArrayList<Variable> getGarbageVariables() {
@@ -74,4 +71,22 @@ abstract public class Scope {
     public ArrayList<Variable> getTimeVariables() {
         return timeVariables;
     }
+
+    public void removeFromTimeVariables(Variable var) {
+        try{
+            timeVariables.remove(var);
+            localVariables.add(var);
+        }
+        catch (NullPointerException e){
+            System.err.println("timeVariables are empty");
+        }
+    }
+
+    /* updates the method ArrayList of the scope - add the new method */
+    public void updateMethods (Method method){
+        methods.add(method);
+    }
+
+    public abstract void updateVariables (ArrayList<Variable> defaultVariables,
+                                          ArrayList<Variable> nonDefaultVariables) ;
 }

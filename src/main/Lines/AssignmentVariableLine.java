@@ -25,7 +25,7 @@ public class AssignmentVariableLine extends VariableLine{
 
     @Override
     public void LineCorrectness(Scope scope) throws CodeException{
-        Variable variableForAssignment=null;
+        Variable variableForAssignment = null;
         for (int i=0;i<scope.getTimeVariables().size();i++){
             variableForAssignment = scope.getTimeVariables().get(i);
             if (variableForAssignment.getName().equals(name)){
@@ -35,6 +35,9 @@ public class AssignmentVariableLine extends VariableLine{
         if (variableForAssignment==null){
             variableForAssignment=findVariable(name,scope);
             }
+        else {
+
+        }
         assignmentValueForVariable(variableForAssignment);
     }
 
@@ -46,7 +49,7 @@ public class AssignmentVariableLine extends VariableLine{
         return value;
     }
 
-    public void assignmentValueForVariable(Variable variable)throws VariableException{
+    private void assignmentValueForVariable(Variable variable)throws VariableException{
         variable.setValue(value);
     }
 }
