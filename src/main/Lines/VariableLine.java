@@ -10,14 +10,14 @@ import main.Variables.Variable;
 import java.util.ArrayList;
 
 public abstract class VariableLine extends Line{
-    static final int VARIABLE_NAME_PLACE=1;
-    static final int VARIABLE_VALUE_PLACE=3;
+    private static final int VARIABLE_NAME_PLACE=1;
+    private static final int VARIABLE_VALUE_PLACE=2;
 
     @Override
     public abstract void LineCorrectness(Scope scope) throws CodeException;
 
     protected String[] getVariableComponents(String variable){
-        return variable.split("\\s+");
+        return variable.split("\\s*=\\s*");
     }
     protected String extractVariableName(String[] variableComponents){
         return variableComponents[VARIABLE_NAME_PLACE];

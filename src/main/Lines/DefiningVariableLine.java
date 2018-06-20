@@ -14,10 +14,10 @@ import main.Variables.VariablesFactory;
 import java.util.ArrayList;
 
 public class DefiningVariableLine extends VariableLine{
-    ArrayList<Variable> nonDefaultVariables;
-    ArrayList<Variable> defaultVariables;
-    static final int DEFAULT_VARIABLE_COMPONENTS_NUMBER=1;
-    static final int NONDEFAULT_VARIABLE_COMPONENTS_NUMBER=3;
+    private ArrayList<Variable> nonDefaultVariables;
+    private ArrayList<Variable> defaultVariables;
+    private static final int DEFAULT_VARIABLE_COMPONENTS_NUMBER=1;
+    private static final int NONDEFAULT_VARIABLE_COMPONENTS_NUMBER=2;
 
     DefiningVariableLine(String type,String[] variables,boolean ifFinal) throws VariableException{
         this.nonDefaultVariables=new ArrayList<Variable>();
@@ -50,26 +50,15 @@ public class DefiningVariableLine extends VariableLine{
     @Override
     public void LineCorrectness(Scope scope) throws CodeException{
         ArrayList<Variable> allVariables=unionVariables();
-        for (Variable defaultVariable:defaultVariables){
+        for (Variable defaultVariable:allVariables){
             if (findVariableInInsertedArray(defaultVariable.getName(),scope.getLocalVariables())!=null){
                 throw new DefiningExistedVariableException();
             }
         }
-
-        for (Variable nonDefaultVariable:nonDefaultVariables){
-            if (findVariableInInsertedArray(nonDefaultVariable.getName(),scope.getLocalVariables())!=null){
-                throw new DefiningExistedVariableException();
-            }
-        }
         if (!(scope instanceof Global)) {
-            for (Variable defaultVariable:defaultVariables){
+            for (Variable defaultVariable:allVariables){
                 if (findVariableInInsertedArray(defaultVariable.getName(),scope.getGarbageVariables())!=null||
                         findVariableInInsertedArray(defaultVariable.getName(),scope.getTimeVariables())!=null){
-                    throw new DefiningExistedVariableException();
-                }
-            }
-            for (Variable nonDefaultVariable:nonDefaultVariables){
-                if (findVariableInInsertedArray(nonDefaultVariable.getName(),scope.getGarbageVariables())!=null){
                     throw new DefiningExistedVariableException();
                 }
             }

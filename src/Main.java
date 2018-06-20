@@ -50,7 +50,11 @@ public class Main {
         System.out.println(mat.matches());
         System.out.println(mat.group(1));
 
-        System.out.println(p.pattern());
+        String string="a = 5";
+        String[] splited=string.split("\\s*=\\s*");
+        for (String spl:splited){
+            System.out.println(spl);
+        }
 
 
     }

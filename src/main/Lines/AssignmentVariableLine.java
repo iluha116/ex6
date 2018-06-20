@@ -11,8 +11,6 @@ import main.Variables.VariablesExceptions.VariableException;
 import java.util.ArrayList;
 
 public class AssignmentVariableLine extends VariableLine{
-    static final int VARIABLE_NAME_PLACE=1;
-    static final int VARIABLE_VALUE_PLACE=3;
     private String name;
     private String value;
 
@@ -20,7 +18,6 @@ public class AssignmentVariableLine extends VariableLine{
             String[] variableComponents=getVariableComponents(variable);
             this.name=extractVariableName(variableComponents);
             this.value=extractVariableValue(variableComponents);
-
     }
 
     @Override
@@ -29,7 +26,7 @@ public class AssignmentVariableLine extends VariableLine{
         for (int i=0;i<scope.getTimeVariables().size();i++){
             variableForAssignment = scope.getTimeVariables().get(i);
             if (variableForAssignment.getName().equals(name)){
-                break; // return maybe, break should get out of the if only??
+                break;
             }
         }
         if (variableForAssignment==null){
