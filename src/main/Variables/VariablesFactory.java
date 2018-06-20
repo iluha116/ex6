@@ -47,9 +47,6 @@ public class VariablesFactory {
             default:
                 throw new NoTypeOfVariable();
         }
-        if (IfFinal){
-            val = new FinalVariable(val);
-        }
         return val;
     }
 
@@ -79,10 +76,9 @@ public class VariablesFactory {
                 val = new CharVariable (name, hasValue);
                 break;
         }
-        if (IfFinal){
-            val = new FinalVariable(val);
-        }
         return val;
     }
+
+
 
 }

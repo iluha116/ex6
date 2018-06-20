@@ -1,6 +1,5 @@
 package main.Variables;
-
-import main.Variables.VariablesExceptions.WrongCastingException;
+import main.Variables.VariablesExceptions.*;
 
 /**
  * StringVariable class - Variable type String
@@ -8,11 +7,7 @@ import main.Variables.VariablesExceptions.WrongCastingException;
  * @author Ilia Bogov
  */
 
-
-public class StringVariable implements Variable{
-
-    private String name;
-    private boolean hasValue;
+public class StringVariable extends Variable implements Cloneable{
 
     /**
      * Constructor
@@ -21,6 +16,7 @@ public class StringVariable implements Variable{
      StringVariable (String name, boolean hasValue){
         this.name = name;
         this.hasValue = hasValue;
+         this.value = DEFAULT_VALUE;
     }
 
     /**
@@ -29,17 +25,17 @@ public class StringVariable implements Variable{
      * @param value value for the variable
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
-     StringVariable (String name, String value) throws WrongCastingException{
+     StringVariable (String name, String value) throws VariableException {
         this.name = name;
-        setValue(value);
+        checkValue(value);
     }
 
     @Override
-    public void setValue (String value) throws WrongCastingException{
+    public void checkValueAd (String value) throws WrongCastingException{
         try {
             if ((value.charAt(0)=='"')&&(value.charAt(value.length()-1)=='"')){
                 // if starts and ends with " so it is a string value
-                this.hasValue = true;
+                setValue(value);
             }
             else {
                 throw new WrongCastingException();
@@ -51,17 +47,9 @@ public class StringVariable implements Variable{
     }
 
     @Override
-    public String getName (){
-        return name;
-    }
-
-    @Override
     public String getType(){
         return "String";
     }
 
-    @Override
-    public boolean hasValue() {
-        return hasValue;
-    }
+
 }

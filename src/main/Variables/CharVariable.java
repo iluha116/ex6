@@ -9,10 +9,7 @@ import main.Variables.VariablesExceptions.WrongCastingException;
  */
 
 
-public class CharVariable implements Variable {
-
-    private String name;
-    private boolean hasValue;
+public class CharVariable extends Variable implements Cloneable{
 
     /**
      * Constructor
@@ -21,6 +18,7 @@ public class CharVariable implements Variable {
      CharVariable (String name,boolean hasValue){
          this.name = name;
          this.hasValue = hasValue;
+         this.value = DEFAULT_VALUE;
      }
 
     /**
@@ -35,12 +33,13 @@ public class CharVariable implements Variable {
     }
 
     @Override
-    public void setValue (String value) throws WrongCastingException{
+    public void checkValueAd (String value) throws WrongCastingException{
         try {
             if ((value.charAt(0)=='"')&&(value.charAt(value.length()-1)=='"')&&(value.length()==3)){
                 // if starts and ends with " so it is a string value,
                 // and the length with " is 3  so it is a char
                 this.hasValue = true;
+                this.value = value;
             }
             else {
                 throw new WrongCastingException();

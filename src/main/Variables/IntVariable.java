@@ -1,5 +1,6 @@
 package main.Variables;
 
+import main.Variables.VariablesExceptions.VariableException;
 import main.Variables.VariablesExceptions.WrongCastingException;
 
 /**
@@ -8,10 +9,7 @@ import main.Variables.VariablesExceptions.WrongCastingException;
  * @author Ilia Bogov
  */
 
-public class IntVariable implements Variable{
-
-    private String name;
-    private boolean hasValue;
+public class IntVariable extends Variable implements Cloneable{
 
     /**
      * Constructor
@@ -20,6 +18,7 @@ public class IntVariable implements Variable{
      IntVariable (String name, boolean hasValue){
         this.name = name;
         this.hasValue = hasValue;
+        this.value = DEFAULT_VALUE;
     }
 
     /**
@@ -28,16 +27,17 @@ public class IntVariable implements Variable{
      * @param value value for the variable
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
-     IntVariable (String name, String value) throws WrongCastingException{
-        this.name = name;
-        setValue(value);
+     IntVariable (String name, String value) throws VariableException {
+         this.name = name;
+         checkValue(value);
     }
 
     @Override
-    public void setValue (String value) throws WrongCastingException{
+    public void checkValueAd (String value) throws VariableException{
         try {
             int val = Integer.parseInt(value);
             this.hasValue = true;
+            this.value = value;
         }
         catch (Exception e){
             throw new WrongCastingException();
@@ -45,18 +45,10 @@ public class IntVariable implements Variable{
     }
 
     @Override
-    public String getName (){
-        return name;
-    }
-
-    @Override
     public String getType(){
         return "int";
     }
 
-    @Override
-    public boolean hasValue() {
-        return hasValue;
-    }
+
 
 }

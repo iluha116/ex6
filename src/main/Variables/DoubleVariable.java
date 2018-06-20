@@ -8,10 +8,7 @@ import main.Variables.VariablesExceptions.WrongCastingException;
  * @author Ilia Bogov
  */
 
-public class DoubleVariable implements Variable {
-
-    private String name;
-    private boolean hasValue;
+public class DoubleVariable extends Variable implements Cloneable {
 
     /**
      * Constructor
@@ -20,6 +17,7 @@ public class DoubleVariable implements Variable {
      DoubleVariable (String name, boolean hasValue){
         this.name = name;
         this.hasValue = hasValue;
+         this.value = DEFAULT_VALUE;
     }
 
     /**
@@ -34,10 +32,11 @@ public class DoubleVariable implements Variable {
     }
 
     @Override
-    public void setValue (String value) throws WrongCastingException{
+    public void checkValueAd (String value) throws WrongCastingException{
         try {
             double val = Double.parseDouble(value);
             this.hasValue = true;
+            this.value = value;
         }
         catch (Exception e){
             throw new WrongCastingException();
@@ -45,18 +44,8 @@ public class DoubleVariable implements Variable {
     }
 
     @Override
-    public String getName (){
-        return name;
-    }
-
-    @Override
     public String getType(){
         return "double";
-    }
-
-    @Override
-    public boolean hasValue() {
-        return hasValue;
     }
 
 }

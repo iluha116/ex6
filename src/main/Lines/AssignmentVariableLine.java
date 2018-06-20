@@ -47,6 +47,6 @@ public class AssignmentVariableLine extends VariableLine{
     }
 
     private void assignmentValueForVariable(Variable variable)throws VariableException{
-        variable.setValue(value);
+        variable.checkValue(value);
     }
 }

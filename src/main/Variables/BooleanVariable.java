@@ -8,11 +8,7 @@ import main.Variables.VariablesExceptions.WrongCastingException;
  * @author Ilia Bogov
  */
 
-public class BooleanVariable implements Variable{
-
-    private String name;
-    private boolean hasValue;
-
+public class BooleanVariable extends Variable implements Cloneable{
 
     /**
      * Constructor
@@ -21,6 +17,7 @@ public class BooleanVariable implements Variable{
      BooleanVariable (String name, boolean hasValue){
         this.name = name;
         this.hasValue = hasValue;
+         this.value = DEFAULT_VALUE;
     }
 
     /**
@@ -35,13 +32,15 @@ public class BooleanVariable implements Variable{
     }
 
     @Override
-    public void setValue (String value) throws WrongCastingException{
+    public void checkValueAd (String value) throws WrongCastingException{
         if ((value.equals("true"))||(value.equals("false"))){ // if true or false
             this.hasValue = true;
+            this.value = value;
         }
         try { // if a number
             Double val = Double.parseDouble(value);
             this.hasValue = true;
+            this.value = value;
         } //else
         catch (Exception e){ // if was empty and had no 0 and length-1 indexes
             throw new WrongCastingException();
