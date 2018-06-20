@@ -11,15 +11,18 @@ import main.Variables.VariablesExceptions.WrongCastingException;
 
 public class IntVariable extends Variable implements Cloneable{
 
+    private static final String[] possibleTypesForVar = {INT};
+
     /**
      * Constructor
      * @param name name of the variable
      */
-     IntVariable (String name, boolean hasValue){
-        this.name = name;
-        this.hasValue = hasValue;
-        this.value = DEFAULT_VALUE;
-    }
+     public IntVariable (String name, boolean hasValue, boolean isFinal){
+         this.name = name;
+         this.hasValue = hasValue;
+         this.value = DEFAULT_VALUE;
+         this.isFinal = isFinal;
+     }
 
     /**
      * Constructor with value
@@ -27,8 +30,9 @@ public class IntVariable extends Variable implements Cloneable{
      * @param value value for the variable
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
-     IntVariable (String name, String value) throws VariableException {
+     public IntVariable (String name, String value, boolean isFinal) throws VariableException {
          this.name = name;
+         this.isFinal = isFinal;
          checkValue(value);
     }
 
@@ -46,9 +50,13 @@ public class IntVariable extends Variable implements Cloneable{
 
     @Override
     public String getType(){
-        return "int";
+        return INT;
     }
 
+    @Override
+    public String[] possibleTypesForVariable (){
+        return possibleTypesForVar;
+    }
 
 
 }

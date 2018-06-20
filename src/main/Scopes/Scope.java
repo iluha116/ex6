@@ -78,7 +78,7 @@ abstract public class Scope {
             localVariables.add(var);
         }
         catch (NullPointerException e){
-            System.err.println("timeVariables are empty");
+            System.out.println("timeVariables are empty.");
         }
     }
 
@@ -89,4 +89,13 @@ abstract public class Scope {
 
     public abstract void updateVariables (ArrayList<Variable> defaultVariables,
                                           ArrayList<Variable> nonDefaultVariables) ;
+
+    public ArrayList<Variable> deepCopy (ArrayList<Variable> forCopy){
+        ArrayList<Variable> copy = new ArrayList<>();
+        for (Variable var: forCopy){
+            Variable newVar = var.clone();
+            copy.add(newVar);
+        }
+        return copy;
+    }
 }

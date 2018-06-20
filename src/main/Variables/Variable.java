@@ -1,5 +1,6 @@
 package main.Variables;
 
+import main.Variables.VariablesExceptions.ChangeFinalVariableException;
 import main.Variables.VariablesExceptions.VariableException;
 import main.Variables.VariablesExceptions.WrongCastingException;
 import java.util.regex.Matcher;
@@ -13,10 +14,18 @@ import java.util.regex.Pattern;
 
 public abstract class Variable implements Cloneable {
 
+    // types
+    protected static final String STRING = "String";
+    protected static final String INT = "int";
+    protected static final String DOUBLE = "double";
+    protected static final String BOOLEAN = "boolean";
+    protected static final String CHAR = "char";
+
     protected String name;
-    protected boolean hasValue;
+    protected boolean hasValue= false;
     protected String value;
     protected boolean varValue = false;
+    protected boolean isFinal;
     protected static final String DEFAULT_VALUE = "";
     protected static final Pattern VAR_AS_VALUE = Pattern.compile("[A-Za-z]+\\w*|_+\\w+");
 
@@ -26,6 +35,9 @@ public abstract class Variable implements Cloneable {
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
     public void checkValue (String value) throws VariableException{
+        if (isFinal && hasValue){
+            throw new ChangeFinalVariableException();
+        }
         if (checkName(value)){ // check if
             setValue(value);
             varValue = true;
@@ -62,11 +74,15 @@ public abstract class Variable implements Cloneable {
     }
 
     public static boolean checkName (String name){
-        Matcher mat=VAR_AS_VALUE.matcher(name);
+        Matcher mat = VAR_AS_VALUE.matcher(name);
         return mat.matches();
     }
 
+    public boolean hasVariableValue (){
+        return varValue;
+    }
 
+    public abstract String[] possibleTypesForVariable ();
 
 
 }

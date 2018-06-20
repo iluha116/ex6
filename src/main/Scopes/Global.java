@@ -50,7 +50,7 @@ public class Global extends Scope {
         }
         // check correctness of all methods
          for (ArrayList<Line> method : methodsLines){
-            MethodScope methodForCheck = new MethodScope(localVariables, methods, method);
+            MethodScope methodForCheck = new MethodScope(deepCopy(localVariables), methods, method);
             methodForCheck.scopeCorrectness();
          }
     }

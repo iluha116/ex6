@@ -10,14 +10,17 @@ import main.Variables.VariablesExceptions.WrongCastingException;
 
 public class BooleanVariable extends Variable implements Cloneable{
 
+    private static final String[] possibleTypesForVar = {INT,DOUBLE,BOOLEAN};
+
     /**
      * Constructor
      * @param name name of the variable
      */
-     BooleanVariable (String name, boolean hasValue){
-        this.name = name;
-        this.hasValue = hasValue;
+     public BooleanVariable (String name, boolean hasValue, boolean isFinal){
+         this.name = name;
+         this.hasValue = hasValue;
          this.value = DEFAULT_VALUE;
+         this.isFinal = isFinal;
     }
 
     /**
@@ -26,8 +29,9 @@ public class BooleanVariable extends Variable implements Cloneable{
      * @param value value for the variable
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
-     BooleanVariable (String name, String value) throws WrongCastingException{
+    public BooleanVariable (String name, String value, boolean isFinal) throws WrongCastingException{
         this.name = name;
+        this.isFinal = isFinal;
         setValue(value);
     }
 
@@ -54,11 +58,16 @@ public class BooleanVariable extends Variable implements Cloneable{
 
     @Override
     public String getType(){
-        return "boolean";
+        return BOOLEAN;
     }
 
     @Override
     public boolean hasValue() {
         return hasValue;
+    }
+
+    @Override
+    public String[] possibleTypesForVariable (){
+        return possibleTypesForVar;
     }
 }

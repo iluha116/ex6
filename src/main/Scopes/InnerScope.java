@@ -50,8 +50,9 @@ public abstract class InnerScope extends Scope{
             if (curLine instanceof IfWhileLine){ // if the line defines if while scope
                 ArrayList<Line> scopeForCheckLines = super.findScope(curLine, lines);
                 cur += scopeForCheckLines.size();
-                ArrayList<Variable> deepcopy = globalVariables;
-                IfWhileScope scopeForCheck = new IfWhileScope (globalVariables, methods, scopeForCheckLines);
+                ArrayList<Variable> deepcopy = deepCopy(globalVariables);
+                deepcopy.addAll(localVariables);
+                IfWhileScope scopeForCheck = new IfWhileScope (deepcopy, methods, scopeForCheckLines);
                 scopeForCheck.scopeCorrectness();
             }
             else{

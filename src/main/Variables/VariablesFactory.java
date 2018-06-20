@@ -30,19 +30,19 @@ public class VariablesFactory {
         Variable val;
         switch (type){
             case (STRING):
-                val = new StringVariable (name,value);
+                val = new StringVariable (name,value,IfFinal);
                 break;
             case (INT):
-                val = new IntVariable (name,value);
+                val = new IntVariable (name,value,IfFinal);
                 break;
             case (DOUBLE):
-                val = new DoubleVariable (name,value);
+                val = new DoubleVariable (name,value,IfFinal);
                 break;
             case (BOOLEAN):
-                val = new BooleanVariable (name,value);
+                val = new BooleanVariable (name,value,IfFinal);
                 break;
             case (CHAR):
-                val = new CharVariable (name,value);
+                val = new CharVariable (name,value,IfFinal);
                 break;
             default:
                 throw new NoTypeOfVariable();
@@ -61,19 +61,19 @@ public class VariablesFactory {
         Variable val;
         switch (type){
             case (STRING):
-                val = new StringVariable (name, hasValue);
+                val = new StringVariable (name, hasValue, IfFinal);
                 break;
             case (INT):
-                val = new IntVariable (name, hasValue);
+                val = new IntVariable (name, hasValue, IfFinal);
                 break;
             case (DOUBLE):
-                val = new DoubleVariable (name, hasValue);
+                val = new DoubleVariable (name, hasValue, IfFinal);
                 break;
             case (BOOLEAN):
-                val = new BooleanVariable (name, hasValue);
+                val = new BooleanVariable (name, hasValue, IfFinal);
                 break;
             default: // assume (CHAR)
-                val = new CharVariable (name, hasValue);
+                val = new CharVariable (name, hasValue, IfFinal);
                 break;
         }
         return val;

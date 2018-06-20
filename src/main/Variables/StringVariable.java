@@ -1,6 +1,8 @@
 package main.Variables;
 import main.Variables.VariablesExceptions.*;
 
+import javax.print.DocFlavor;
+
 /**
  * StringVariable class - Variable type String
  * @author Shani Cheskis
@@ -9,14 +11,17 @@ import main.Variables.VariablesExceptions.*;
 
 public class StringVariable extends Variable implements Cloneable{
 
+    private static final String[] possibleTypesForVar = {STRING};
+
     /**
      * Constructor
      * @param name name of the variable
      */
-     StringVariable (String name, boolean hasValue){
-        this.name = name;
-        this.hasValue = hasValue;
+     public StringVariable (String name, boolean hasValue, boolean isFinal){
+         this.name = name;
+         this.hasValue = hasValue;
          this.value = DEFAULT_VALUE;
+         this.isFinal = isFinal;
     }
 
     /**
@@ -25,10 +30,11 @@ public class StringVariable extends Variable implements Cloneable{
      * @param value value for the variable
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
-     StringVariable (String name, String value) throws VariableException {
-        this.name = name;
-        checkValue(value);
-    }
+     public StringVariable (String name, String value, boolean isFinal) throws VariableException {
+         this.name = name;
+         this.isFinal = isFinal;
+         checkValue(value);
+     }
 
     @Override
     public void checkValueAd (String value) throws WrongCastingException{
@@ -48,8 +54,12 @@ public class StringVariable extends Variable implements Cloneable{
 
     @Override
     public String getType(){
-        return "String";
+        return STRING;
     }
 
+    @Override
+    public String[] possibleTypesForVariable (){
+         return possibleTypesForVar;
+    }
 
 }

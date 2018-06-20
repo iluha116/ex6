@@ -11,14 +11,17 @@ import main.Variables.VariablesExceptions.WrongCastingException;
 
 public class CharVariable extends Variable implements Cloneable{
 
+    private static final String[] possibleTypesForVar = {CHAR};
+
     /**
      * Constructor
      * @param name name of the variable
      */
-     CharVariable (String name,boolean hasValue){
+     public CharVariable (String name, boolean hasValue, boolean isFinal){
          this.name = name;
          this.hasValue = hasValue;
          this.value = DEFAULT_VALUE;
+         this.isFinal = isFinal;
      }
 
     /**
@@ -27,10 +30,11 @@ public class CharVariable extends Variable implements Cloneable{
      * @param value value for the variable
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
-     CharVariable (String name, String value) throws WrongCastingException{
-        this.name = name;
-        setValue(value);
-    }
+     public CharVariable (String name, String value, boolean isFinal) throws WrongCastingException{
+         this.name = name;
+         this.isFinal = isFinal;
+         setValue(value);
+     }
 
     @Override
     public void checkValueAd (String value) throws WrongCastingException{
@@ -57,12 +61,17 @@ public class CharVariable extends Variable implements Cloneable{
 
     @Override
     public String getType(){
-        return "char";
+        return CHAR;
     }
 
     @Override
     public boolean hasValue() {
         return hasValue;
+    }
+
+    @Override
+    public String[] possibleTypesForVariable (){
+        return possibleTypesForVar;
     }
 
 }
