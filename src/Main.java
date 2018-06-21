@@ -26,8 +26,8 @@ public class Main {
         final String TYPES = "(int|double|String|boolean|char)";
         final String AND_OR = "&&|\\|{2}";
         final String SCOPES_TYPES = "if|while";
-        final String METHOD_LINE =("(\\s*void\\s+\\w+)(\\()(((final\\s+)?(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+),)*" +
-                "((final\\s+)?(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+)))|(\\s*)\\s*\\{");
+        final String METHOD_LINE =("(\\s*void\\s+([A-Za-z]+\\w*|_+\\w+))(\\()(((final\\s+)?(int|double|String|boolean|char)\\s+\\w+,)*" +
+                "((final\\s+)?(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+)))|(\\s*)\\s*\\{)");
         final String SCOPES_LINE =  ("\\s*(if|while)\\s*(\\()((\\w+\\s*(&&|\\|{2})\\s*)" +
                 "*(\\s*\\w+\\s*)?)(\\)\\s*\\{)");
         Pattern method = Pattern.compile(METHOD_LINE);
