@@ -38,7 +38,7 @@ public abstract class Variable implements Cloneable {
         if (isFinal && hasValue){
             throw new ChangeFinalVariableException();
         }
-        if (checkName(value)){ // check if
+        else if (checkName(value)){ // check if
             setValue(value);
             varValue = true;
         }

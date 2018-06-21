@@ -40,8 +40,7 @@ public class IntVariable extends Variable implements Cloneable{
     public void checkValueAd (String value) throws VariableException{
         try {
             int val = Integer.parseInt(value);
-            this.hasValue = true;
-            this.value = value;
+            setValue(value);
         }
         catch (Exception e){
             throw new WrongCastingException();
