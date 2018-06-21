@@ -43,6 +43,11 @@ public class MethodLine extends Line {
         this.method = new Method(name,names,types,ifFinal);
     }
 
+    /**
+     * this method is represents verifying that line is appropriate according to rules of s-Java.
+     * @param scope -scope that contains required information for the verifying.
+     * @throws IllegalLineException
+     */
     @Override
     public void LineCorrectness (Scope scope) throws IllegalLineException {
         if (scope instanceof Global){ // can be only in the global Scope

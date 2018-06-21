@@ -28,10 +28,10 @@ public class CallMethodLine extends Line{
     @Override
     public void LineCorrectness (Scope scope) throws IllegalLineException {
         if (scope instanceof Global){ // can't be called from the global scope
-            throw new IllegalLineException();
+            throw new CallMethodLineException();
         }
         if (!findSuitableMethod(scope)){ // of there isn't suitable method that can be called
-            throw new IllegalLineException();
+            throw new CallMethodLineException();
         }
     }
 

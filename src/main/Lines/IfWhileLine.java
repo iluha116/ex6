@@ -11,6 +11,11 @@ public class IfWhileLine extends Line {
         this.booleanExpressions = booleanExpressions;
     }
 
+    /**
+     * this method is represents verifying that line is appropriate according to rules of s-Java.
+     * @param scope -scope that contains required information for the verifying.
+     * @throws NoBooleanExpressionInIfWhileCall
+     */
     @Override
     public void LineCorrectness(Scope scope) throws NoBooleanExpressionInIfWhileCall{
         for (String expression:booleanExpressions){

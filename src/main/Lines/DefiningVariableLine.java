@@ -48,6 +48,11 @@ public class DefiningVariableLine extends VariableLine{
         return nonDefaultVariables;
     }
 
+    /**
+     * this method is represents verifying that line is appropriate according to rules of s-Java.
+     * @param scope -scope that contains required information for the verifying.
+     * @throws CodeException
+     */
     @Override
     public void LineCorrectness(Scope scope) throws CodeException{
         ArrayList<Variable> allVariables=unionVariables();

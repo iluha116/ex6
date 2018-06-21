@@ -17,6 +17,11 @@ public class EndScope extends Line {
     public EndScope (){
     }
 
+    /**
+     * this method is represents verifying that line is appropriate according to rules of s-Java.
+     * @param scope -scope that contains required information for the verifying.
+     * @throws IllegalLineException
+     */
     @Override
     public void LineCorrectness (Scope scope) throws IllegalLineException {
         ArrayList<Line> lines = scope.getLines();
