@@ -9,17 +9,18 @@ public class LineFactory {
     private static final String TYPES = "(int|double|String|boolean|char)";
     private static final String AND_OR = "(&&|\\|{2})";
     private static final String SCOPES_TYPES = "(if|while)";
-    private static final String METHOD_LINE =
-            ("(\\s*void\\s+\\w+)(\\()(((final\\s+)?(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+),)*" +
-                    "((final\\s+)?(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+)))|(\\s*)\\s*\\{)");
+    private static final String METHOD_LINE ="\\s*void\\s++(.\\w*)\\s+\\((\\s*|\\s*" +
+            "(((final\\s+)?(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+),\\s*)*(final\\s+)?" +
+            "(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+))" +
+            ")\\s*\\)\\s*\\{";
     private static final String SCOPES_LINE = ("\\s*(if|while)\\s*(\\()((\\w+\\s*(&&|\\|{2})\\s*)" +
             "*(\\s*\\w+\\s*)?)(\\)\\s*\\{)");
-    private static final String DEFINITION_VARIABLE_LINE=("\\s*(final\\s+)?(\\w+)\\s+" +
+    private static final String DEFINITION_VARIABLE_LINE="\\s*(final\\s+)?(\\w+)\\s+" +
             "((\\w+(\\s*=\\s*(('[^']*')|(\"[^\"]*\")|([\\w\\d]+))\\s*)?\\s*,\\s*)*" +
-            "(\\w+(\\s*=\\s*(('[^']*')|(\"[^\"]*\")|([\\w\\d]+))\\s*)?)\\s*)(;)");
+            "(\\w+(\\s*=\\s*(('[^']*')|(\"[^\"]*\")|([\\w\\d]+))\\s*)?)\\s*)(;)";
 
     private static final String ASSIGNMENT_VARIABLE_LINE=
-            "\\s*(\\w+(\\s*=\\s*(('[^']*)|(\"[^\"]*\")|([\\w\\d]+))\\s*)?)\\s*)(;)";
+            "\\s*(\\w+(\\s*=\\s*(('[^']*)|(\"[^\"]*\")|([\\w\\d]+))\\s*)?)\\s*;";
     private static final String COMMENTS_LINE= "(\\s*(\\\\{2})(\\w*))|\\s*";
     private static final String END_SCOPE="\\s*}\\s*";
     private static final String RETURN_LINE="\\s*return\\s*;\\s*";
@@ -52,7 +53,7 @@ public class LineFactory {
             switch (appropriateRegex){
                 case DEFINITION_VARIABLE_LINE:
                     boolean ifFinal=!(matcher.group(1)==null);
-                    String[] variables=matcher.group(3).split("\\s*,\\s*");
+                    String[] variables =matcher.group(3).split("\\s*,\\s*");
                     lineForReturning=new DefiningVariableLine(matcher.group(2),variables,ifFinal);
                     break;
                 case ASSIGNMENT_VARIABLE_LINE:
@@ -66,7 +67,8 @@ public class LineFactory {
                     lineForReturning=new IfWhileLine(expression);
                     break;
                 case METHOD_LINE:
-//                    lineForReturning=new MethodLine();
+                    String[] variable = matcher.group(2).split("\\s*,\\s*");
+                    lineForReturning=new MethodLine(matcher.group(1), variable);
                     break;
                 case END_SCOPE:
                     lineForReturning=new EndScope();
@@ -75,7 +77,7 @@ public class LineFactory {
                     lineForReturning=new ReturnLine();
                     break;
                 default:
-                    break;
+                    throw new NotAppropriateLineFormatException();
             }
         }
         else {

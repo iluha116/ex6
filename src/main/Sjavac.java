@@ -45,6 +45,7 @@ public class Sjavac{
                     // adds all expect comments and empty line, no need to check them
                     lines.add(line);
                 }
+                curLine = bufReader.readLine();
             }
             Global globalCode = new Global(lines);
             globalCode.scopeCorrectness();

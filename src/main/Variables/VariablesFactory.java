@@ -28,6 +28,10 @@ public class VariablesFactory {
     public static Variable factory (String type, String name, String value, boolean IfFinal)
             throws VariableException{
         Variable val;
+        if (!Variable.checkName(name)){
+            // checks if the name suitable
+            throw new NoTypeOfVariable();
+        }
         switch (type){
             case (STRING):
                 val = new StringVariable (name,value,IfFinal);
@@ -44,7 +48,7 @@ public class VariablesFactory {
             case (CHAR):
                 val = new CharVariable (name,value,IfFinal);
                 break;
-            default:
+            default: // another type impossible
                 throw new NoTypeOfVariable();
         }
         return val;

@@ -9,7 +9,7 @@ import java.text.MessageFormat;
 public abstract class CodeException extends Exception {
 
     /*message that may be printed that contains information about thrown exception. */
-    protected String message;
+    protected String message = "problem";
 
     /**
      *

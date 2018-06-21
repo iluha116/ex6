@@ -37,7 +37,7 @@ public class DefiningVariableLine extends VariableLine{
      * @throws VariableException exception that thrown in case that
      * value of some variable is not appropriate for the type.
      */
-    DefiningVariableLine(String type,String[] variables,boolean ifFinal) throws VariableException{
+    DefiningVariableLine(String type,String[] variables,boolean ifFinal) throws CodeException{
         this.nonDefaultVariables=new ArrayList<Variable>();
         this.defaultVariables=new ArrayList<Variable>();
 

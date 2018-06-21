@@ -2,6 +2,7 @@ package main.Lines;
 import main.CodeException;
 import main.Lines.LineExceptions.*;
 import main.Scopes.Global;
+import main.Scopes.MethodScope;
 import main.Scopes.Scope;
 import main.Variables.Variable;
 
@@ -52,16 +53,16 @@ public abstract class Line {
             throws IllegalLineException{
         // first, search in the local parameters
         Variable variable;
-        if (!(scope instanceof Global)){
-            variable=findVariableInInsertedArray(val,scope.getLocalVariables());
-                if (variable!=null){
-                    return variable;
-            }
-        }
-        // if doesn't found in the local parameters search in the global
-        variable=findVariableInInsertedArray(val,scope.getGlobalVariables());
+        variable=findVariableInInsertedArray(val,scope.getLocalVariables());
         if (variable!=null){
             return variable;
+        }
+        // if doesn't found in the local parameters search in the global, if we are not in global
+        if (!(scope instanceof Global)){
+            variable=findVariableInInsertedArray(val,scope.getGlobalVariables());
+            if (variable!=null){
+                return variable;
+            }
         }
         // if doesn't found in the local and global parameters
         throw new CallToUnExistsParameter();
@@ -84,6 +85,7 @@ public abstract class Line {
         }
         return var;
     }
+
 
 
 }

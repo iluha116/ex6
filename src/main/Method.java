@@ -10,6 +10,7 @@ import main.Variables.VariablesFactory;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Method {
 
@@ -57,7 +58,7 @@ public class Method {
      */
     public ArrayList<Variable> createVariables () {
         ArrayList<Variable> vars = new ArrayList<>();
-        for (int i=0; i < names.length; i++){
+        for (int i=0; i < this.names.length; i++){
             Variable var = VariablesFactory.factoryDefault (types[i], names[i], ifFinal[i], true);
             vars.add(var);
         }

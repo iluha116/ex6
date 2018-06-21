@@ -83,7 +83,12 @@ abstract public class Scope {
     }
 
     /* updates the method ArrayList of the scope - add the new method */
-    public void updateMethods (Method method){
+    public void updateMethods (Method method) throws ReapeatMethodName{
+        for (Method met:methods){ // check if there isn't already method with such name
+            if (met.getName().equals(method.getName())){
+                throw new ReapeatMethodName();
+            }
+        }
         methods.add(method);
     }
 

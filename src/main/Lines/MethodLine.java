@@ -1,4 +1,5 @@
 package main.Lines;
+import main.CodeException;
 import main.Lines.LineExceptions.IllegalLineException;
 import main.Lines.LineExceptions.MethodCreatingException;
 import main.Method;
@@ -43,34 +44,35 @@ public class MethodLine extends Line {
         this.method = new Method(name,names,types,ifFinal);
     }
 
+
     /**
      * this method is represents verifying that line is appropriate according to rules of s-Java.
      * @param scope -scope that contains required information for the verifying.
      * @throws IllegalLineException -exception that thrown in case that function is created inside other function.
      */
     @Override
-    public void LineCorrectness (Scope scope) throws IllegalLineException {
+    public void LineCorrectness (Scope scope) throws CodeException {
+        if ((scope instanceof MethodScope)&&(scope.getLines().get(0) == this)){
+            // if it is Method scope and the first line, need to update the parameters as local in the scope
+            updateVariablesStartMethod(scope);
+            return;
+        }
         if (!(scope instanceof Global)){ // can be only in the global Scope
             throw new MethodCreatingException();
         }
         scope.updateMethods (method); // updates the ArrayList of the Global scope
     }
 
-    /**
+    /*
      * Updates the local variables of MethodScope according to the call line.
-     * @param scope MethodScope
      */
-    public void updateVariablesStartMethod (MethodScope scope) {
+    private void updateVariablesStartMethod (Scope scope) throws CodeException {
         ArrayList<Variable> local = scope.getLocalVariables();
         // creates all the variables that are given in the method call
         ArrayList<Variable> methodVars = method.createVariables();
         local.addAll(methodVars); // add them to the local variables
     }
 
-    /**
-     *
-     * @return true because it is the start of the new scope.
-     */
     @Override
     public boolean startScope() {
         return true;

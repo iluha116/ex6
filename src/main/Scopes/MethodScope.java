@@ -29,6 +29,8 @@ public class MethodScope extends InnerScope {
 
     @Override
     public void scopeCorrectness() throws CodeException {
-
+        Line first = lines.get(0);
+        first.LineCorrectness(this);
+        super.scopeCorrectness();
     }
 }

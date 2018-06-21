@@ -1,5 +1,6 @@
 package main.Variables;
 
+import main.CodeException;
 import main.Variables.VariablesExceptions.ChangeFinalVariableException;
 import main.Variables.VariablesExceptions.VariableException;
 import main.Variables.VariablesExceptions.WrongCastingException;
@@ -79,7 +80,7 @@ public abstract class Variable implements Cloneable {
 
     @Override
     public Variable clone (){
-        return VariablesFactory.factoryDefault(this.getType(),name, hasValue,hasValue);
+        return VariablesFactory.factoryDefault(this.getType(),name, hasValue, hasValue);
     }
 
     public static boolean checkName (String name){
