@@ -13,9 +13,13 @@ import java.util.ArrayList;
 
 public class Method {
 
+    /*name of the method . */
     private String name;
+    /*names of parameters. */
     private String [] names;
+    /*types of parameters. */
     private String [] types;
+    /*if parameters are final or not. */
     private boolean [] ifFinal;
 
     /**

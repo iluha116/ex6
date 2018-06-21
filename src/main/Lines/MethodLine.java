@@ -9,7 +9,6 @@ import main.Variables.Variable;
 import java.util.ArrayList;
 
 public class MethodLine extends Line {
-
     private Method method;
     private static final String SPACE = " ";
     private static final int NO_FINAL = 2;
@@ -46,7 +45,7 @@ public class MethodLine extends Line {
     /**
      * this method is represents verifying that line is appropriate according to rules of s-Java.
      * @param scope -scope that contains required information for the verifying.
-     * @throws IllegalLineException
+     * @throws IllegalLineException -exception that thrown in case that function is created inside other function.
      */
     @Override
     public void LineCorrectness (Scope scope) throws IllegalLineException {
@@ -67,6 +66,10 @@ public class MethodLine extends Line {
         local.addAll(methodVars); // add them to the local variables
     }
 
+    /**
+     *
+     * @return true because it is the start of the new scope.
+     */
     @Override
     public boolean startScope() {
         return true;

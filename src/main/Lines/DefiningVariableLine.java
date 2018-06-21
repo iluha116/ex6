@@ -14,12 +14,29 @@ import main.Variables.VariablesFactory;
 
 import java.util.ArrayList;
 
+/**
+ * this class represents line that define new variables.
+ */
 public class DefiningVariableLine extends VariableLine{
+    /*array list of variables WITH value. */
     private ArrayList<Variable> nonDefaultVariables;
+    /*array list of variables WITHOUT value. */
     private ArrayList<Variable> defaultVariables;
+    /*number of components of some defined variable,for example:
+    /*1 parameter in case that variable was defined without value. */
     private static final int DEFAULT_VARIABLE_COMPONENTS_NUMBER=1;
+    /*2 parameters in case that variable was defined with value. */
     private static final int NONDEFAULT_VARIABLE_COMPONENTS_NUMBER=2;
 
+    /**
+     * this method represents constructor that creates new line with variables according to
+     * parameters that was inserted.
+     * @param type-type of inserted variables.
+     * @param variables- strings that contains names of variables and probably value of them.
+     * @param ifFinal- marker if variables are final or not.
+     * @throws VariableException exception that thrown in case that
+     * value of some variable is not appropriate for the type.
+     */
     DefiningVariableLine(String type,String[] variables,boolean ifFinal) throws VariableException{
         this.nonDefaultVariables=new ArrayList<Variable>();
         this.defaultVariables=new ArrayList<Variable>();
@@ -39,15 +56,6 @@ public class DefiningVariableLine extends VariableLine{
         }
 
     }
-
-    public ArrayList<Variable> getDefaultVariables() {
-        return defaultVariables;
-    }
-
-    public ArrayList<Variable> getNonDefaultVariables() {
-        return nonDefaultVariables;
-    }
-
     /**
      * this method is represents verifying that line is appropriate according to rules of s-Java.
      * @param scope -scope that contains required information for the verifying.
@@ -55,6 +63,7 @@ public class DefiningVariableLine extends VariableLine{
      */
     @Override
     public void LineCorrectness(Scope scope) throws CodeException{
+        //for all variables have to be checked that they is no variable with the same name in some of arrays of scope.
         ArrayList<Variable> allVariables=unionVariables();
         for (Variable defaultVariable:allVariables){
             if (findVariableInInsertedArray(defaultVariable.getName(),scope.getLocalVariables())!=null){
@@ -80,6 +89,11 @@ public class DefiningVariableLine extends VariableLine{
             }
         }
     }
+
+    /**
+     * this method make union for to arrays arrays default and nondefault variables.
+     * @return union of arrays.
+     */
     private ArrayList<Variable> unionVariables(){
         ArrayList<Variable> allVariables= defaultVariables;
         allVariables.addAll(nonDefaultVariables);

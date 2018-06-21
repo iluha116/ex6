@@ -10,7 +10,7 @@ import main.Variables.VariablesExceptions.WrongCastingException;
  */
 
 public class BooleanVariable extends Variable implements Cloneable{
-
+    /*appropriate types of variables. e.g. boolean variable may also be defined with double and int. */
     private static final String[] possibleTypesForVar = {INT,DOUBLE,BOOLEAN};
 
     /**

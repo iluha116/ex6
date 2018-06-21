@@ -21,12 +21,20 @@ public abstract class Variable implements Cloneable {
     protected static final String BOOLEAN = "boolean";
     protected static final String CHAR = "char";
 
+    /*name of the variable. */
     protected String name;
+    /*if the variable has some value . */
     protected boolean hasValue= false;
+    /*value of the variable .*/
     protected String value;
+    /*if the value is some other defined variable. */
     protected boolean varValue = false;
+    /*if the variable is final. */
     protected boolean isFinal;
+    /*default value for variable. */
     protected static final String DEFAULT_VALUE = "";
+    /*pattern for verifying that name of variable is appropriate and check if value of variable is other value.
+    /*will be checked if value is appropriate for the pattern and if yes will be checked if such variable exists. */
     protected static final Pattern VAR_AS_VALUE = Pattern.compile("[A-Za-z]+\\w*|_+\\w+");
 
     /**
@@ -46,6 +54,7 @@ public abstract class Variable implements Cloneable {
             checkValueAd (value);
         }
     }
+
 
     protected abstract void checkValueAd (String value) throws VariableException;
 

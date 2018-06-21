@@ -12,11 +12,13 @@ import main.Variables.Variable;
  */
 
 public class CallMethodLine extends Line{
+    /*function is called with those parameters. */
     private String[] parameters;
+    /*name of the function that is called. */
     private String name;
 
     /**
-     * Constructor
+     * Constructor for line that call some method.
      * @param name name of the method that called.
      * @param parameters parameter name that are given for calling the method
      */
@@ -25,6 +27,11 @@ public class CallMethodLine extends Line{
         this.name=name;
     }
 
+    /**
+     * this method is represents verifying that line is appropriate according to rules of s-Java.
+     * @param scope -scope that contains required information for the verifying.
+     * @throws IllegalLineException exception that thrown in case that line is illegal.
+     */
     @Override
     public void LineCorrectness (Scope scope) throws IllegalLineException {
         if (scope instanceof Global){ // can't be called from the global scope
@@ -36,7 +43,13 @@ public class CallMethodLine extends Line{
     }
 
 
-   /* Finds if there is a suitable method for such call to method*/
+    /**
+     * Finds if there is a suitable method for such call to method.
+     * @param scope-scope that contain array of all existed function. In this array function will be searched.
+     * @return true if such method is exists,false otherwise.
+     * @throws IllegalLineException  exception that thrown in case that
+     * method was called with not appropriate parameters.
+     */
     private boolean findSuitableMethod (Scope scope) throws IllegalLineException {
         for (Method method:scope.getMethods()){
             String[] methodTypes = method.getParametersTypes();
@@ -58,8 +71,15 @@ public class CallMethodLine extends Line{
         return false;
     }
 
-    /* Builds a String array of the types of the parameters that appear in the line,
-    throws exception if there isn't such variable. */
+
+
+    /**
+     * this method is verify types of variables.
+     * @param scope-scope that contains all variables.
+     * @return array of types.
+     * @throws IllegalLineException exception that thrown in case that
+     * method was called with not appropriate parameters.
+     */
     private String[] checkParametersTypes (Scope scope)
             throws IllegalLineException{
         String [] types = new String[parameters.length];

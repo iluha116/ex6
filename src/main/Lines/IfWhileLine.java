@@ -3,10 +3,17 @@ import main.Lines.LineExceptions.*;
 import main.Scopes.Scope;
 import main.Variables.Variable;
 
+/**
+ * this class represents line that contain one of if/ while statements.
+ */
 public class IfWhileLine extends Line {
-
+    /*array that contains boolean expression. */
     private String[] booleanExpressions;
 
+    /**
+     * this method creates line that contains if/ while statement according to inserted line.
+     * @param booleanExpressions expression of the if/while statement.
+     */
     public IfWhileLine (String [] booleanExpressions){
         this.booleanExpressions = booleanExpressions;
     }
@@ -58,6 +65,7 @@ public class IfWhileLine extends Line {
         }
         return true;
     }
+
 
     @Override
     public boolean startScope() {

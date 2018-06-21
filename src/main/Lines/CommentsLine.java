@@ -12,11 +12,12 @@ import main.Scopes.Scope;
 public class CommentsLine extends Line {
 
     /**
-     * Constructor
+     * Constructor of comments line
      */
     public CommentsLine (){
     }
 
+    /*this line will not be checked. */
     @Override
     public void LineCorrectness (Scope scope) throws IllegalLineException {
     }

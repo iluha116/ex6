@@ -11,7 +11,7 @@ import main.Variables.VariablesExceptions.WrongCastingException;
 
 
 public class CharVariable extends Variable implements Cloneable{
-
+    /*appropriate types of variables. */
     private static final String[] possibleTypesForVar = {CHAR};
 
     /**

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class EndScope extends Line {
 
     /**
-     * Constructor
+     * Constructor that creates  line that contain char '}';
      */
     public EndScope (){
     }
@@ -31,6 +31,10 @@ public class EndScope extends Line {
         }
     }
 
+    /**
+     *
+     * @return true because it is the last line of some of the scopes.
+     */
     @Override
     public boolean endScope() {
         return true;
