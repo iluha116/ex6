@@ -78,7 +78,7 @@ abstract public class Scope {
             localVariables.add(var);
         }
         catch (NullPointerException e){
-            System.out.println("timeVariables are empty.");
+            //System.out.println("timeVariables are empty.");
         }
     }
 

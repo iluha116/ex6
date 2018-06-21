@@ -53,7 +53,7 @@ public class Sjavac{
             // during checking the code, means the code is legal.
         }
         catch (Exception e){ // if there was exception during checking the code, means the code is illegal.
-            System.err.println(e.getMessage());
+            //System.err.println(e.getMessage());
             System.out.println(ILLEGAL);
         }
 
