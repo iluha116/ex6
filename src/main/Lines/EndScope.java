@@ -1,4 +1,5 @@
 package main.Lines;
+import main.Lines.LineExceptions.EndScopeException;
 import main.Lines.LineExceptions.IllegalLineException;
 import main.Scopes.*;
 import java.util.ArrayList;
@@ -25,9 +26,9 @@ public class EndScope extends Line {
     @Override
     public void LineCorrectness (Scope scope) throws IllegalLineException {
         ArrayList<Line> lines = scope.getLines();
-        if ((scope instanceof Global)||(lines.get(lines.size()-1)== this)){
+        if ((scope instanceof Global)||(!(lines.get(lines.size()-1)== this))){
             // if not the last line in not InnerScope
-            throw new IllegalLineException();
+            throw new EndScopeException();
         }
     }
 

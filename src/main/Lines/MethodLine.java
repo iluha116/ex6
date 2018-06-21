@@ -1,5 +1,6 @@
 package main.Lines;
 import main.Lines.LineExceptions.IllegalLineException;
+import main.Lines.LineExceptions.MethodCreatingException;
 import main.Method;
 import main.Scopes.Global;
 import main.Scopes.MethodScope;
@@ -49,10 +50,10 @@ public class MethodLine extends Line {
      */
     @Override
     public void LineCorrectness (Scope scope) throws IllegalLineException {
-        if (scope instanceof Global){ // can be only in the global Scope
-            scope.updateMethods (method); // updates the ArrayList of the Global scope
+        if (!(scope instanceof Global)){ // can be only in the global Scope
+            throw new MethodCreatingException();
         }
-        throw new IllegalLineException();
+        scope.updateMethods (method); // updates the ArrayList of the Global scope
     }
 
     /**

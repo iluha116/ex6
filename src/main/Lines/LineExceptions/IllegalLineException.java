@@ -2,5 +2,5 @@ package main.Lines.LineExceptions;
 
 import main.CodeException;
 
-public class IllegalLineException extends CodeException {
+public abstract class IllegalLineException extends CodeException {
 }

@@ -10,9 +10,9 @@ public class LineFactory {
     private static final String AND_OR = "(&&|\\|{2})";
     private static final String SCOPES_TYPES = "(if|while)";
     private static final String METHOD_LINE =
-            ("(void\\s+\\w+)(\\()(((final\\s+)?(int|double|String|boolean|char)\\s+\\w+,)*" +
-                    "((final\\s+)?(int|double|String|boolean|char)\\s+\\w+)?)(\\)\\s*\\{)");
-    private static final String SCOPES_LINE = ("\\s(if|while)s\\s*(\\()((\\w+\\s*(&&|\\|{2})\\s*)" +
+            ("(\\s*void\\s+\\w+)(\\()(((final\\s+)?(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+),)*" +
+                    "((final\\s+)?(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+)))|(\\s*)\\s*\\{)");
+    private static final String SCOPES_LINE = ("\\s*(if|while)\\s*(\\()((\\w+\\s*(&&|\\|{2})\\s*)" +
             "*(\\s*\\w+\\s*)?)(\\)\\s*\\{)");
     private static final String DEFINITION_VARIABLE_LINE=("\\s*(final\\s+)?(\\w+)\\s+" +
             "((\\w+(\\s*=\\s*(('[^']*')|(\"[^\"]*\")|([\\w\\d]+))\\s*)?\\s*,\\s*)*" +
@@ -21,10 +21,14 @@ public class LineFactory {
     private static final String ASSIGNMENT_VARIABLE_LINE=
             "\\s*(\\w+(\\s*=\\s*(('[^']*)|(\"[^\"]*\")|([\\w\\d]+))\\s*)?)\\s*)(;)";
     private static final String COMMENTS_LINE= "(\\s*(\\\\{2})(\\w*))|\\s*";
+    private static final String END_SCOPE="\\s*}\\s*";
+    private static final String RETURN_LINE="\\s*return\\s*;\\s*";
 
 
 
-    private static final String[] REGEX = {SCOPES_LINE,METHOD_LINE,DEFINITION_VARIABLE_LINE,COMMENTS_LINE};
+    private static final String[] REGEX =
+            {SCOPES_LINE,METHOD_LINE,DEFINITION_VARIABLE_LINE,
+                    COMMENTS_LINE,ASSIGNMENT_VARIABLE_LINE,END_SCOPE,RETURN_LINE};
 
     /**
      * Factory
@@ -58,13 +62,24 @@ public class LineFactory {
                     lineForReturning=new CommentsLine();
                     break;
                 case SCOPES_LINE:
-
+                    String[] expression=matcher.group(3).split(AND_OR);
+                    lineForReturning=new IfWhileLine(expression);
+                    break;
+                case METHOD_LINE:
+//                    lineForReturning=new MethodLine();
+                    break;
+                case END_SCOPE:
+                    lineForReturning=new EndScope();
+                    break;
+                case RETURN_LINE:
+                    lineForReturning=new ReturnLine();
+                    break;
                 default:
                     break;
             }
         }
         else {
-            throw new IllegalLineException();
+            throw new NotAppropriateLineFormatException();
         }
         return lineForReturning;
     }

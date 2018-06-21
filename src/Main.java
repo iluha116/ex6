@@ -26,11 +26,12 @@ public class Main {
         final String TYPES = "(int|double|String|boolean|char)";
         final String AND_OR = "&&|\\|{2}";
         final String SCOPES_TYPES = "if|while";
-        final String METHOD_LINE =
-                String.format("(void\\s+\\w+)(\\()(((final\\s+)?%1$s\\s+\\w+,)*((final\\s+)?%1$s\\s+\\w+)?)(\\)\\s*\\{)", TYPES);
-        final String SCOPES_LINE =  String.format("\\s* (%1$s)(\\()", SCOPES_TYPES);
+        final String METHOD_LINE =("(\\s*void\\s+\\w+)(\\()(((final\\s+)?(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+),)*" +
+                "((final\\s+)?(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+)))|(\\s*)\\s*\\{");
+        final String SCOPES_LINE =  ("\\s*(if|while)\\s*(\\()((\\w+\\s*(&&|\\|{2})\\s*)" +
+                "*(\\s*\\w+\\s*)?)(\\)\\s*\\{)");
         Pattern method = Pattern.compile(METHOD_LINE);
-        Matcher matcher = method.matcher("void soo(final char b,boolean g) {");
+        Matcher matcher = method.matcher("if (void foo (int a)){");
         final String tr=String.format("void\\s+\\w+\\ %1$s",TYPES);
         Pattern p=Pattern.compile(tr);
         Matcher mm=p.matcher("void soo boolean,");
