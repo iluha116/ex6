@@ -41,7 +41,8 @@ public class DefiningVariableLine extends VariableLine{
 
         this.nonDefaultVariables=new ArrayList<>();
         this.defaultVariables=new ArrayList<>();
-
+        //for each variable add variable to default array(array with variables without value)
+        //and to nondefault array(array with variables that have some value. )
         for (String variable:variables){
             String[] variableComponents=getVariableComponents(variable);
             if (variableComponents.length == DEFAULT_VARIABLE_COMPONENTS_NUMBER){
@@ -53,9 +54,7 @@ public class DefiningVariableLine extends VariableLine{
                 String value=extractVariableValue(variableComponents);
                 this.nonDefaultVariables.add(VariablesFactory.factory(type,name,value,ifFinal));
             }
-
         }
-
     }
     /**
      * this method is represents verifying that line is appropriate according to rules of s-Java.
@@ -106,7 +105,8 @@ public class DefiningVariableLine extends VariableLine{
      * @return union of arrays.
      */
     private ArrayList<Variable> unionVariables(){
-        ArrayList<Variable> allVariables= defaultVariables;
+        ArrayList<Variable> allVariables= new ArrayList<>();
+        allVariables.addAll(defaultVariables);
         allVariables.addAll(nonDefaultVariables);
         return allVariables;
     }

@@ -36,12 +36,8 @@ public class Main {
 
         //System.out.println(matcher.matches());
 
-        String [] a = {"C:\\Users\\Shani\\IdeaProjects\\ex6\\ex6\\src\\tester_files\\Tests\\BaraksTests\\if\\14.sjava"};
+        String [] a = {"C:\\Users\\Shani\\IdeaProjects\\ex6\\ex6\\src\\tester_files\\Tests\\BaraksTests\\methods\\08.sjava"};
         Sjavac.main(a);
-
-
-
-
 
     }
 

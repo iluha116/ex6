@@ -21,6 +21,7 @@ public abstract class Variable implements Cloneable {
     protected static final String DOUBLE = "double";
     protected static final String BOOLEAN = "boolean";
     protected static final String CHAR = "char";
+    private static final String[] possibleTypesForVar = {STRING,INT,DOUBLE,BOOLEAN,CHAR};
 
     /*name of the variable. */
     protected String name;
@@ -75,11 +76,13 @@ public abstract class Variable implements Cloneable {
 
     @Override
     public Variable clone (){
-        Variable var=VariablesFactory.factoryDefault(this.getType(),this.getName(), this.hasValue(), this.hasValue());
-        System.out.println(var.value+"ppp");
+        Variable var=VariablesFactory.factoryDefault(this.getType(),this.getName(), this.isFinal(), this.hasValue());
         var.setValue(this.getValue());
-        System.out.println(var.value+"aa");
         return var;
+    }
+
+    public boolean isFinal(){
+        return false;
     }
 
     public static boolean checkName (String name){
@@ -91,6 +94,5 @@ public abstract class Variable implements Cloneable {
         return varValue;
     }
 
-    public abstract String[] possibleTypesForVariable ();
 
 }

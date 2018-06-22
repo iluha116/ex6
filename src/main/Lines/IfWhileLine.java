@@ -1,6 +1,7 @@
 package main.Lines;
 import main.Lines.LineExceptions.*;
 import main.Scopes.Scope;
+import main.Variables.BooleanVariable;
 import main.Variables.Variable;
 
 /**
@@ -50,11 +51,17 @@ public class IfWhileLine extends Line {
                 return true;
             }
             Variable var = findVariable(expression, scope);
+            String type = var.getType();
+            for (String possibleType:BooleanVariable.possibleTypesForVariable()){
+                if(type.equals(possibleType)){
+                    return true;
+                }
+            }
+            return false;
         }
         catch (IllegalLineException e){ // if isn't an exist variable
             return false;
         }
-        return true;
     }
 
     /* checks if the string is number. */

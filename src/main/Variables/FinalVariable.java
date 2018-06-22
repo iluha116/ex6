@@ -20,11 +20,6 @@ public class FinalVariable extends Variable{
     }
 
     @Override
-    public String[] possibleTypesForVariable() {
-        return variable.possibleTypesForVariable();
-    }
-
-    @Override
     public String getType() {
         return variable.getType();
     }
@@ -53,4 +48,10 @@ public class FinalVariable extends Variable{
     public boolean hasVariableValue() {
         return variable.hasVariableValue();
     }
+
+    @Override
+    public boolean isFinal() {
+        return true;
+    }
+
 }

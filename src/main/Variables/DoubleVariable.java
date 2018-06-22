@@ -50,9 +50,5 @@ public class DoubleVariable extends Variable implements Cloneable {
         return DOUBLE;
     }
 
-    @Override
-    public String[] possibleTypesForVariable (){
-        return possibleTypesForVar;
-    }
 
 }

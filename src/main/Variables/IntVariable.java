@@ -50,10 +50,5 @@ public class IntVariable extends Variable implements Cloneable{
         return INT;
     }
 
-    @Override
-    public String[] possibleTypesForVariable (){
-        return possibleTypesForVar;
-    }
-
 
 }
