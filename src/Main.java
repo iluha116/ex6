@@ -35,15 +35,11 @@ public class Main {
         Pattern method = Pattern.compile(RETURN_LINE);
         Matcher matcher = method.matcher("return 3;");
 
-        System.out.println(matcher.matches());
+        //System.out.println(matcher.matches());
 
-        String [] a = {"C:\\Users\\Shani\\IdeaProjects\\ex6\\ex6\\src\\tester_files\\Tests\\BaraksTests\\return\\05.sjava"};
+        String [] a = {"C:\\Users\\Shani\\IdeaProjects\\ex6\\ex6\\src\\tester_files\\Tests\\BaraksTests\\variables\\01.sjava"};
         Sjavac.main(a);
 
     }
-
-
-
-
 
 }
