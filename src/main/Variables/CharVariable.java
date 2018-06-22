@@ -18,11 +18,10 @@ public class CharVariable extends Variable implements Cloneable{
      * Constructor
      * @param name name of the variable
      */
-     public CharVariable (String name, boolean hasValue, boolean isFinal){
+     public CharVariable (String name, boolean hasValue){
          this.name = name;
          this.hasValue = hasValue;
          this.value = DEFAULT_VALUE;
-         this.isFinal = isFinal;
      }
 
     /**
@@ -31,9 +30,8 @@ public class CharVariable extends Variable implements Cloneable{
      * @param value value for the variable
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
-     public CharVariable (String name, String value, boolean isFinal) throws VariableException {
+     public CharVariable (String name, String value) throws VariableException {
          this.name = name;
-         this.isFinal = isFinal;
          checkValue(value);
      }
 

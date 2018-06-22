@@ -21,11 +21,11 @@ public class VariablesFactory {
      * Factory
      * @param type type of the variable
      * @param name name of the variable
-     * @param IfFinal boolean if the variable final
+     * @param ifFinal boolean if the variable final
      * @return Variable object
      * @throws VariableException if cant create such variable
      */
-    public static Variable factory (String type, String name, String value, boolean IfFinal)
+    public static Variable factory (String type, String name, String value, boolean ifFinal)
             throws VariableException{
         Variable val;
         if (!Variable.checkName(name)){
@@ -34,22 +34,25 @@ public class VariablesFactory {
         }
         switch (type){
             case (STRING):
-                val = new StringVariable (name,value,IfFinal);
+                val = new StringVariable (name,value);
                 break;
             case (INT):
-                val = new IntVariable (name,value,IfFinal);
+                val = new IntVariable (name,value);
                 break;
             case (DOUBLE):
-                val = new DoubleVariable (name,value,IfFinal);
+                val = new DoubleVariable (name,value);
                 break;
             case (BOOLEAN):
-                val = new BooleanVariable (name,value,IfFinal);
+                val = new BooleanVariable (name,value);
                 break;
             case (CHAR):
-                val = new CharVariable (name,value,IfFinal);
+                val = new CharVariable (name,value);
                 break;
             default: // another type impossible
                 throw new NoTypeOfVariable();
+        }
+        if (ifFinal){
+            val=new FinalVariable(val);
         }
         return val;
     }
@@ -58,28 +61,32 @@ public class VariablesFactory {
      * Default Factory - assume that the given type exists and give default values
      * @param type type of the variable
      * @param name name of the variable
-     * @param IfFinal boolean if the variable final
+     * @param ifFinal boolean if the variable final
      * @return Variable object
      */
-    public static Variable factoryDefault (String type, String name, boolean IfFinal, boolean hasValue) {
+    public static Variable factoryDefault (String type, String name, boolean ifFinal, boolean hasValue) {
         Variable val;
         switch (type){
             case (STRING):
-                val = new StringVariable (name, hasValue, IfFinal);
+                val = new StringVariable (name, hasValue);
                 break;
             case (INT):
-                val = new IntVariable (name, hasValue, IfFinal);
+                val = new IntVariable (name, hasValue);
                 break;
             case (DOUBLE):
-                val = new DoubleVariable (name, hasValue, IfFinal);
+                val = new DoubleVariable (name, hasValue);
                 break;
             case (BOOLEAN):
-                val = new BooleanVariable (name, hasValue, IfFinal);
+                val = new BooleanVariable (name, hasValue);
                 break;
             default: // assume (CHAR)
-                val = new CharVariable (name, hasValue, IfFinal);
+                val = new CharVariable (name, hasValue);
                 break;
         }
+        if (ifFinal){
+            val=new FinalVariable(val,true);
+        }
+
         return val;
     }
 

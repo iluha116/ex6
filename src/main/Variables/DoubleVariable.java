@@ -17,7 +17,7 @@ public class DoubleVariable extends Variable implements Cloneable {
      * Constructor
      * @param name name of the variable
      */
-     DoubleVariable (String name, boolean hasValue, boolean isFinal){
+     DoubleVariable (String name, boolean hasValue){
         this.name = name;
         this.hasValue = hasValue;
          this.value = DEFAULT_VALUE;
@@ -29,7 +29,7 @@ public class DoubleVariable extends Variable implements Cloneable {
      * @param value value for the variable
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
-     DoubleVariable (String name, String value, boolean isFinal) throws VariableException {
+     DoubleVariable (String name, String value) throws VariableException {
         this.name = name;
         checkValue(value);
     }
