@@ -4,6 +4,9 @@ import main.Variables.VariablesExceptions.ChangeFinalVariableException;
 import main.Variables.VariablesExceptions.FinalHasNoValue;
 import main.Variables.VariablesExceptions.VariableException;
 
+/**
+ * This class represents final decorator(give to Variable an ability to be final)
+ */
 public class FinalVariable extends Variable{
     Variable variable;
 

@@ -12,6 +12,9 @@ import main.Variables.VariablesFactory;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+/**
+ * this class represents container of data for creating method scope.
+ */
 public class Method {
 
     /*name of the method . */
