@@ -9,10 +9,9 @@ public class LineFactory {
     private static final String TYPES = "(int|double|String|boolean|char)";
     private static final String AND_OR = "(&&|\\|{2})";
     private static final String SCOPES_TYPES = "(if|while)";
-    private static final String METHOD_LINE ="\\s*void\\s++(.\\w*)\\s+\\((\\s*|\\s*" +
+    private static final String METHOD_LINE ="\\s*void\\s++(.\\w*)\\s*\\((\\s*|\\s*" +
             "(((final\\s+)?(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+),\\s*)*(final\\s+)?" +
-            "(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+))" +
-            ")\\s*\\)\\s*\\{";
+            "(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+)))\\s*\\)\\s*\\{\\s*";
     private static final String SCOPES_LINE = ("\\s*(if|while)\\s*(\\()((\\w+\\s*(&&|\\|{2})\\s*)" +
             "*(\\s*\\w+\\s*)?)(\\)\\s*\\{)");
     private static final String DEFINITION_VARIABLE_LINE="\\s*(final\\s+)?(\\w+)\\s+" +
@@ -61,20 +60,32 @@ public class LineFactory {
                     break;
                 case COMMENTS_LINE:
                     lineForReturning=new CommentsLine();
+                    System.out.println("comment");
                     break;
                 case SCOPES_LINE:
                     String[] expression=matcher.group(3).split(AND_OR);
                     lineForReturning=new IfWhileLine(expression);
+                    //System.out.println("ifWhile");
                     break;
                 case METHOD_LINE:
-                    String[] variable = matcher.group(2).split("\\s*,\\s*");
+                    String[] variable;
+                    if (matcher.group(2).equals("")){
+                        variable = new String[0];
+                    }
+                    else{
+                        variable = matcher.group(2).split("\\s*,\\s*");
+                    }
                     lineForReturning=new MethodLine(matcher.group(1), variable);
+
                     break;
                 case END_SCOPE:
                     lineForReturning=new EndScope();
+                    //System.out.println("end");
                     break;
                 case RETURN_LINE:
+                    System.out.println("return");
                     lineForReturning=new ReturnLine();
+
                     break;
                 default:
                     throw new NotAppropriateLineFormatException();

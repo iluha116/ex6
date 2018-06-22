@@ -38,16 +38,17 @@ public class DefiningVariableLine extends VariableLine{
      * value of some variable is not appropriate for the type.
      */
     DefiningVariableLine(String type,String[] variables,boolean ifFinal) throws CodeException{
-        this.nonDefaultVariables=new ArrayList<Variable>();
-        this.defaultVariables=new ArrayList<Variable>();
+
+        this.nonDefaultVariables=new ArrayList<>();
+        this.defaultVariables=new ArrayList<>();
 
         for (String variable:variables){
             String[] variableComponents=getVariableComponents(variable);
-            if (variableComponents.length==DEFAULT_VARIABLE_COMPONENTS_NUMBER){
+            if (variableComponents.length == DEFAULT_VARIABLE_COMPONENTS_NUMBER){
                 this.defaultVariables.add(VariablesFactory.
                         factoryDefault(type,extractVariableName(variableComponents),ifFinal,false));
             }
-            else if(variableComponents.length==NONDEFAULT_VARIABLE_COMPONENTS_NUMBER){
+            else if(variableComponents.length == NONDEFAULT_VARIABLE_COMPONENTS_NUMBER){
                 String name=extractVariableName(variableComponents);
                 String value=extractVariableValue(variableComponents);
                 this.nonDefaultVariables.add(VariablesFactory.factory(type,name,value,ifFinal));
