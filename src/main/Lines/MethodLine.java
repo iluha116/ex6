@@ -1,5 +1,6 @@
 package main.Lines;
 import main.CodeException;
+import main.Lines.LineExceptions.DefiningExistedVariableException;
 import main.Lines.LineExceptions.IllegalLineException;
 import main.Lines.LineExceptions.MethodCreatingException;
 import main.Method;
@@ -9,6 +10,7 @@ import main.Scopes.Scope;
 import main.Variables.Variable;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class MethodLine extends Line {
     private Method method;
@@ -24,19 +26,28 @@ public class MethodLine extends Line {
      * @param name name of the method
      * @param variables array string of the parameters for the method
      */
-    public MethodLine (String name, String[] variables){
+    public MethodLine (String name, String[] variables) throws DefiningExistedVariableException{
         String[] types = new String[variables.length];
         String[] names = new String[variables.length];
+        HashSet<String> namesCheck = new HashSet<>();
         boolean [] ifFinal = new boolean[variables.length];
         for (int i=0; i<variables.length; i++){
             String[] pair = variables[i].split(SPACE); // parameters of the cur variable
             if (pair.length == NO_FINAL){ // if has not final
                 types[i] = pair[FIRST];
+                if (namesCheck.contains(pair[SECOND])){
+                    // checks if there wasn't defined already in the line variable with that name
+                    throw new DefiningExistedVariableException();
+                }
                 names[i] = pair[SECOND];
                 ifFinal[i]= false;
             }
             else{ // if has final (length 3)
                 types[i] = pair[SECOND];
+                if (namesCheck.contains(pair[THIRD])){
+                    // checks if there wasn't defined already in the line variable with that name
+                    throw new DefiningExistedVariableException();
+                }
                 names[i] = pair[THIRD];
                 ifFinal[i]= true;
             }

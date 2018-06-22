@@ -26,7 +26,7 @@ public class Main {
 
 
         Pattern method = Pattern.compile(METHOD_LINE);
-        Matcher matcher = method.matcher("void foo (int d, String y) {");
+        Matcher matcher = method.matcher("void");
 
         System.out.println(matcher.matches());
         System.out.println(matcher.group(2));
