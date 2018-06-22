@@ -2,7 +2,7 @@ package main.Variables;
 import main.Variables.VariablesExceptions.*;
 
 /**
- * Variables Factory class
+ * this class represents Variables Factory class
  * @author Shani Cheskis
  * @author Ilia Bogov
  */
