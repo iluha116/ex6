@@ -17,11 +17,10 @@ public class StringVariable extends Variable implements Cloneable{
      * Constructor
      * @param name name of the variable
      */
-     public StringVariable (String name, boolean hasValue, boolean isFinal){
+     public StringVariable (String name, boolean hasValue){
          this.name = name;
          this.hasValue = hasValue;
          this.value = DEFAULT_VALUE;
-         this.isFinal = isFinal;
     }
 
     /**
@@ -30,9 +29,8 @@ public class StringVariable extends Variable implements Cloneable{
      * @param value value for the variable
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
-     public StringVariable (String name, String value, boolean isFinal) throws VariableException {
+     public StringVariable (String name, String value) throws VariableException {
          this.name = name;
-         this.isFinal = isFinal;
          checkValue(value);
      }
 

@@ -30,8 +30,6 @@ public abstract class Variable implements Cloneable {
     protected String value;
     /*if the value is some other defined variable. */
     protected boolean varValue = false;
-    /*if the variable is final. */
-    protected boolean isFinal;
     /*default value for variable. */
     protected static final String DEFAULT_VALUE = "";
     /*pattern for verifying that name of variable is appropriate and check if value of variable is other value.
@@ -44,10 +42,7 @@ public abstract class Variable implements Cloneable {
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
     public void checkValue (String value) throws VariableException{
-        if (isFinal && hasValue){
-            throw new ChangeFinalVariableException();
-        }
-        else if (checkName(value)){ // check if
+        if (checkName(value)){ // check if
             setValue(value);
             varValue = true;
         }
