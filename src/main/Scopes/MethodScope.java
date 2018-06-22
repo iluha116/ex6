@@ -24,6 +24,8 @@ public class MethodScope extends InnerScope {
         this.lines = lines;
         this.globalVariables = globals;
         this.localVariables = new ArrayList<>();
+        this.garbageVariables = new ArrayList<>();
+        this.timeVariables = new ArrayList<>();
         this.methods = methods;
     }
 

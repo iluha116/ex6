@@ -4,6 +4,6 @@ package main.Lines.LineExceptions;
  */
 public class EndScopeException extends IllegalLineException{
     public EndScopeException(){
-        message="it is not appropriate place for char '}'";
+        message= "it is not appropriate place for char '}'";
     }
 }

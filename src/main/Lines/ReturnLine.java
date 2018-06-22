@@ -24,7 +24,7 @@ public class ReturnLine extends Line {
     @Override
     public void LineCorrectness (Scope scope) throws IllegalLineException {
         ArrayList<Line> lines = scope.getLines();
-        if ((!(scope instanceof MethodScope))||(lines.get(lines.size()-PRE_LAST_LINE) == this)){
+        if ((!(scope instanceof MethodScope))||!(lines.get(lines.size()-PRE_LAST_LINE).equals(this))){
             // if exist not in method or not the pre last line of the method, it is wrong location.
             throw new ReturnException();
         }

@@ -46,8 +46,8 @@ public class Global extends Scope {
             else{
                 cur += 1; // if had no scope move forward one line
             }
-            // updates for variables?
         }
+
         // check correctness of all methods
          for (ArrayList<Line> method : methodsLines){
             MethodScope methodForCheck = new MethodScope(deepCopy(localVariables), methods, method);

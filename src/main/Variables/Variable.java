@@ -31,7 +31,7 @@ public abstract class Variable implements Cloneable {
     /*if the value is some other defined variable. */
     protected boolean varValue = false;
     /*default value for variable. */
-    protected static final String DEFAULT_VALUE = "";
+    protected static final String DEFAULT_VALUE = "00000";
     /*pattern for verifying that name of variable is appropriate and check if value of variable is other value.
     /*will be checked if value is appropriate for the pattern and if yes will be checked if such variable exists. */
     protected static final Pattern VAR_AS_VALUE = Pattern.compile("[A-Za-z]+\\w*|_+\\w+");
@@ -75,7 +75,11 @@ public abstract class Variable implements Cloneable {
 
     @Override
     public Variable clone (){
-        return VariablesFactory.factoryDefault(this.getType(),name, hasValue, hasValue);
+        Variable var=VariablesFactory.factoryDefault(this.getType(),this.getName(), this.hasValue(), this.hasValue());
+        System.out.println(var.value+"ppp");
+        var.setValue(this.getValue());
+        System.out.println(var.value+"aa");
+        return var;
     }
 
     public static boolean checkName (String name){
@@ -88,6 +92,5 @@ public abstract class Variable implements Cloneable {
     }
 
     public abstract String[] possibleTypesForVariable ();
-
 
 }

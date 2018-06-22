@@ -51,9 +51,11 @@ public class Sjavac{
             Global globalCode = new Global(lines);
             globalCode.scopeCorrectness();
             System.out.println(LEGAL); // if this line received there was no exception throwing
+
             // during checking the code, means the code is legal.
         }
         catch (Exception e){ // if there was exception during checking the code, means the code is illegal.
+            //System.out.println(e.getClass());
             System.err.println(e.getMessage());
             System.out.println(ILLEGAL);
         }

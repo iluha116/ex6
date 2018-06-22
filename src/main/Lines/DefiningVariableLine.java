@@ -64,13 +64,18 @@ public class DefiningVariableLine extends VariableLine{
      */
     @Override
     public void LineCorrectness(Scope scope) throws CodeException{
+        //System.out.println("corectness defining");
         //for all variables have to be checked that they is no variable with the same name in some of arrays of scope.
         ArrayList<Variable> allVariables=unionVariables();
+        // check if such variables are already exist in the local scope.
         for (Variable defaultVariable:allVariables){
             if (findVariableInInsertedArray(defaultVariable.getName(),scope.getLocalVariables())!=null){
                 throw new DefiningExistedVariableException();
             }
         }
+        // check if such variables are already exist in the garbage variables,
+        // those variables that was defined in local scope without value and was not defined afterwise.
+        // Time variables-variables that was defined in previous line without value.
         if (!(scope instanceof Global)) {
             for (Variable defaultVariable:allVariables){
                 if (findVariableInInsertedArray(defaultVariable.getName(),scope.getGarbageVariables())!=null||
@@ -79,16 +84,21 @@ public class DefiningVariableLine extends VariableLine{
                 }
             }
         }
+        // for variables with value
         for (Variable nonDefaultVariable:nonDefaultVariables){
-            if (nonDefaultVariable.hasValue()){
+            if (nonDefaultVariable.hasVariableValue()){ // if has a value that is variable
+                // search if such variable exists
                 Variable variableForAssignment=findVariable(nonDefaultVariable.getValue(),scope);
                 if (variableForAssignment.hasValue()){
                     nonDefaultVariable.checkValue(variableForAssignment.getValue());
-                }else{
+                }
+                else{ // if the variable has no value we can't define it as a value
                     throw new ParameterHasNoValueException();
                 }
             }
         }
+        scope.updateVariables(defaultVariables,nonDefaultVariables); // if all parameters legal,
+        // update variables of the scope
     }
 
     /**

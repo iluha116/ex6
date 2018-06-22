@@ -1,6 +1,7 @@
 package main.Scopes;
 
 import main.CodeException;
+import main.Lines.DefiningVariableLine;
 import main.Lines.IfWhileLine;
 import main.Lines.Line;
 import main.Lines.MethodLine;
@@ -42,25 +43,32 @@ public abstract class InnerScope extends Scope{
 
     @Override
     public void scopeCorrectness() throws CodeException {
-        int cur = 1;
-        while ( cur < lines.size()){
-            timeVariablesDelete = true;
-            Line curLine = lines.get(cur);
-            curLine.LineCorrectness(this);
-            if (curLine instanceof IfWhileLine){ // if the line defines if while scope
-                ArrayList<Line> scopeForCheckLines = super.findScope(curLine, lines);
-                cur += scopeForCheckLines.size();
-                ArrayList<Variable> deepcopy = deepCopy(globalVariables);
-                deepcopy.addAll(localVariables);
-                IfWhileScope scopeForCheck = new IfWhileScope (deepcopy, methods, scopeForCheckLines);
-                scopeForCheck.scopeCorrectness();
+        try {
+            cur = 1;
+            while (cur < lines.size()) {
+                timeVariablesDelete = true;
+                Line curLine = lines.get(cur);
+                curLine.LineCorrectness(this);
+                if (curLine instanceof IfWhileLine) { // if the line defines if while scope
+                    ArrayList<Line> scopeForCheckLines = super.findScope(curLine, lines);
+                    cur += scopeForCheckLines.size();
+                    ArrayList<Variable> deepcopy = deepCopy(globalVariables);
+                    deepcopy.addAll(localVariables);
+                    IfWhileScope scopeForCheck = new IfWhileScope(deepcopy, methods, scopeForCheckLines);
+                    scopeForCheck.scopeCorrectness();
+                } else {
+                    cur += 1; // if had no scope move forward one line
+                }
+                if (timeVariablesDelete) { // wasn't delete already
+                    timeVariablesDeletion();
+                }
             }
-            else{
-                cur += 1; // if had no scope move forward one line
-            }
-            if (timeVariablesDelete){ // wasn't delete already
-                timeVariablesDeletion();
-            }
+        }
+        catch (Exception e){
+            System.out.println("!!!");
+            System.out.println(this.getClass());
+            System.out.println(cur);
+            throw e;
         }
     }
 
