@@ -34,5 +34,23 @@ public class FinalVariable extends Variable{
         throw new ChangeFinalVariableException();
     }
 
+    @Override
+    public String getValue() {
+        return variable.getValue();
+    }
 
+    @Override
+    public String getName() {
+        return variable.getName();
+    }
+
+    @Override
+    public boolean hasValue() {
+        return variable.hasValue();
+    }
+
+    @Override
+    public boolean hasVariableValue() {
+        return variable.hasVariableValue();
+    }
 }

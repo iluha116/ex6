@@ -25,15 +25,18 @@ public class Main {
                 "(((final\\s+)?(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+),\\s*)*(final\\s+)?" +
                 "(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+)))\\s*\\)\\s*\\{\\s*";
 
+
+        final String SCOPES_LINE = "\\s*(if|while)\\s*(\\()((\\s*[\\w.-]+\\s*(&&|\\|{2})\\s*)" +
+                "*(\\s*[\\w.-]+\\s*)?)(\\)\\s*\\{)";
         final String RETURN_LINE="\\s*return\\s*;\\s*";
 
-        Pattern method = Pattern.compile(RETURN_LINE);
-        Matcher matcher = method.matcher("  return;");
 
-        System.out.println(matcher.matches());
-        System.out.println(matcher.group(0));
+        Pattern method = Pattern.compile(SCOPES_LINE);
+       Matcher matcher = method.matcher("  if (  2   ||  -3  ){");
 
-        String [] a = {"C:\\Users\\Shani\\IdeaProjects\\ex6\\ex6\\src\\tester_files\\Tests\\BaraksTests\\if\\01.sjava"};
+        //System.out.println(matcher.matches());
+
+        String [] a = {"C:\\Users\\Shani\\IdeaProjects\\ex6\\ex6\\src\\tester_files\\Tests\\BaraksTests\\if\\14.sjava"};
         Sjavac.main(a);
 
 

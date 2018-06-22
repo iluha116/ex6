@@ -1,34 +1,32 @@
-10:13:44
+12:52:54
 
 school solution#User solution#result#Test name
 
-
-while testing \BaraksTests\if\01.sjava, Your program printed something that is not '1' or '0'.
-The prints (or errors) were:
-+format of the line is not appropriate.
-1
-
-
-while testing \BaraksTests\if\02.sjava, Your program printed something that is not '1' or '0'.
-The prints (or errors) were:
-+format of the line is not appropriate.
-1
-
-
-while testing \BaraksTests\if\03.sjava, Your program printed something that is not '1' or '0'.
-The prints (or errors) were:
-+format of the line is not appropriate.
-1
-
-
-while testing \BaraksTests\if\04.sjava, Your program printed something that is not '1' or '0'.
-The prints (or errors) were:
-+format of the line is not appropriate.
-1
-
-
-while testing \BaraksTests\if\05.sjava, Your program printed something that is not '1' or '0'.
-The prints (or errors) were:
-+format of the line is not appropriate.
-1
-
+0		0		passed		\BaraksTests\if\01.sjava		
+1		1		passed		\BaraksTests\if\02.sjava		
+0		0		passed		\BaraksTests\if\03.sjava		
+0		0		passed		\BaraksTests\if\04.sjava		
+0		0		passed		\BaraksTests\if\05.sjava		
+0		0		passed		\BaraksTests\if\06.sjava		
+0		0		passed		\BaraksTests\if\07.sjava		
+0		0		passed		\BaraksTests\if\08.sjava		
+0		0		passed		\BaraksTests\if\09.sjava		
+0		0		passed		\BaraksTests\if\10.sjava		
+0		0		passed		\BaraksTests\if\11.sjava		
+1		1		passed		\BaraksTests\if\12.sjava		
+1		1		passed		\BaraksTests\if\13.sjava		
+0		1		failed		\BaraksTests\if\14.sjava		##################################
+1		1		passed		\BaraksTests\if\15.sjava		
+1		1		passed		\BaraksTests\if\16.sjava		
+1		1		passed		\BaraksTests\if\17.sjava		
+1		1		passed		\BaraksTests\if\18.sjava		
+0		0		passed		\BaraksTests\if\19.sjava		
+0		1		failed		\BaraksTests\if\20.sjava		##################################
+0		0		passed		\BaraksTests\if\21.sjava		
+1		1		passed		\BaraksTests\if\22.sjava		
+1		1		passed		\BaraksTests\if\23.sjava		
+1		1		passed		\BaraksTests\if\24.sjava		
+1		1		passed		\BaraksTests\if\25.sjava		
+1		1		passed		\BaraksTests\if\26.sjava		
+1		0		failed		\BaraksTests\if\27.sjava		##################################
+1		0		failed		\BaraksTests\if\28.sjava		##################################

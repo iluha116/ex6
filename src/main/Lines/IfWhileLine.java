@@ -25,6 +25,7 @@ public class IfWhileLine extends Line {
      */
     @Override
     public void LineCorrectness(Scope scope) throws NoBooleanExpressionInIfWhileCall{
+        //System.out.println("correctness if");
         for (String expression:booleanExpressions){
             // if one of the given parameters isn't boolean Expressions
             if (!isBooleanExpressions(expression, scope)){
@@ -35,6 +36,7 @@ public class IfWhileLine extends Line {
 
     /* check if the given expression is boolean in current scope*/
     private boolean isBooleanExpressions(String expression, Scope scope){
+        expression = expression.trim(); // delete spaces
         if (isNumber(expression)||isVariable(expression,scope)){
             return true;
         }
@@ -44,7 +46,7 @@ public class IfWhileLine extends Line {
     /* checks if the string is variable in the scope. */
     private boolean isVariable (String expression, Scope scope){
         try{
-            if (expression.equals("true|false")){
+            if (expression.equals("true")||expression.equals("false")){
                 return true;
             }
             Variable var = findVariable(expression, scope);

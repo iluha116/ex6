@@ -53,6 +53,7 @@ public class MethodLine extends Line {
      */
     @Override
     public void LineCorrectness (Scope scope) throws CodeException {
+        //System.out.println("corectness method");
         if ((scope instanceof MethodScope)&&(scope.getLines().get(0) == this)){
             // if it is Method scope and the first line, need to update the parameters as local in the scope
             updateVariablesStartMethod(scope);

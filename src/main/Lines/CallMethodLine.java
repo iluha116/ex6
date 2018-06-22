@@ -34,6 +34,7 @@ public class CallMethodLine extends Line{
      */
     @Override
     public void LineCorrectness (Scope scope) throws IllegalLineException {
+       // System.out.println("corectness callmethod");
         if (scope instanceof Global){ // can't be called from the global scope
             throw new CallMethodLineException();
         }

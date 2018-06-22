@@ -4,6 +4,7 @@ import main.CodeException;
 import main.Lines.LineExceptions.CallToUnExistsParameter;
 import main.Lines.LineExceptions.DefiningExistedVariableException;
 import main.Lines.LineExceptions.IllegalLineException;
+import main.Lines.LineExceptions.SearchForUnExistsParameter;
 import main.Scopes.Scope;
 import main.Variables.Variable;
 import main.Variables.VariablesExceptions.VariableException;
@@ -40,6 +41,7 @@ public class AssignmentVariableLine extends VariableLine{
     @Override
     public void LineCorrectness(Scope scope) throws CodeException{
         Variable variableForAssignment = null;
+        //find variable to which we want to assign value.
         for (int i=0;i<scope.getTimeVariables().size();i++){
             variableForAssignment = scope.getTimeVariables().get(i);
             if (variableForAssignment.getName().equals(name)){
@@ -50,7 +52,7 @@ public class AssignmentVariableLine extends VariableLine{
             variableForAssignment=findVariable(name,scope);
             }
         else {
-
+            throw new SearchForUnExistsParameter();
         }
         assignmentValueForVariable(variableForAssignment);
     }

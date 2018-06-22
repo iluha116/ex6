@@ -13,6 +13,7 @@ abstract public class Scope {
     protected ArrayList<Variable> localVariables;
     protected ArrayList<Variable> timeVariables;
     protected ArrayList<Variable> garbageVariables;
+    protected int cur=0;
 
     public ArrayList<Line> getLines (){
         return lines;
@@ -103,4 +104,5 @@ abstract public class Scope {
         }
         return copy;
     }
+
 }

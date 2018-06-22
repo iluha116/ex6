@@ -19,7 +19,7 @@ public class CommentsLine extends Line {
 
     /*this line will not be checked. */
     @Override
-    public void LineCorrectness (Scope scope) throws IllegalLineException {
+    public void LineCorrectness (Scope scope){
     }
 
 }
