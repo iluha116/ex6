@@ -51,7 +51,6 @@ public class MethodLine extends Line {
                 names[i] = pair[THIRD];
                 ifFinal[i]= true;
             }
-
         }
         this.method = new Method(name,names,types,ifFinal);
     }

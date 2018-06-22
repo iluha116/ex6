@@ -65,8 +65,7 @@ public class BooleanVariable extends Variable implements Cloneable{
         return hasValue;
     }
 
-    @Override
-    public String[] possibleTypesForVariable (){
+    public static String[] possibleTypesForVariable (){
         return possibleTypesForVar;
     }
 }

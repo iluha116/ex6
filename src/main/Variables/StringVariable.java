@@ -55,9 +55,4 @@ public class StringVariable extends Variable implements Cloneable{
         return STRING;
     }
 
-    @Override
-    public String[] possibleTypesForVariable (){
-         return possibleTypesForVar;
-    }
-
 }

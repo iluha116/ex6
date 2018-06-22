@@ -68,7 +68,7 @@ public class LineFactory {
                     break;
                 case METHOD_LINE:
                     String[] variable;
-                    if (matcher.group(2).equals("")){
+                    if (matcher.group(2).matches("\\s*")){
                         variable = new String[0];
                     }
                     else{

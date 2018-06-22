@@ -65,9 +65,9 @@ public abstract class InnerScope extends Scope{
             }
         }
         catch (Exception e){
-            System.out.println("!!!");
-            System.out.println(this.getClass());
-            System.out.println(cur);
+            //System.out.println("!!!");
+            //System.out.println(this.getClass());
+            //System.out.println(cur);
             throw e;
         }
     }

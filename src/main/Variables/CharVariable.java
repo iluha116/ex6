@@ -67,9 +67,4 @@ public class CharVariable extends Variable implements Cloneable{
         return hasValue;
     }
 
-    @Override
-    public String[] possibleTypesForVariable (){
-        return possibleTypesForVar;
-    }
-
 }

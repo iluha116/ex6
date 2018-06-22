@@ -78,9 +78,6 @@ public abstract class Line {
      */
     protected Variable findVariableInInsertedArray(String val,ArrayList<Variable> listForSearch){
         Variable var=null;
-        for (Variable vari:listForSearch){
-            System.out.println("value="+vari.getValue());
-        }
         for (int i=0; i<listForSearch.size(); i++){
             var = listForSearch.get(i);
             if (var.getName().equals(val)){
