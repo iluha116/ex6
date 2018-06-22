@@ -28,15 +28,16 @@ public class Main {
 
         final String SCOPES_LINE = "\\s*(if|while)\\s*(\\()((\\s*[\\w.-]+\\s*(&&|\\|{2})\\s*)" +
                 "*(\\s*[\\w.-]+\\s*)?)(\\)\\s*\\{)";
-        final String RETURN_LINE="\\s*return\\s*;\\s*";
+        final String METHOD_CALL ="\\s*(.\\w*)\\s*\\(\\s*((\\s*|\\s*(([A-Za-z]+\\w*|_+\\w+|\\w+),\\s*)*" +
+                "([A-Za-z]+\\w*|_+\\w+|\\w+))\\)\\s*;)\\s*";
+        final String RETURN_LINE ="\\s*return\\s*;\\s*";
 
+        Pattern method = Pattern.compile(RETURN_LINE);
+        Matcher matcher = method.matcher("return 3;");
 
-        Pattern method = Pattern.compile(SCOPES_LINE);
-       Matcher matcher = method.matcher("  if (  2   ||  -3  ){");
+        System.out.println(matcher.matches());
 
-        //System.out.println(matcher.matches());
-
-        String [] a = {"C:\\Users\\Shani\\IdeaProjects\\ex6\\ex6\\src\\tester_files\\Tests\\BaraksTests\\methods\\08.sjava"};
+        String [] a = {"C:\\Users\\Shani\\IdeaProjects\\ex6\\ex6\\src\\tester_files\\Tests\\BaraksTests\\return\\05.sjava"};
         Sjavac.main(a);
 
     }

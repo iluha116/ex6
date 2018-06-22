@@ -2,6 +2,7 @@ package main.Scopes;
 import main.CodeException;
 import main.Lines.Line;
 import main.Lines.MethodLine;
+import main.Method;
 import main.Variables.Variable;
 
 import java.util.ArrayList;
@@ -47,7 +48,6 @@ public class Global extends Scope {
                 cur += 1; // if had no scope move forward one line
             }
         }
-
         // check correctness of all methods
          for (ArrayList<Line> method : methodsLines){
             MethodScope methodForCheck = new MethodScope(deepCopy(localVariables), methods, method);

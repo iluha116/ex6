@@ -1,9 +1,9 @@
 package main.Lines;
 import main.Lines.LineExceptions.*;
 import main.Method;
-import main.Scopes.Global;
-import main.Scopes.Scope;
-import main.Variables.Variable;
+import main.Scopes.*;
+import main.Variables.*;
+import main.Variables.VariablesExceptions.VariableException;
 
 /**
  * This class represent call for method line.
@@ -16,6 +16,8 @@ public class CallMethodLine extends Line{
     private String[] parameters;
     /*name of the function that is called. */
     private String name;
+    private final String TRY_NAME= "name";
+    private final boolean TRY_FINAL= false;
 
     /**
      * Constructor for line that call some method.
@@ -34,38 +36,33 @@ public class CallMethodLine extends Line{
      */
     @Override
     public void LineCorrectness (Scope scope) throws IllegalLineException {
-       // System.out.println("corectness callmethod");
+       // System.out.println("correctness call method");
         if (scope instanceof Global){ // can't be called from the global scope
             throw new CallMethodLineException();
         }
-        if (!findSuitableMethod(scope)){ // of there isn't suitable method that can be called
+        if (!findSuitableMethod(scope)){ // if there isn't suitable method that can be called
             throw new CallMethodLineException();
         }
     }
-
 
     /**
      * Finds if there is a suitable method for such call to method.
      * @param scope-scope that contain array of all existed function. In this array function will be searched.
      * @return true if such method is exists,false otherwise.
-     * @throws IllegalLineException  exception that thrown in case that
      * method was called with not appropriate parameters.
      */
-    private boolean findSuitableMethod (Scope scope) throws IllegalLineException {
+    private boolean findSuitableMethod (Scope scope) {
         for (Method method:scope.getMethods()){
             String[] methodTypes = method.getParametersTypes();
             if (method.getName().equals(name)){ // if the name found
                 if (methodTypes.length != parameters.length){
                     // return false if the number of parameters is different
                     return false;
+                } // else
+                if (checkParametersTypes(scope,methodTypes)) {
+                    // if the name and all the parameters types are similar:
+                    return true;
                 }
-                String[] parametersTypes = checkParametersTypes(scope);
-                for (int i=0; i<methodTypes.length; i++){ // compare that all the types are similar.
-                    if (parametersTypes[i].equals(methodTypes[i])){ // if the types different return false
-                        return false;
-                    }
-                } // if the name and all the parameters types are similar:
-                return true;
             }
         }
         // if gone over all methods and didn't find the suitable one
@@ -73,23 +70,38 @@ public class CallMethodLine extends Line{
     }
 
 
-
     /**
-     * this method is verify types of variables.
+     * this method checks if all the given parameters types is the same in the methodTypes
      * @param scope-scope that contains all variables.
+     * @param methodTypes list of parameters types
      * @return array of types.
-     * @throws IllegalLineException exception that thrown in case that
      * method was called with not appropriate parameters.
      */
-    private String[] checkParametersTypes (Scope scope)
-            throws IllegalLineException{
-        String [] types = new String[parameters.length];
-        for (int i=0; i<parameters.length; i++){ // for each parameter in the line
-            // find the variable if exists
-            Variable var = findVariable(parameters[i], scope);
-            types [i] = var.getType();  // save the type
+    private boolean checkParametersTypes (Scope scope,  String[] methodTypes) {
+        for (int i=0; i<methodTypes.length; i++){ // for each parameter in the method
+            try {
+                // try to find variable that can be the given parameter
+                Variable var = findVariable(parameters[i], scope);
+
+                if (!var.getType().equals(methodTypes[i])){ // if the different types
+                    return false;
+                }
+            }
+            catch (CallToUnExistsParameter e){
+                // if there isn't variable, it can be a value in the needed type
+                try {
+                    Variable tryVar = VariablesFactory.factory(methodTypes[i], TRY_NAME,
+                            parameters[i].trim(), TRY_FINAL);
+                    if (!tryVar.hasValue()){ // if the parameter has no value can't be send
+                        return false;
+                    }
+                }
+                catch (VariableException ex){
+                    return false;
+                }
+            }
         }
-        return types;
+        return true;
     }
 
 }

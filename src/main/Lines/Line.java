@@ -47,15 +47,14 @@ public abstract class Line {
      * @param val name of variable that have to be founded.
      * @param scope-scope where this variable is searched for.
      * @return Variable if there is some variables with searched name.
-     * @throws IllegalLineException throw in case that there is no such variable.
+     * @throws CallToUnExistsParameter throw in case that there is no such variable.
      */
-    protected Variable findVariable (String val, Scope scope)
-            throws IllegalLineException{
+    protected Variable findVariable (String val, Scope scope) throws CallToUnExistsParameter{
         // first, search in the local parameters
         Variable variable;
-
         variable=findVariableInInsertedArray(val,scope.getLocalVariables());
         if (variable!=null){
+
             return variable;
         }
         // if doesn't found in the local parameters search in the global, if we are not in global
@@ -86,7 +85,5 @@ public abstract class Line {
         }
         return var;
     }
-
-
 
 }

@@ -43,12 +43,18 @@ public abstract class Variable implements Cloneable {
      * @throws WrongCastingException if the value doesn't fit the type of the variable throws exception
      */
     public void checkValue (String value) throws VariableException{
-        if (checkName(value)){ // check if
-            setValue(value);
-            varValue = true;
-        }
-        else {
+        try{
             checkValueAd (value);
+        }
+        catch (VariableException e){
+            if (checkName(value)){ // check if
+                this.hasValue = false;
+                this.value = value;
+                varValue = true;
+            }
+            else{
+                throw e;
+            }
         }
     }
 
