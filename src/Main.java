@@ -1,3 +1,5 @@
+import main.Sjavac;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.regex.Matcher;
@@ -30,6 +32,9 @@ public class Main {
 
         System.out.println(matcher.matches());
         System.out.println(matcher.group(2));
+
+        String [] a = {"C:\\Users\\Shani\\IdeaProjects\\ex6\\ex6\\src\\tester_files\\Tests\\SchoolTests\\test001.sjava"};
+        Sjavac.main(a);
 
 
 

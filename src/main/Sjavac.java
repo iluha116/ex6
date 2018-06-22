@@ -40,6 +40,7 @@ public class Sjavac{
             String curLine = bufReader.readLine();
             while(curLine != null){ // goes over the lines in the file,
                 // creates Lines objects representing line, and saves in ArrayList them.
+                //System.out.println("here");
                 Line line = LineFactory.lineFactory (curLine);
                 if (!(line instanceof CommentsLine)){
                     // adds all expect comments and empty line, no need to check them
