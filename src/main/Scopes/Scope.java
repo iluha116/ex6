@@ -6,6 +6,10 @@ import main.Scopes.ScopeExceptions.*;
 import main.Variables.*;
 import java.util.*;
 
+
+/**
+ * this class represents abstract scope in code.
+ */
 abstract public class Scope {
 
     protected ArrayList<Method> methods;
@@ -84,10 +88,10 @@ abstract public class Scope {
     }
 
     /* updates the method ArrayList of the scope - add the new method */
-    public void updateMethods (Method method) throws ReapeatMethodName{
+    public void updateMethods (Method method) throws RepeatMethodName{
         for (Method met:methods){ // check if there isn't already method with such name
             if (met.getName().equals(method.getName())){
-                throw new ReapeatMethodName();
+                throw new RepeatMethodName();
             }
         }
         methods.add(method);

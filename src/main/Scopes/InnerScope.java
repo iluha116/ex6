@@ -10,7 +10,7 @@ import main.Variables.Variable;
 import java.util.ArrayList;
 
 /**
- * This class represent the inner scopes in the code.
+ * This class represent the if and while scopes.
  * That can be inside the global scope.
  * @author Ilia Bogov
  * @author Shani Cheskis
@@ -52,9 +52,9 @@ public abstract class InnerScope extends Scope{
                 if (curLine instanceof IfWhileLine) { // if the line defines if while scope
                     ArrayList<Line> scopeForCheckLines = super.findScope(curLine, lines);
                     cur += scopeForCheckLines.size();
-                    ArrayList<Variable> deepcopy = deepCopy(globalVariables);
-                    deepcopy.addAll(localVariables);
-                    IfWhileScope scopeForCheck = new IfWhileScope(deepcopy, methods, scopeForCheckLines);
+                    ArrayList<Variable> deepCopy = deepCopy(globalVariables);
+                    deepCopy.addAll(localVariables);
+                    IfWhileScope scopeForCheck = new IfWhileScope(deepCopy, methods, scopeForCheckLines);
                     scopeForCheck.scopeCorrectness();
                 } else {
                     cur += 1; // if had no scope move forward one line
