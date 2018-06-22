@@ -20,7 +20,7 @@ public class LineFactory {
 
     private static final String ASSIGNMENT_VARIABLE_LINE=
             "\\s*(\\w+(\\s*=\\s*(('[^']*)|(\"[^\"]*\")|([\\w\\d]+))\\s*))\\s*;";
-    private static final String COMMENTS_LINE= "(\\s*(\\\\{2})(\\w*))|\\s*";
+    private static final String COMMENTS_LINE= "(\\s*(//)(\\s*\\w*)*|\\s*)";
     private static final String END_SCOPE="\\s*}\\s*";
     private static final String RETURN_LINE ="\\s*return\\s*;\\s*";
     private static final String METHOD_CALL ="\\s*(.\\w*)\\s*(\\(\\s*)(\\s*|(\\s*(([A-Za-z]+\\w*|_+\\w+|\\w+),\\s*)*" +
@@ -52,26 +52,26 @@ public class LineFactory {
         if (appropriateRegex!=null){
             switch (appropriateRegex){
                 case DEFINITION_VARIABLE_LINE:
-                    System.out.println("define");
+                    //System.out.println("define");
                     boolean ifFinal=!(matcher.group(1)==null);
                     String[] variables =matcher.group(3).split("\\s*,\\s*");
                     lineForReturning=new DefiningVariableLine(matcher.group(2),variables,ifFinal);
                     break;
                 case ASSIGNMENT_VARIABLE_LINE:
-                    System.out.println("assigment");
+                    //System.out.println("assigment");
                     lineForReturning=new AssignmentVariableLine(matcher.group(1));
                     break;
                 case COMMENTS_LINE:
-                    System.out.println("comment");
+                    //System.out.println("comment");
                     lineForReturning=new CommentsLine();
                     break;
                 case SCOPES_LINE:
                     String[] expression=matcher.group(3).split(AND_OR);
                     lineForReturning=new IfWhileLine(expression);
-                    System.out.println("ifWhile");
+                    //System.out.println("ifWhile");
                     break;
                 case METHOD_LINE:
-                    System.out.println("method");
+                    //System.out.println("method");
                     String[] variable;
                     if (matcher.group(2).matches("\\s*")){
                         variable = new String[0];
@@ -83,7 +83,7 @@ public class LineFactory {
 
                     break;
                 case METHOD_CALL:
-                    System.out.println("method call");
+                    //System.out.println("method call");
                     String[] vars;
                     if (matcher.group(3).matches("\\s*")){
                         vars = new String[0];
@@ -95,10 +95,10 @@ public class LineFactory {
                     break;
                 case END_SCOPE:
                     lineForReturning=new EndScope();
-                    System.out.println("end");
+                    //System.out.println("end");
                     break;
                 case RETURN_LINE:
-                    System.out.println("return");
+                    //System.out.println("return");
                     lineForReturning=new ReturnLine();
                     break;
                 default:

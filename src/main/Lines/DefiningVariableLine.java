@@ -3,6 +3,7 @@ package main.Lines;
 import main.CodeException;
 import main.Lines.LineExceptions.DefiningExistedVariableException;
 import main.Lines.LineExceptions.IllegalLineException;
+import main.Lines.LineExceptions.NotAppropriateLineFormatException;
 import main.Lines.LineExceptions.ParameterHasNoValueException;
 import main.Scopes.Global;
 import main.Scopes.InnerScope;
@@ -42,10 +43,12 @@ public class DefiningVariableLine extends VariableLine{
         this.nonDefaultVariables=new ArrayList<>();
         this.defaultVariables=new ArrayList<>();
         //for each variable add variable to default array(array with variables without value)
-        //and to nondefault array(array with variables that have some value. )
+        //and to non-default array(array with variables that have some value. )
         for (String variable:variables){
-            String[] variableComponents=getVariableComponents(variable);
-            if (variableComponents.length == DEFAULT_VARIABLE_COMPONENTS_NUMBER){
+            String[] variableComponents = getVariableComponents(variable);
+            if ((variableComponents.length == DEFAULT_VARIABLE_COMPONENTS_NUMBER)&&
+                    (type.matches("(int|double|String|boolean|char)"))){
+                // if only defining and checks that possible type
                 this.defaultVariables.add(VariablesFactory.
                         factoryDefault(type,extractVariableName(variableComponents),ifFinal,false));
             }
@@ -53,6 +56,9 @@ public class DefiningVariableLine extends VariableLine{
                 String name=extractVariableName(variableComponents);
                 String value=extractVariableValue(variableComponents);
                 this.nonDefaultVariables.add(VariablesFactory.factory(type,name,value,ifFinal));
+            }
+            else{ //..................
+                throw new NotAppropriateLineFormatException();
             }
         }
     }
