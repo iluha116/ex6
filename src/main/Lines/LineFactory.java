@@ -19,7 +19,7 @@ public class LineFactory {
             "(\\w+(\\s*=\\s*(('[^']*')|(\"[^\"]*\")|([\\w\\d]+))\\s*)?)\\s*)(;)";
 
     private static final String ASSIGNMENT_VARIABLE_LINE=
-            "\\s*(\\w+(\\s*=\\s*(('[^']*)|(\"[^\"]*\")|([\\w\\d]+))\\s*)?)\\s*;";
+            "\\s*(\\w+(\\s*=\\s*(('[^']*)|(\"[^\"]*\")|([\\w\\d]+))\\s*))\\s*;";
     private static final String COMMENTS_LINE= "(\\s*(\\\\{2})(\\w*))|\\s*";
     private static final String END_SCOPE="\\s*}\\s*";
     private static final String RETURN_LINE="\\s*return\\s*;\\s*";
@@ -27,8 +27,8 @@ public class LineFactory {
 
 
     private static final String[] REGEX =
-            {SCOPES_LINE,METHOD_LINE,DEFINITION_VARIABLE_LINE,
-                    COMMENTS_LINE,ASSIGNMENT_VARIABLE_LINE,END_SCOPE,RETURN_LINE};
+            {SCOPES_LINE,METHOD_LINE,DEFINITION_VARIABLE_LINE,RETURN_LINE,
+                    COMMENTS_LINE,ASSIGNMENT_VARIABLE_LINE,END_SCOPE,};
 
     /**
      * Factory
@@ -47,7 +47,6 @@ public class LineFactory {
                 break;
             }
         }
-        //Matcher line;
         if (appropriateRegex!=null){
             switch (appropriateRegex){
                 case DEFINITION_VARIABLE_LINE:
@@ -60,7 +59,7 @@ public class LineFactory {
                     break;
                 case COMMENTS_LINE:
                     lineForReturning=new CommentsLine();
-                    System.out.println("comment");
+//                    System.out.println("comment");
                     break;
                 case SCOPES_LINE:
                     String[] expression=matcher.group(3).split(AND_OR);
@@ -80,12 +79,11 @@ public class LineFactory {
                     break;
                 case END_SCOPE:
                     lineForReturning=new EndScope();
-                    //System.out.println("end");
+//                    System.out.println("end");
                     break;
                 case RETURN_LINE:
-                    System.out.println("return");
+//                    System.out.println("return");
                     lineForReturning=new ReturnLine();
-
                     break;
                 default:
                     throw new NotAppropriateLineFormatException();

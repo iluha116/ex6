@@ -28,7 +28,7 @@ public class Main {
         final String RETURN_LINE="\\s*return\\s*;\\s*";
 
         Pattern method = Pattern.compile(RETURN_LINE);
-        Matcher matcher = method.matcher("return;");
+        Matcher matcher = method.matcher("  return;");
 
         System.out.println(matcher.matches());
         System.out.println(matcher.group(0));
