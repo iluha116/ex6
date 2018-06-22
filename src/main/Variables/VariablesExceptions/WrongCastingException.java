@@ -9,4 +9,7 @@ import main.Variables.VariablesExceptions.VariableException;
  */
 
 public class WrongCastingException extends VariableException {
+    public WrongCastingException(){
+        message="type of value is not appropriate";
+    }
 }
