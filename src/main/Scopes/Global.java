@@ -37,6 +37,7 @@ public class Global extends Scope {
         ArrayList<ArrayList<Line>> methodsLines = new ArrayList<>();
         int cur = 0;
         while ( cur < lines.size()){
+            System.out.println(cur);
             Line curLine = lines.get(cur);
             curLine.LineCorrectness(this);
             if (curLine instanceof MethodLine){ // if the line defines method
