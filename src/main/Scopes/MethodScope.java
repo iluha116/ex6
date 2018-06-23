@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 public class MethodScope extends InnerScope {
 
+    /* first line index */
+    private static final int FIRST_LINE = 0;
     /**
      * Constructor
      * @param globals ArrayList of globals parameters for the Scope
@@ -31,7 +33,7 @@ public class MethodScope extends InnerScope {
 
     @Override
     public void scopeCorrectness() throws CodeException {
-        Line first = lines.get(0);
+        Line first = lines.get(FIRST_LINE); // check first line again, in order to get the variables from it
         first.LineCorrectness(this);
         super.scopeCorrectness();
     }

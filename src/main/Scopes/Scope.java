@@ -6,31 +6,60 @@ import main.Scopes.ScopeExceptions.*;
 import main.Variables.*;
 import java.util.*;
 
+/**
+ * Abstract of scope.
+ * @author Ilia Bogov
+ * @author Shani Cheskis
+ */
+
 abstract public class Scope {
 
+    /*array of methods in the global scope*/
     protected ArrayList<Method> methods;
+    /*array of lines in the current scope*/
     protected ArrayList<Line> lines;
+    /*array of local variables in the current scope*/
     protected ArrayList<Variable> localVariables;
+    /*array of local variables that was defined without value in the current scope*/
     protected ArrayList<Variable> timeVariables;
+    /*array of local variables that was defined without value and cant
+    get value any more in the current scope*/
     protected ArrayList<Variable> garbageVariables;
+    /*pointer to the current line we checks*/
     protected int cur=0;
 
+    /**
+     * @return array of lines in the current scope
+     */
     public ArrayList<Line> getLines (){
         return lines;
     }
 
+    /**
+     * @return array of methods in the global scope
+     */
     public ArrayList<Method> getMethods (){
         return methods;
     }
 
+    /**
+     * @return array of global variables in the current scope
+     */
     public ArrayList<Variable> getGlobalVariables (){
         return localVariables;
     }
 
+    /**
+     * @return array of local variables in the current scope
+     */
     public ArrayList<Variable> getLocalVariables (){
         return localVariables;
     }
 
+    /**
+     * Check that all the lines of the scope are legal
+     * @throws CodeException throws if there is some problem with the lines in the scope
+     */
     public abstract void scopeCorrectness() throws CodeException;
 
     /**
@@ -65,14 +94,25 @@ abstract public class Scope {
         return scopeLines;
     }
 
+    /**
+     * @return array of local variables that was defined without value and cant
+     * get value any more in the current scope.
+     */
     public ArrayList<Variable> getGarbageVariables() {
         return garbageVariables;
     }
 
+    /**
+     * @return array of local variables that was defined without value in the current scope
+     */
     public ArrayList<Variable> getTimeVariables() {
         return timeVariables;
     }
 
+    /**
+     * Move Time Variable to local Variables
+     * @param var Variable to remove
+     */
     public void removeFromTimeVariables(Variable var) {
         try{
             timeVariables.remove(var);
@@ -83,7 +123,11 @@ abstract public class Scope {
         }
     }
 
-    /* updates the method ArrayList of the scope - add the new method */
+    /**
+     * updates the method ArrayList of the scope - add the new method
+     * @param method Method for add
+     * @throws ReapeatMethodName throws if try to add method with the same name
+     */
     public void updateMethods (Method method) throws ReapeatMethodName{
         for (Method met:methods){ // check if there isn't already method with such name
             if (met.getName().equals(method.getName())){
@@ -93,12 +137,22 @@ abstract public class Scope {
         methods.add(method);
     }
 
+    /**
+     * Updates the variables
+     * @param defaultVariables new variables without value
+     * @param nonDefaultVariables new variables with value
+     */
     public abstract void updateVariables (ArrayList<Variable> defaultVariables,
                                           ArrayList<Variable> nonDefaultVariables) ;
 
+    /**
+     * Deepcopy of ArrayList of Variable
+     * @param forCopy ArrayList of variables for copy
+     * @return the new copy
+     */
     public ArrayList<Variable> deepCopy (ArrayList<Variable> forCopy){
         ArrayList<Variable> copy = new ArrayList<>();
-        for (Variable var: forCopy){
+        for (Variable var: forCopy){ // for all variables in the arrayList clone
             Variable newVar = var.clone();
             copy.add(newVar);
         }

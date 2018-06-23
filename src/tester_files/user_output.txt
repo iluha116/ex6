@@ -1,19 +1,96 @@
-19:41:52
+22:50:02
 
 school solution#User solution#result#Test name
 
-0		0		passed		\BaraksTests\if\01.sjava		
-1		1		passed		\BaraksTests\if\02.sjava		
-0		0		passed		\BaraksTests\if\03.sjava		
-0		0		passed		\BaraksTests\if\04.sjava		
-0		0		passed		\BaraksTests\if\05.sjava		
-0		0		passed		\BaraksTests\if\06.sjava		
-0		0		passed		\BaraksTests\if\07.sjava		
-0		0		passed		\BaraksTests\if\08.sjava		
-0		0		passed		\BaraksTests\if\09.sjava		
-0		0		passed		\BaraksTests\if\10.sjava		
-0		0		passed		\BaraksTests\if\11.sjava		
-1		1		passed		\BaraksTests\if\12.sjava		
-1		1		passed		\BaraksTests\if\13.sjava		
-0		0		passed		\BaraksTests\if\14.sjava		
-1		1		passed		\BaraksTests\if\15.sjava		
+
+while testing \BaraksTests\if\01.sjava, Your program printed something that is not '1' or '0'.
+The prints (or errors) were:
++0
+0
+
+
+while testing \BaraksTests\if\02.sjava, Your program printed something that is not '1' or '0'.
+The prints (or errors) were:
++0
+1
+1
+
+
+while testing \BaraksTests\if\03.sjava, Your program printed something that is not '1' or '0'.
+The prints (or errors) were:
++0
+0
+
+
+while testing \BaraksTests\if\04.sjava, Your program printed something that is not '1' or '0'.
+The prints (or errors) were:
++0
+0
+
+
+while testing \BaraksTests\if\05.sjava, Your program printed something that is not '1' or '0'.
+The prints (or errors) were:
++0
+0
+
+
+while testing \BaraksTests\if\06.sjava, Your program printed something that is not '1' or '0'.
+The prints (or errors) were:
++0
+0
+
+
+while testing \BaraksTests\if\07.sjava, Your program printed something that is not '1' or '0'.
+The prints (or errors) were:
++0
+0
+
+
+while testing \BaraksTests\if\08.sjava, Your program printed something that is not '1' or '0'.
+The prints (or errors) were:
++0
+0
+
+
+while testing \BaraksTests\if\09.sjava, Your program printed something that is not '1' or '0'.
+The prints (or errors) were:
++0
+0
+
+
+while testing \BaraksTests\if\10.sjava, Your program printed something that is not '1' or '0'.
+The prints (or errors) were:
++0
+0
+
+
+while testing \BaraksTests\if\11.sjava, Your program printed something that is not '1' or '0'.
+The prints (or errors) were:
++0
+0
+
+
+while testing \BaraksTests\if\12.sjava, Your program printed something that is not '1' or '0'.
+The prints (or errors) were:
++0
+1
+
+
+while testing \BaraksTests\if\13.sjava, Your program printed something that is not '1' or '0'.
+The prints (or errors) were:
++0
+1
+
+
+while testing \BaraksTests\if\14.sjava, Your program printed something that is not '1' or '0'.
+The prints (or errors) were:
++0
+5
+0
+
+
+while testing \BaraksTests\if\15.sjava, Your program printed something that is not '1' or '0'.
+The prints (or errors) were:
++0
+1
+
