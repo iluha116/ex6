@@ -11,6 +11,7 @@ public class IfWhileLine extends Line {
     /*array that contains boolean expression. */
     private String[] booleanExpressions;
 
+
     /**
      * this method creates line that contains if/ while statement according to inserted line.
      * @param booleanExpressions expression of the if/while statement.
@@ -26,7 +27,6 @@ public class IfWhileLine extends Line {
      */
     @Override
     public void LineCorrectness(Scope scope) throws NoBooleanExpressionInIfWhileCall{
-        //System.out.println("correctness if");
         for (String expression:booleanExpressions){
             // if one of the given parameters isn't boolean Expressions
             if (!isBooleanExpressions(expression, scope)){
@@ -52,7 +52,7 @@ public class IfWhileLine extends Line {
             }
             Variable var = findVariable(expression, scope);
             String type = var.getType();
-            for (String possibleType:BooleanVariable.possibleTypesForVariable()){
+            for (String possibleType:BooleanVariable.possibleTypesForBoolean()){
                 if(type.equals(possibleType)){
                     return true;
                 }

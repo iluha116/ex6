@@ -3,6 +3,8 @@ package main.Lines;
 
 import main.CodeException;
 import main.Lines.LineExceptions.IllegalLineException;
+import main.Lines.LineExceptions.ParameterHasNoValueException;
+import main.Lines.LineExceptions.VariableTypesAreNotCompatibleException;
 import main.Scopes.Scope;
 import main.Scopes.ScopeExceptions.ScopeException;
 import main.Variables.Variable;
@@ -62,6 +64,40 @@ public abstract class VariableLine extends Line{
      */
     protected String extractVariableValue(String[] variableComponents){
         return variableComponents[VARIABLE_VALUE_PLACE];
+    }
+
+    /**
+     *
+     * @param var
+     * @param assignment
+     * @return
+     */
+    protected boolean compatibilityOfTypes(Variable var, Variable assignment){
+        String [] possibleTypes = var.possibleTypesForVariable();
+        for (String type: possibleTypes){
+            if (type.equals(assignment.getType())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    protected void checkAssignmentOfVariable (Variable var, Scope scope) throws CodeException{
+        if (var.hasVariableValue()){ // if has a value that is variable search if such variable exists
+            Variable variableForAssignment=findVariable(var.getValue(),scope);
+            // find of there is such local or global variable
+            boolean isCompatible=compatibilityOfTypes(var,variableForAssignment);
+            if (!(isCompatible)){ // of the type isn't appropriate
+                throw new VariableTypesAreNotCompatibleException();
+            }
+            if (variableForAssignment.hasValue()){ // if the assignment variable has no value
+                var.checkValue(variableForAssignment.getValue());
+            }
+            else{ // if the variable has no value we can't define it as a value
+                throw new ParameterHasNoValueException();
+            }
+        }
     }
 
 }

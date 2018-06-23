@@ -10,8 +10,6 @@ import main.Variables.VariablesExceptions.WrongCastingException;
  */
 
 public class DoubleVariable extends Variable implements Cloneable {
-    /*appropriate types of variables. */
-    private static final String[] possibleTypesForVar = {INT,DOUBLE};
 
     /**
      * Constructor
@@ -20,7 +18,8 @@ public class DoubleVariable extends Variable implements Cloneable {
      DoubleVariable (String name, boolean hasValue){
         this.name = name;
         this.hasValue = hasValue;
-         this.value = DEFAULT_VALUE;
+        this.value = DEFAULT_VALUE;
+        this.possibleTypesForVar = new String[]{INT,DOUBLE};
     }
 
     /**
@@ -31,6 +30,7 @@ public class DoubleVariable extends Variable implements Cloneable {
      */
      DoubleVariable (String name, String value) throws VariableException {
         this.name = name;
+        this.possibleTypesForVar = new String[]{INT,DOUBLE};
         checkValue(value);
     }
 

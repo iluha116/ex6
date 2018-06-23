@@ -21,7 +21,6 @@ public abstract class Variable implements Cloneable {
     protected static final String DOUBLE = "double";
     protected static final String BOOLEAN = "boolean";
     protected static final String CHAR = "char";
-    private static final String[] possibleTypesForVar = {STRING,INT,DOUBLE,BOOLEAN,CHAR};
 
     /*name of the variable. */
     protected String name;
@@ -32,10 +31,12 @@ public abstract class Variable implements Cloneable {
     /*if the value is some other defined variable. */
     protected boolean varValue = false;
     /*default value for variable. */
-    protected static final String DEFAULT_VALUE = "00000";
+    protected static final String DEFAULT_VALUE = "";
     /*pattern for verifying that name of variable is appropriate and check if value of variable is other value.
     /*will be checked if value is appropriate for the pattern and if yes will be checked if such variable exists. */
     protected static final Pattern VAR_AS_VALUE = Pattern.compile("[A-Za-z]+\\w*|_+\\w+");
+    /*appropriate types of variables. */
+    protected String [] possibleTypesForVar;
 
     /**
      * Sets the given value to the variable, if can't throws WrongCastingException
@@ -97,8 +98,14 @@ public abstract class Variable implements Cloneable {
     }
 
     public boolean hasVariableValue (){
-        return varValue;
+        return this.varValue;
     }
 
+    /**
+     * @return valid types of variables,legal for assignment.
+     */
+    public String[] possibleTypesForVariable (){
+        return this.possibleTypesForVar;
+    }
 
 }

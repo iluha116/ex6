@@ -21,23 +21,22 @@ public class Main {
             //    ("(\\s*void\\s+\\w+)(\\()(((final\\s+)?\\s+([A-Za-z]+\\w*|_+\\w+),)*" +
              //           "((final\\s+)?(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+)))|(\\s*)\\s*\\{)");
 
-        final String METHOD_LINE ="\\s*void\\s++(.\\w*)\\s*\\((\\s*|\\s*" +
+        final String METHOD_LINE ="\\s*void\\s++([A-Za-z]\\w*)\\s*\\((\\s*|\\s*" +
                 "(((final\\s+)?(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+),\\s*)*(final\\s+)?" +
                 "(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+)))\\s*\\)\\s*\\{\\s*";
 
 
-        final String SCOPES_LINE = "\\s*(if|while)\\s*(\\()((\\s*[\\w.-]+\\s*(&&|\\|{2})\\s*)" +
-                "*(\\s*[\\w.-]+\\s*)?)(\\)\\s*\\{)";
-        final String METHOD_CALL ="\\s*(.\\w*)\\s*\\(\\s*((\\s*|\\s*(([A-Za-z]+\\w*|_+\\w+|\\w+),\\s*)*" +
-                "([A-Za-z]+\\w*|_+\\w+|\\w+))\\)\\s*;)\\s*";
-        final String RETURN_LINE ="\\s*return\\s*;\\s*";
 
-        Pattern method = Pattern.compile(RETURN_LINE);
-        Matcher matcher = method.matcher("return 3;");
+        String METHOD_CALL ="\\s*([A-Za-z]\\w*)\\s*(\\(\\s*)(\\s*|(\\s*(([A-Za-z]+\\w*|_+\\w+|\\w+|('[^']*')|(\"[^\"]*\"))\\s*,\\s*)*" +
+                "([A-Za-z]+\\w*|_+\\w+|\\w+|('[^']*')|(\"[^\"]*\"))))\\s*\\)\\s*;\\s*";
+        final String RETURN_LINE ="[A-Za-z]+\\w*|_+\\w+";
 
-        //System.out.println(matcher.matches());
+        Pattern method = Pattern.compile(METHOD_CALL);
+       Matcher matcher = method.matcher("boo(1,2,\"hello\");");
 
-        String [] a = {"C:\\Users\\Shani\\IdeaProjects\\ex6\\ex6\\src\\tester_files\\Tests\\BaraksTests\\variables\\01.sjava"};
+       System.out.println(matcher.matches());
+
+        String [] a = {"C:\\Users\\Shani\\IdeaProjects\\ex6\\ex6\\src\\tester_files\\Tests\\SchoolTests\\test501.sjava"};
         Sjavac.main(a);
 
 

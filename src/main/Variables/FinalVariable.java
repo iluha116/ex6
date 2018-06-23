@@ -1,7 +1,6 @@
 package main.Variables;
 
 import main.Variables.VariablesExceptions.ChangeFinalVariableException;
-import main.Variables.VariablesExceptions.FinalHasNoValue;
 import main.Variables.VariablesExceptions.VariableException;
 
 /**
@@ -10,15 +9,7 @@ import main.Variables.VariablesExceptions.VariableException;
 public class FinalVariable extends Variable{
     Variable variable;
 
-    public FinalVariable(Variable variable) throws FinalHasNoValue{
-        if (variable.hasValue()){
-            this.variable=variable;
-        }
-        else{
-            throw new FinalHasNoValue();
-        }
-    }
-    public FinalVariable(Variable variable, boolean ifDefault){
+    public FinalVariable(Variable variable){
         this.variable=variable;
     }
 
@@ -29,7 +20,13 @@ public class FinalVariable extends Variable{
 
     @Override
     protected void checkValueAd(String value) throws VariableException {
-        throw new ChangeFinalVariableException();
+        if (variable.hasVariableValue()){ // if a variable was defined can put the value
+            variable.checkValueAd(value);
+        }
+       else{ // can't change final value
+            throw new ChangeFinalVariableException();
+        }
+
     }
 
     @Override
@@ -57,4 +54,8 @@ public class FinalVariable extends Variable{
         return true;
     }
 
+    @Override
+    public String[] possibleTypesForVariable (){
+        return variable.possibleTypesForVar;
+    }
 }

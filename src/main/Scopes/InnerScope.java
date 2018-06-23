@@ -4,6 +4,7 @@ import main.CodeException;
 import main.Lines.*;
 import main.Variables.Variable;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * This class represent the inner scopes in the code.

@@ -11,7 +11,7 @@ import main.Variables.VariablesExceptions.WrongCastingException;
 
 public class BooleanVariable extends Variable implements Cloneable{
     /*appropriate types of variables. e.g. boolean variable may also be defined with double and int. */
-    private static final String[] possibleTypesForVar = {INT,DOUBLE,BOOLEAN};
+    private static final String[] possibleTypesForIfWhile = {INT,DOUBLE,BOOLEAN};
 
     /**
      * Constructor
@@ -21,6 +21,7 @@ public class BooleanVariable extends Variable implements Cloneable{
          this.name = name;
          this.hasValue = hasValue;
          this.value = DEFAULT_VALUE;
+         this.possibleTypesForVar = new String[]{INT,DOUBLE,BOOLEAN};
     }
 
     /**
@@ -31,6 +32,7 @@ public class BooleanVariable extends Variable implements Cloneable{
      */
     public BooleanVariable (String name, String value) throws VariableException {
         this.name = name;
+        this.possibleTypesForVar = new String[]{INT,DOUBLE,BOOLEAN};
         checkValue(value);
     }
 
@@ -40,13 +42,15 @@ public class BooleanVariable extends Variable implements Cloneable{
             this.hasValue = true;
             this.value = value;
         }
-        try { // if a number
-            Double val = Double.parseDouble(value);
-            this.hasValue = true;
-            this.value = value;
-        } //else
-        catch (Exception e){ // if was empty and had no 0 and length-1 indexes
-            throw new WrongCastingException();
+        else {
+            try { // if a number
+                Double val = Double.parseDouble(value);
+                this.hasValue = true;
+                this.value = value;
+            } //else
+            catch (Exception e){ // if was empty and had no 0 and length-1 indexes
+                throw new WrongCastingException();
+            }
         }
     }
 
@@ -66,10 +70,11 @@ public class BooleanVariable extends Variable implements Cloneable{
     }
 
     /**
-     *
-     * @return valid types of variables,legal for assignment.
+     * @return valid types of variables, legal for If/While.
      */
-    public static String[] possibleTypesForVariable (){
-        return possibleTypesForVar;
+    public static String[] possibleTypesForBoolean (){
+        return possibleTypesForIfWhile;
     }
+
+
 }

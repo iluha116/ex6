@@ -11,8 +11,6 @@ import main.Variables.VariablesExceptions.WrongCastingException;
 
 
 public class CharVariable extends Variable implements Cloneable{
-    /*appropriate types of variables. */
-    private static final String[] possibleTypesForVar = {CHAR};
 
     /**
      * Constructor
@@ -22,6 +20,7 @@ public class CharVariable extends Variable implements Cloneable{
          this.name = name;
          this.hasValue = hasValue;
          this.value = DEFAULT_VALUE;
+         this.possibleTypesForVar = new String[]{CHAR};
      }
 
     /**
@@ -32,6 +31,7 @@ public class CharVariable extends Variable implements Cloneable{
      */
      public CharVariable (String name, String value) throws VariableException {
          this.name = name;
+         this.possibleTypesForVar = new String[]{CHAR};
          checkValue(value);
      }
 

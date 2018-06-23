@@ -76,14 +76,15 @@ public abstract class Line {
      * @return variable if there is appropriate,null otherwise.
      */
     protected Variable findVariableInInsertedArray(String val,ArrayList<Variable> listForSearch){
-        Variable var=null;
+        Variable variable=null;
         for (int i=0; i<listForSearch.size(); i++){
-            var = listForSearch.get(i);
-            if (var.getName().equals(val)){
-                return var;
+            String varName = listForSearch.get(i).getName();
+            if (varName.equals(val)){
+                variable = listForSearch.get(i);
+                return variable;
             }
         }
-        return var;
+        return variable;
     }
 
 }

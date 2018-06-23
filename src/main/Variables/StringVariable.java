@@ -11,7 +11,6 @@ import javax.print.DocFlavor;
 
 public class StringVariable extends Variable implements Cloneable{
 
-    private static final String[] possibleTypesForVar = {STRING};
 
     /**
      * Constructor
@@ -21,6 +20,7 @@ public class StringVariable extends Variable implements Cloneable{
          this.name = name;
          this.hasValue = hasValue;
          this.value = DEFAULT_VALUE;
+         possibleTypesForVar = new String[]{STRING};
     }
 
     /**
@@ -31,6 +31,7 @@ public class StringVariable extends Variable implements Cloneable{
      */
      public StringVariable (String name, String value) throws VariableException {
          this.name = name;
+         possibleTypesForVar = new String[]{STRING};
          checkValue(value);
      }
 

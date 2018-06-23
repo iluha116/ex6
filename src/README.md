@@ -1,4 +1,4 @@
-shanich14
+shanicheskis
 molodoy
 
 ==========================
@@ -44,8 +44,10 @@ CharVariable.java - Class that represents Variable type Char.
 Exceptions of Variables:
 VariableException - Class that represents abstract exception that associated to illegal actions with Variables.
 WrongCastingException.java - Class that represents exception thrown in cases of illegal casting.
-NoTypeOfVariable.java - Class that represents exception thrown in cases when variable was defined without a type.
-FinalHasNoValue.java - Class that represents exception thrown in cases when final variable was defined without value.
+NoTypeOfVariable.java - Class that represents exception thrown in cases when variable was defined
+                        without a type.
+FinalHasNoValue.java - Class that represents exception thrown in cases when final variable was defined
+                        without value.
 ChangeFinalVariableException.java - Class that represents exception thrown
    in cases when there was an attempt to value of final variable
 -----------------------------------------------------------------------------------
@@ -73,7 +75,8 @@ CallToUnExistsParameter.java - Class that represents exception that
    thrown in case when variable that is not exist called.
 DefiningExistedVariableException.java - Class that represents exception that thrown in case when is
    defined new variable with name that already exists in the scope.
-EndScopeException.java - Class that represents exception that thrown in case when char '}' was used in illegal way.
+EndScopeException.java - Class that represents exception that thrown in case when char '}' was used in
+    illegal way.
 MethodCreatingException.java - Class that represents exception 
    that thrown in case when method created inside other method.
 NoBooleanExpressionWhileCall.java - Class that represents exception that 

@@ -1,10 +1,10 @@
-package main.Variables.VariablesExceptions;
+package main.Lines.LineExceptions;
 
 /**
  * This class represents exception thrown in cases when
  * final variable was defined without value.
  */
-public class FinalHasNoValue extends VariableException{
+public class FinalHasNoValue extends IllegalLineException {
     /**
      * Constructor
      */

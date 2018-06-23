@@ -84,7 +84,7 @@ public class VariablesFactory {
                 break;
         }
         if (ifFinal){
-            val=new FinalVariable(val,true);
+            val=new FinalVariable(val);
         }
 
         return val;

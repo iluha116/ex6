@@ -114,24 +114,19 @@ abstract public class Scope {
      * @param var Variable to remove
      */
     public void removeFromTimeVariables(Variable var) {
-        try{
-            timeVariables.remove(var);
-            localVariables.add(var);
-        }
-        catch (NullPointerException e){
-            //System.out.println("timeVariables are empty.");
-        }
+        timeVariables.remove(var);
+        localVariables.add(var);
     }
 
     /**
      * updates the method ArrayList of the scope - add the new method
      * @param method Method for add
-     * @throws ReapeatMethodName throws if try to add method with the same name
+     * @throws RepeatMethodName throws if try to add method with the same name
      */
-    public void updateMethods (Method method) throws ReapeatMethodName{
+    public void updateMethods (Method method) throws RepeatMethodName{
         for (Method met:methods){ // check if there isn't already method with such name
             if (met.getName().equals(method.getName())){
-                throw new ReapeatMethodName();
+                throw new RepeatMethodName();
             }
         }
         methods.add(method);

@@ -1,10 +1,7 @@
 package main.Lines;
 
 import main.CodeException;
-import main.Lines.LineExceptions.CallToUnExistsParameter;
-import main.Lines.LineExceptions.DefiningExistedVariableException;
-import main.Lines.LineExceptions.IllegalLineException;
-import main.Lines.LineExceptions.SearchForUnExistsParameter;
+import main.Lines.LineExceptions.*;
 import main.Scopes.Scope;
 import main.Variables.Variable;
 import main.Variables.VariablesExceptions.VariableException;
@@ -29,8 +26,8 @@ public class AssignmentVariableLine extends VariableLine{
      */
     AssignmentVariableLine(String variable){
             String[] variableComponents=getVariableComponents(variable);
-            this.name=extractVariableName(variableComponents);
-            this.value=extractVariableValue(variableComponents);
+            this.name = extractVariableName(variableComponents);
+            this.value = extractVariableValue(variableComponents).trim();
     }
 
     /**
@@ -40,22 +37,26 @@ public class AssignmentVariableLine extends VariableLine{
      */
     @Override
     public void LineCorrectness(Scope scope) throws CodeException{
-        Variable variableForAssignment = null;
+        Variable variableForAssignment = null; // pointer for variable which will receive value
         //find variable to which we want to assign value.
         for (int i=0;i<scope.getTimeVariables().size();i++){
-            variableForAssignment = scope.getTimeVariables().get(i);
-            if (variableForAssignment.getName().equals(name)){
+            //try to find in timeVariables (variables that was defined in previous line without value).
+            if (scope.getTimeVariables().get(i).getName().equals(name)){
+                variableForAssignment = scope.getTimeVariables().get(i);
+                scope.removeFromTimeVariables(variableForAssignment);
                 break;
             }
         }
-        if (variableForAssignment==null){
+        //If it wasn't founded in timeVariables try to find it in local and global variables.
+        if (variableForAssignment == null){
             variableForAssignment=findVariable(name,scope);
-            }
-        assignmentValueForVariable(variableForAssignment);
+            //if it wasn't found yet, findVariable throws exception
+        }
+        variableForAssignment.checkValue(value); // assignment of the value
+        checkAssignmentOfVariable (variableForAssignment, scope);
     }
 
     /**
-     *
      * @return name of the variable
      */
     public String getName() {
@@ -63,19 +64,10 @@ public class AssignmentVariableLine extends VariableLine{
     }
 
     /**
-     *
      * @return value of the variable.
      */
     public String getValue() {
         return value;
     }
 
-    /**
-     * this method make assignment of the variable.
-     * @param variable variable value of which have to be changed.
-     * @throws VariableException exception that thrown in case that assignment was not successful.
-     */
-    private void assignmentValueForVariable(Variable variable)throws VariableException{
-        variable.checkValue(value);
-    }
 }
