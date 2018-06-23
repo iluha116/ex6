@@ -1,4 +1,4 @@
-import main.Sjavac;
+import oop.ex6.main.Sjavac;
 
 import java.util.ArrayList;
 import java.util.Iterator;
