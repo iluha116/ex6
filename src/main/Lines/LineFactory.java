@@ -4,6 +4,9 @@ import main.Lines.LineExceptions.*;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
+/**
+ * This class represents Factory of lines .
+ */
 public class LineFactory {
 
     private static final String TYPES = "(int|double|String|boolean|char)";

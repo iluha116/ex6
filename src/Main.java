@@ -40,6 +40,7 @@ public class Main {
         String [] a = {"C:\\Users\\Shani\\IdeaProjects\\ex6\\ex6\\src\\tester_files\\Tests\\BaraksTests\\variables\\01.sjava"};
         Sjavac.main(a);
 
+
     }
 
 }

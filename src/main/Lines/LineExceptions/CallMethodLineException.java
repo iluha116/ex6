@@ -1,6 +1,6 @@
 package main.Lines.LineExceptions;
 /**
- * This class represents exception that thrown in case when variable that is not exist called.
+ * This class represents exception that thrown in case when call of method was made in illegal way.
  */
 public class CallMethodLineException extends IllegalLineException{
     /**
