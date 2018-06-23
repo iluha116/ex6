@@ -17,7 +17,7 @@ public class LineFactory {
             "(int|double|String|boolean|char)\\s+([A-Za-z]+\\w*|_+\\w+)))\\s*\\)\\s*\\{\\s*";
     private static final String SCOPES_LINE = "\\s*(if|while)\\s*(\\()((\\s*[\\w.-]+\\s*(&&|\\|{2})\\s*)" +
             "*(\\s*[\\w.-]+\\s*)?)(\\)\\s*\\{\\s*)";
-    private static final String DEFINITION_VARIABLE_LINE="\\s*(final\\s+)?(\\w+)\\s+" +
+    private static final String DEFINITION_VARIABLE_LINE="\\s*(final\\s+)?(int|double|String|boolean|char)\\s+" +
             "((\\w+(\\s*=\\s*(('[^']*')|(\"[^\"]*\")|([\\w\\d]+))\\s*)?\\s*,\\s*)*" +
             "(\\w+(\\s*=\\s*(('[^']*')|(\"[^\"]*\")|([\\w\\d]+))\\s*)?)\\s*);\\s*";
 

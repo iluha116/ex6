@@ -46,8 +46,7 @@ public class DefiningVariableLine extends VariableLine{
         //and to non-default array(array with variables that have some value. )
         for (String variable:variables){
             String[] variableComponents = getVariableComponents(variable);
-            if ((variableComponents.length == DEFAULT_VARIABLE_COMPONENTS_NUMBER)&&
-                    (type.matches("(int|double|String|boolean|char)"))){
+            if (variableComponents.length == DEFAULT_VARIABLE_COMPONENTS_NUMBER){
                 // if only defining and checks that possible type
                 this.defaultVariables.add(VariablesFactory.
                         factoryDefault(type,extractVariableName(variableComponents),ifFinal,false));
