@@ -51,9 +51,6 @@ public class AssignmentVariableLine extends VariableLine{
         if (variableForAssignment==null){
             variableForAssignment=findVariable(name,scope);
             }
-        else {
-            throw new SearchForUnExistsParameter();
-        }
         assignmentValueForVariable(variableForAssignment);
     }
 
